@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar({Key? key})
       : super(
           key: key,
-          iconTheme: IconThemeData(
-            size: 13.h,
-            color: grey,
+          iconTheme: const IconThemeData(
+            size: 13,
+            color: greyLight,
           ),
           leading: IconButton(
             icon: const Icon(Icons.circle),

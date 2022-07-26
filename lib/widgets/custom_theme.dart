@@ -5,12 +5,21 @@ import 'colors.dart';
 class CustomTheme {
   static ThemeData get lightTheme {
     return ThemeData(
-        primaryColor: purple,
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: purple,
+            ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          toolbarHeight: 34.h,
+        appBarTheme: const AppBarTheme(
+          toolbarHeight: 34,
           color: purple,
           elevation: 0,
+        ),
+        textTheme: TextTheme(
+          labelMedium: TextStyle(
+              color: black.withOpacity(0.5),
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+              fontFamily: "Nunito"),
         ));
   }
 }
