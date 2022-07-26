@@ -1,7 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:registration/widgets/main_button.dart';
 import '../../widgets/appbar.dart';
+import '../../widgets/forgot_password_button.dart';
 import '../bloc/login_bloc.dart';
 import 'login_form.dart';
 
@@ -32,6 +34,9 @@ class LoginPage extends StatelessWidget {
             },
             child: const LoginForm(),
           ),
+          const Align(
+              alignment: Alignment.bottomLeft, child: ForgotPasswordButton()),
+          MainButtonLight(name: "LogIn", onPressed: () {})
         ]),
       ),
     );

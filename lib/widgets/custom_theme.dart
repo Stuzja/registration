@@ -20,6 +20,16 @@ class CustomTheme {
               fontWeight: FontWeight.w400,
               fontSize: 14,
               fontFamily: "Nunito"),
+          bodyText1: const TextStyle(
+              color: greyDark,
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+              fontFamily: "Nunito"),
+          button: const TextStyle(
+              color: purple,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              fontFamily: "Nunito"),
         ));
   }
 }
