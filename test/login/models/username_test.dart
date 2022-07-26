@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter_test/flutter_test.dart';
-import 'package:registration/login/login.dart';
+import 'package:registration/login/models/username.dart';
 
 void main() {
   const usernameString = 'mock-username';

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:registration/login/login.dart';
+import 'package:registration/login/bloc/login_bloc.dart';
 import 'package:registration/login/view/login_form.dart';
 
 class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
