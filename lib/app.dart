@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 import 'authentication/bloc/authentication_bloc.dart';
-import 'home/view/home_page.dart';
+import 'pages/home_page.dart';
 import 'login/view/login_page.dart';
-import 'splash/view/splash_page.dart';
+import 'pages/splash_page.dart';
 
 class App extends StatelessWidget {
   const App({
