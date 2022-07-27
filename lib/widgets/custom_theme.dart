@@ -9,8 +9,8 @@ class CustomTheme {
               primary: purple,
             ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          toolbarHeight: 34,
+        appBarTheme:  AppBarTheme(
+          toolbarHeight: 34.h,
           color: purple,
           elevation: 0,
         ),

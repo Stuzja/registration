@@ -1,19 +1,18 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/main_button.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/forgot_password_button.dart';
-import '../bloc/login_bloc.dart';
-import 'login_form.dart';
+import '../widgets/register_text_button.dart';
+import '../widgets/secured_textfield.dart';
+import '../widgets/unsecured_textfield.dart';
 
-/*class LoginPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
- /* static Route route() {
+  static Route route() {
     return MaterialPageRoute<void>(builder: (_) => const LoginPage());
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +25,24 @@ import 'login_form.dart';
               width: 170.w,
               height: 170.h,
               child: Image.asset("assets/images/logo.png")),
-          BlocProvider(
-            create: (context) {
-              return LoginBloc(
-                authenticationRepository:
-                    RepositoryProvider.of<AuthenticationRepository>(context),
-              );
-            },
-            child: const LoginForm(),
+          UnsecuredTextField(
+            key: const Key('loginForm_usernameInput_textField'),
+            onChanged: (String str) {},
+            errorText: null,
+            nameField: "Username",
+          ),
+          SecuredTextField(
+            key: const Key('loginForm_passwordInput_textField'),
+            onChanged: (String str) {},
+            nameField: 'Password',
+            errorText: null,
           ),
           const Align(
               alignment: Alignment.bottomLeft, child: ForgotPasswordButton()),
-          MainButtonLight(name: "LogIn", onPressed: () {})
+          MainButtonLight(name: "Login", onPressed: () {}),
+          const RegisterTextButton(),
         ]),
       ),
     );
   }
 }
-*/

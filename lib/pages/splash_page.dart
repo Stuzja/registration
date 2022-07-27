@@ -13,8 +13,8 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
         body: Center(
       child: SizedBox(
-          width: 250,
-          height: 250,
+          width: 250.w,
+          height: 250.h,
           child: Image.asset("assets/images/logo.png")),
     ));
   }

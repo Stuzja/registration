@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 import 'custom_theme.dart';
 
@@ -16,8 +17,8 @@ class UnsecuredTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 64,
-        width: 328,
+        height: 64.h,
+        width: 328.w,
         child: TextField(
           cursorColor: greyLight,
           decoration: InputDecoration(

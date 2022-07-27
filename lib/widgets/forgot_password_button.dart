@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/colors.dart';
-
 import 'custom_theme.dart';
 
 class ForgotPasswordButton extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 import 'custom_theme.dart';
 
@@ -29,8 +30,8 @@ class SecuredTextFieldState extends State<SecuredTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 64,
-        width: 328,
+        height: 64.h,
+        width: 328.w,
         child: TextField(
           obscureText: _obscureText,
           cursorColor: greyLight,

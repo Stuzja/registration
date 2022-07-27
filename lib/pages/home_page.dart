@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/widgets/appbar.dart';
-import 'authentication/bloc/authentication_bloc.dart';
+import '../authentication/bloc/authentication_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
