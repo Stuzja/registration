@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/main_button.dart';
 import '../../widgets/appbar.dart';
+import '../widgets/buttons/back_button.dart';
 import '../widgets/custom_theme.dart';
 import '../widgets/secured_textfield.dart';
 
@@ -15,6 +16,7 @@ class CreatePasswordPage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+           const CustomBackButton(),
           Text("Create password",
               style: CustomTheme.lightTheme.textTheme.headline1),
           Text("Create your new password to login",

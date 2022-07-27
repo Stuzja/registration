@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/main_button.dart';
 import '../../widgets/appbar.dart';
+import '../widgets/buttons/back_button.dart';
 import '../widgets/secured_textfield.dart';
 import '../widgets/unsecured_textfield.dart';
 
@@ -15,6 +16,7 @@ class RegistrationPage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(children: [
+          const CustomBackButton(),
           SizedBox(
               width: 170.w,
               height: 170.h,
