@@ -9,7 +9,7 @@ class CustomTheme {
               primary: purple,
             ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme:  AppBarTheme(
+        appBarTheme: AppBarTheme(
           toolbarHeight: 34.h,
           color: purple,
           elevation: 0,
@@ -20,6 +20,12 @@ class CustomTheme {
               fontWeight: FontWeight.w400,
               fontSize: 14,
               fontFamily: "Nunito"),
+          headline1: const TextStyle(
+            color: black,
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            fontFamily: "Nunito",
+          ),
           bodyText1: const TextStyle(
               color: greyDark,
               fontWeight: FontWeight.w400,

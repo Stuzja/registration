@@ -2,14 +2,15 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/pages/registration_page.dart';
+import 'package:registration/pages/create_password_page.dart';
+import 'package:registration/pages/forgot_password_page.dart';
+import 'package:registration/pages/login_page.dart';
 import 'package:registration/pages/splash_page.dart';
+import 'package:registration/pages/verification_code_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
 import 'package:user_repository/user_repository.dart';
 import 'authentication/bloc/authentication_bloc.dart';
 import 'pages/home_page.dart';
-import 'login/view/login_page.dart';
-import 'pages/login_page.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -71,7 +72,7 @@ class _AppViewState extends State<AppView> {
                       break;
                     case AuthenticationStatus.unauthenticated:
                       _navigator.pushAndRemoveUntil<void>(
-                        RegistrationPage.route(),
+                        LoginPage.route(),
                         (route) => false,
                       );
                       break;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
 import '../authentication/bloc/authentication_bloc.dart';
 
@@ -18,6 +19,10 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            SizedBox(
+                width: 250.w,
+                height: 250.h,
+                child: Image.asset("assets/images/logo.png")),
             Builder(
               builder: (context) {
                 final userId = context.select(

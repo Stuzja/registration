@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/widgets/main_button.dart';
+import 'package:registration/widgets/buttons/main_button.dart';
 import '../../widgets/appbar.dart';
-import '../../widgets/forgot_password_button.dart';
-import '../widgets/register_text_button.dart';
 import '../widgets/secured_textfield.dart';
 import '../widgets/unsecured_textfield.dart';
 
@@ -19,7 +17,7 @@ class RegistrationPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(children: [
           SizedBox(
               width: 170.w,
