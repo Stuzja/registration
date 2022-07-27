@@ -37,14 +37,15 @@ class LoginPage extends StatelessWidget {
             nameField: 'Password',
             errorText: null,
           ),
-          RegularTextButton(name: "Forgot password?", onPressed: () {}),
+          Align(
+              alignment: Alignment.topLeft,
+              child: RegularTextButton(
+                  name: "Forgot password?", onPressed: () {Navigator.pushNamed(context, '/forgotPassword');})),
           MainButtonLight(name: "Login", onPressed: () {}),
-          Row(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text("Don’t have an account?",
                 style: CustomTheme.lightTheme.textTheme.bodyText1),
-            Center(
-              child: RegularTextButton(name: "Sign up", onPressed: () {}),
-            )
+            RegularTextButton(name: "Sign up", onPressed: () {Navigator.pushNamed(context, '/register');}),
           ]),
         ]),
       ),

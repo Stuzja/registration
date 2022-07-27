@@ -8,10 +8,6 @@ import '../widgets/unsecured_textfield.dart';
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const ForgotPasswordPage());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +23,7 @@ class ForgotPasswordPage extends StatelessWidget {
           UnsecuredTextField(
               nameField: "Phone number or username",
               onChanged: (String str) {}),
-          MainButtonDark(name: "Reset my password", onPressed: () {}),
+          MainButtonDark(name: "Reset my password", onPressed: () {Navigator.pushNamed(context, '/verification');}),
         ]),
       ),
     );

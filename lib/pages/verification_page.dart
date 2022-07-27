@@ -5,13 +5,8 @@ import '../../widgets/appbar.dart';
 import '../widgets/buttons/text_button.dart';
 import '../widgets/custom_theme.dart';
 
-class VerificationCodePage extends StatelessWidget {
-  const VerificationCodePage({Key? key}) : super(key: key);
-
-  static Route route() {
-    return MaterialPageRoute<void>(
-        builder: (_) => const VerificationCodePage());
-  }
+class VerificationPage extends StatelessWidget {
+  const VerificationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +17,9 @@ class VerificationCodePage extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text("Enter Verification Code",
               style: CustomTheme.lightTheme.textTheme.headline1),
-          Text("Enter code that we have sent to your phone +7 (***) ***-**-14",
+          Text("Enter code that we have sent to your email yon*******@gmail.com",
               style: CustomTheme.lightTheme.textTheme.bodyText1),
-          MainButtonDark(name: "Verify", onPressed: () {}),
+          MainButtonDark(name: "Verify", onPressed: () {Navigator.pushNamed(context, '/createPassword');}),
           Center(
               child: RegularTextButton(onPressed: () {}, name: "Resend Code")),
         ]),

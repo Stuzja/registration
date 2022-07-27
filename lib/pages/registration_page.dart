@@ -8,10 +8,6 @@ import '../widgets/unsecured_textfield.dart';
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const RegistrationPage());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

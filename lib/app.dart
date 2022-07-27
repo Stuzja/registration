@@ -5,8 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/create_password_page.dart';
 import 'package:registration/pages/forgot_password_page.dart';
 import 'package:registration/pages/login_page.dart';
+import 'package:registration/pages/registration_page.dart';
 import 'package:registration/pages/splash_page.dart';
-import 'package:registration/pages/verification_code_page.dart';
+import 'package:registration/pages/verification_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
 import 'package:user_repository/user_repository.dart';
 import 'authentication/bloc/authentication_bloc.dart';
@@ -60,6 +61,15 @@ class _AppViewState extends State<AppView> {
           return MaterialApp(
             theme: CustomTheme.lightTheme,
             navigatorKey: _navigatorKey,
+            routes: {
+              '/register': (BuildContext context) => const RegistrationPage(),
+              '/forgotPassword': (BuildContext context) =>
+                  const ForgotPasswordPage(),
+              '/verification': (BuildContext context) =>
+                  const VerificationPage(),
+              '/createPassword': (BuildContext context) =>
+                  const CreatePasswordPage(),
+            },
             builder: (context, child) {
               return BlocListener<AuthenticationBloc, AuthenticationState>(
                 listener: (context, state) {

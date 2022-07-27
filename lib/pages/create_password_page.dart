@@ -8,10 +8,6 @@ import '../widgets/secured_textfield.dart';
 class CreatePasswordPage extends StatelessWidget {
   const CreatePasswordPage({Key? key}) : super(key: key);
 
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const CreatePasswordPage());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
