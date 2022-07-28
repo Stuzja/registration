@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "646966322197",
+    "project_id": "registration-23b3b",
+    "storage_bucket": "registration-23b3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646966322197:android:6dd64847f5d71c8a905a1c",
+        "android_client_info": {
+          "package_name": "com.example.registration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646966322197-0qi67o3tssc0m34sidvt137vclrfhn2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKMCsE9OG3QQuC6_uiqphR8eU8nJn5UWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646966322197-0qi67o3tssc0m34sidvt137vclrfhn2v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "646966322197-1s72d6lhhg2q3ao8i1dpskreg9vas7vq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobyte.registration"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646966322197:android:4f8d136687c7e53a905a1c",
+        "android_client_info": {
+          "package_name": "com.mobyte.registration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646966322197-0qi67o3tssc0m34sidvt137vclrfhn2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKMCsE9OG3QQuC6_uiqphR8eU8nJn5UWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646966322197-0qi67o3tssc0m34sidvt137vclrfhn2v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "646966322197-1s72d6lhhg2q3ao8i1dpskreg9vas7vq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobyte.registration"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

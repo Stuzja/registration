@@ -2,18 +2,16 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/widgets/buttons/main_button.dart';
 import '../../widgets/appbar.dart';
-import '../../widgets/buttons/text_button.dart';
 import '../bloc/login_bloc.dart';
 import 'login_form.dart';
 
-/*class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
- /* static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const LoginPage());
-  }*/
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const Login());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +33,9 @@ import 'login_form.dart';
             },
             child: const LoginForm(),
           ),
-          const Align(
-              alignment: Alignment.bottomLeft, child: ForgotPasswordButton()),
-          MainButtonLight(name: "LogIn", onPressed: () {})
+         
         ]),
-      ),
+      )
     );
   }
 }
-*/
