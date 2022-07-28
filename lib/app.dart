@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/create_password_page.dart';
 import 'package:registration/pages/forgot_password_page.dart';
+import 'package:registration/pages/login_page.dart';
+import 'package:registration/pages/main_page.dart';
 import 'package:registration/pages/registration_page.dart';
 import 'package:registration/pages/splash_page.dart';
 import 'package:registration/pages/verification_page.dart';
@@ -70,19 +72,19 @@ class _AppViewState extends State<AppView> {
               '/createPassword': (BuildContext context) =>
                   const CreatePasswordPage(),
             },
-            builder: (context, child) {
+          /*  builder: (context, child) {
               return BlocListener<AuthenticationBloc, AuthenticationState>(
                 listener: (context, state) {
                   switch (state.status) {
                     case AuthenticationStatus.authenticated:
                       _navigator.pushAndRemoveUntil<void>(
-                        HomePage.route(),
+                        MainPage.route(),
                         (route) => false,
                       );
                       break;
                     case AuthenticationStatus.unauthenticated:
                       _navigator.pushAndRemoveUntil<void>(
-                        Login.route(),
+                        LoginPage.route(),
                         (route) => false,
                       );
                       break;
@@ -92,7 +94,8 @@ class _AppViewState extends State<AppView> {
                 },
                 child: child,
               );
-            },
+            },*/
+           home: MainPage(),
             onGenerateRoute: (_) => SplashPage.route(),
           );
         });

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: CustomAppBar(),
       body: Center(
@@ -23,7 +25,12 @@ class HomePage extends StatelessWidget {
                 width: 250.w,
                 height: 250.h,
                 child: Image.asset("assets/images/logo.png")),
-            Builder(
+            Text(user.email!),
+            ElevatedButton(
+              child: Text("Sign out"),
+              onPressed: () => FirebaseAuth.instance.signOut(),
+            )
+            /*    Builder(
               builder: (context) {
                 final userId = context.select(
                   (AuthenticationBloc bloc) => bloc.state.user.id,
@@ -38,7 +45,7 @@ class HomePage extends StatelessWidget {
                     .read<AuthenticationBloc>()
                     .add(AuthenticationLogoutRequested());
               },
-            ),
+            ),*/
           ],
         ),
       ),

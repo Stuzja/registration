@@ -14,4 +14,8 @@ class UserRepository {
       () => _user = User(const Uuid().v4()),
     );
   }
+
+  isSignedIn() {}
+
+  getCurrentUser() {}
 }

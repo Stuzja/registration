@@ -4,6 +4,7 @@ import 'colors.dart';
 import 'custom_theme.dart';
 
 class SecuredTextField extends StatefulWidget {
+  final TextEditingController? controller;
   final String nameField;
   final String? errorText;
   final void Function(String) onChanged;
@@ -11,7 +12,8 @@ class SecuredTextField extends StatefulWidget {
       {Key? key,
       required this.nameField,
       required this.onChanged,
-      this.errorText})
+      this.errorText,
+      this.controller})
       : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class SecuredTextFieldState extends State<SecuredTextField> {
         height: 64.h,
         width: 328.w,
         child: TextField(
+          controller: widget.controller,
           obscureText: _obscureText,
           cursorColor: greyLight,
           decoration: InputDecoration(

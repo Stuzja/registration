@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/main_button.dart';
@@ -7,13 +8,20 @@ import '../widgets/custom_theme.dart';
 import '../widgets/secured_textfield.dart';
 import '../widgets/unsecured_textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const LoginPage());
+    return MaterialPageRoute<void>(builder: (_) => LoginPage());
   }
 
+  @override
+  State<StatefulWidget> createState() => LoginPageState();
+}
+
+class LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +34,14 @@ class LoginPage extends StatelessWidget {
               height: 170.h,
               child: Image.asset("assets/images/logo.png")),
           UnsecuredTextField(
+            controller: emailController,
             key: const Key('loginForm_usernameInput_textField'),
             onChanged: (String str) {},
             errorText: null,
             nameField: "Username",
           ),
           SecuredTextField(
+            controller: passwordController,
             key: const Key('loginForm_passwordInput_textField'),
             onChanged: (String str) {},
             nameField: 'Password',
@@ -44,7 +54,11 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, '/forgotPassword');
                   })),
-          MainButtonLight(name: "Login", onPressed: () {}),
+          MainButtonLight(
+              name: "Login",
+              onPressed: () {
+                signIn();
+              }),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text("Don’t have an account?",
                 style: CustomTheme.lightTheme.textTheme.bodyText1),
@@ -57,5 +71,11 @@ class LoginPage extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
   }
 }

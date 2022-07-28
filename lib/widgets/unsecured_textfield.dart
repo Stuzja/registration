@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 import 'custom_theme.dart';
 
+// ignore: must_be_immutable
 class UnsecuredTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final String nameField;
   final String? errorText;
   final void Function(String) onChanged;
@@ -11,7 +13,8 @@ class UnsecuredTextField extends StatelessWidget {
       {Key? key,
       required this.nameField,
       required this.onChanged,
-      this.errorText})
+      this.errorText,
+      this.controller})
       : super(key: key);
 
   @override
@@ -20,6 +23,7 @@ class UnsecuredTextField extends StatelessWidget {
         height: 64.h,
         width: 328.w,
         child: TextField(
+          controller: controller,
           cursorColor: greyLight,
           decoration: InputDecoration(
             contentPadding:
