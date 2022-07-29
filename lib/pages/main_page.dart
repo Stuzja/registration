@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:registration/pages/home_page.dart';
-
+import 'package:registration/pages/splash_page.dart';
 import 'login_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
-   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const MainPage());
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) =>  const MainPage());
   }
 
   @override

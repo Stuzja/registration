@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => LoginPage());
+    return MaterialPageRoute<void>(builder: (_) => const LoginPage());
   }
 
   @override
@@ -74,8 +74,12 @@ class LoginPageState extends State<LoginPage> {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }

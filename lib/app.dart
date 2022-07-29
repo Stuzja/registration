@@ -64,7 +64,8 @@ class _AppViewState extends State<AppView> {
             theme: CustomTheme.lightTheme,
             navigatorKey: _navigatorKey,
             routes: {
-              '/register': (BuildContext context) => const RegistrationPage(),
+              '/register': (BuildContext context) =>
+                   RegistrationPage(),
               '/forgotPassword': (BuildContext context) =>
                   const ForgotPasswordPage(),
               '/verification': (BuildContext context) =>
