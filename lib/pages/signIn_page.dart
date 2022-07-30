@@ -8,11 +8,11 @@ import '../widgets/secured_textfield.dart';
 import '../widgets/unsecured_textfield.dart';
 import 'home_page.dart';
 
-class RegistrationPage extends StatelessWidget {
-  RegistrationPage({Key? key}) : super(key: key);
+class SignInPage extends StatelessWidget {
+  SignInPage({Key? key}) : super(key: key);
 
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => RegistrationPage());
+    return MaterialPageRoute<void>(builder: (_) => SignInPage());
   }
 
   final emailController = TextEditingController();

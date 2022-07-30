@@ -2,10 +2,11 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/repositories/login_repository.dart';
 import '../../widgets/appbar.dart';
 import '../bloc/login_bloc.dart';
 import 'login_form.dart';
-
+/*
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -27,6 +28,7 @@ class Login extends StatelessWidget {
           BlocProvider(
             create: (context) {
               return LoginBloc(
+                repository: LoginRepository(),
                 authenticationRepository:
                     RepositoryProvider.of<AuthenticationRepository>(context),
               );
@@ -39,3 +41,4 @@ class Login extends StatelessWidget {
     );
   }
 }
+*/

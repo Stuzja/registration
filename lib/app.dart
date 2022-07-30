@@ -6,52 +6,16 @@ import 'package:registration/pages/create_password_page.dart';
 import 'package:registration/pages/forgot_password_page.dart';
 import 'package:registration/pages/login_page.dart';
 import 'package:registration/pages/main_page.dart';
-import 'package:registration/pages/registration_page.dart';
+import 'package:registration/pages/signIn_page.dart';
 import 'package:registration/pages/splash_page.dart';
 import 'package:registration/pages/verification_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
 import 'package:user_repository/user_repository.dart';
-import 'authentication/bloc/authentication_bloc.dart';
 import 'login/view/login_page.dart';
 import 'pages/home_page.dart';
 
 class App extends StatelessWidget {
-  const App({
-    Key? key,
-    required this.authenticationRepository,
-    required this.userRepository,
-  }) : super(key: key);
-
-  final AuthenticationRepository authenticationRepository;
-  final UserRepository userRepository;
-
-  @override
-  Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: authenticationRepository,
-      child: BlocProvider(
-        create: (_) => AuthenticationBloc(
-          authenticationRepository: authenticationRepository,
-          userRepository: userRepository,
-        ),
-        child: const AppView(),
-      ),
-    );
-  }
-}
-
-class AppView extends StatefulWidget {
-  const AppView({Key? key}) : super(key: key);
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _AppViewState createState() => _AppViewState();
-}
-
-class _AppViewState extends State<AppView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
-  NavigatorState get _navigator => _navigatorKey.currentState!;
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,41 +26,17 @@ class _AppViewState extends State<AppView> {
         builder: (context, child) {
           return MaterialApp(
             theme: CustomTheme.lightTheme,
-            navigatorKey: _navigatorKey,
             routes: {
-              '/register': (BuildContext context) =>
-                   RegistrationPage(),
-              '/forgotPassword': (BuildContext context) =>
-                  const ForgotPasswordPage(),
+              '/login': (BuildContext context) => const LoginPage(),
+              '/signUp': (BuildContext context) => SignInPage(),
+              '/forgotPassword': (BuildContext context) => ForgotPasswordPage(),
               '/verification': (BuildContext context) =>
                   const VerificationPage(),
               '/createPassword': (BuildContext context) =>
                   const CreatePasswordPage(),
+              '/home': (BuildContext context) => const HomePage(),
             },
-          /*  builder: (context, child) {
-              return BlocListener<AuthenticationBloc, AuthenticationState>(
-                listener: (context, state) {
-                  switch (state.status) {
-                    case AuthenticationStatus.authenticated:
-                      _navigator.pushAndRemoveUntil<void>(
-                        MainPage.route(),
-                        (route) => false,
-                      );
-                      break;
-                    case AuthenticationStatus.unauthenticated:
-                      _navigator.pushAndRemoveUntil<void>(
-                        LoginPage.route(),
-                        (route) => false,
-                      );
-                      break;
-                    default:
-                      break;
-                  }
-                },
-                child: child,
-              );
-            },*/
-           home: MainPage(),
+            home: const MainPage(),
             onGenerateRoute: (_) => SplashPage.route(),
           );
         });
