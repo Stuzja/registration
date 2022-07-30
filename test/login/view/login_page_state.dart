@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:registration/login/view/login_form.dart';
 import 'package:registration/login/view/login_page.dart';
-import 'package:registration/pages/login_page.dart';
+import 'package:registration/pages/login/login_page.dart';
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}

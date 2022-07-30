@@ -1,17 +1,13 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/create_password_page.dart';
 import 'package:registration/pages/forgot_password_page.dart';
-import 'package:registration/pages/login_page.dart';
+import 'package:registration/pages/login/login_page.dart';
 import 'package:registration/pages/main_page.dart';
 import 'package:registration/pages/signIn_page.dart';
 import 'package:registration/pages/splash_page.dart';
 import 'package:registration/pages/verification_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
-import 'package:user_repository/user_repository.dart';
-import 'login/view/login_page.dart';
 import 'pages/home_page.dart';
 
 class App extends StatelessWidget {
