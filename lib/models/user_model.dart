@@ -14,6 +14,7 @@ class UserModel {
   String? password;
   StateUserLogged statusLogged = StateUserLogged.unLogged;
   StateUserRegistered statusRegistered = StateUserRegistered.unRegistered;
+  bool emailSent = false;
 
   UserModel({
     required this.email,

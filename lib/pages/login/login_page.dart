@@ -8,18 +8,10 @@ import '../../repositories/login_repository.dart';
 import '../../widgets/buttons/text_button.dart';
 import '../../widgets/custom_theme.dart';
 
-class LoginPage extends StatefulWidget {
+
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const LoginPage());
-  }
-
-  @override
-  State<StatefulWidget> createState() => LoginPageState();
-}
-
-class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

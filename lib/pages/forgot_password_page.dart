@@ -31,7 +31,6 @@ class ForgotPasswordPage extends StatelessWidget {
           MainButtonDark(
               name: "Reset my password",
               onPressed: () {
-                resetPassword();
                 Navigator.pushNamed(context, '/verification');
               }),
         ]),
@@ -39,12 +38,5 @@ class ForgotPasswordPage extends StatelessWidget {
     );
   }
 
-  Future resetPassword() async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text.trim());
-    } on FirebaseAuth catch (e) {
-      print(e);
-    }
-  }
+  
 }
