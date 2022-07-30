@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/models/user_model.dart';
-
 import 'package:registration/repositories/login_repository.dart';
 
 part 'login_event.dart';
@@ -11,7 +10,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginRepository repository;
   LoginBloc({
     required this.repository,
-  }) : super(LoginWaitingState()){
+  }) : super(LoginInitialState()){
     on<LoginSubmitted>(_onSubmitted);
   }
 
@@ -22,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoadingState());
     UserModel user =
         await repository.signIn(email: event.email, password: event.password);
-    if (user.status == StateUserLogged.isLogged) {
+    if (user.statusLogged == StateUserLogged.isLogged) {
       emit(LoginSuccessState());
     } else {
       emit(LoginFailedState());

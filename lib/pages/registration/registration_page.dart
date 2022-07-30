@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/pages/registration/registration_form.dart';
+import '../../../widgets/appbar.dart';
+import '../../registration/bloc/registration_bloc.dart';
+import '../../repositories/login_repository.dart';
+import '../../widgets/buttons/back_button.dart';
+
+
+class RegistrationPage extends StatelessWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Column(children: [
+          const CustomBackButton(),
+          SizedBox(
+              width: 170.w,
+              height: 170.h,
+              child: Image.asset("assets/images/logo.png")),
+          BlocProvider(
+            create: (context) {
+              return RegistrationBloc(repository: LoginRepository());
+            },
+            child: const RegistrationFormWidget(),
+          ),
+        ]),
+      ),
+    );
+  }
+
+ 
+}

@@ -3,11 +3,17 @@ enum StateUserLogged {
   unLogged,
 }
 
+enum StateUserRegistered{
+  isRegistered,
+  unRegistered,
+}
+
 class UserModel {
   String? username;
   String? email;
   String? password;
-  StateUserLogged status = StateUserLogged.unLogged;
+  StateUserLogged statusLogged = StateUserLogged.unLogged;
+  StateUserRegistered statusRegistered = StateUserRegistered.unRegistered;
 
   UserModel({
     required this.email,

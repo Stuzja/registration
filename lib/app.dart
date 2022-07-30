@@ -4,7 +4,7 @@ import 'package:registration/pages/create_password_page.dart';
 import 'package:registration/pages/forgot_password_page.dart';
 import 'package:registration/pages/login/login_page.dart';
 import 'package:registration/pages/main_page.dart';
-import 'package:registration/pages/signIn_page.dart';
+import 'package:registration/pages/registration/registration_page.dart';
 import 'package:registration/pages/splash_page.dart';
 import 'package:registration/pages/verification_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
             theme: CustomTheme.lightTheme,
             routes: {
               '/login': (BuildContext context) => const LoginPage(),
-              '/signUp': (BuildContext context) => SignInPage(),
+              '/register': (BuildContext context) => const RegistrationPage(),
               '/forgotPassword': (BuildContext context) => ForgotPasswordPage(),
               '/verification': (BuildContext context) =>
                   const VerificationPage(),

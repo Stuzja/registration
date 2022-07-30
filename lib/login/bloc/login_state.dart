@@ -2,7 +2,7 @@ part of 'login_bloc.dart';
 
 abstract class LoginState {}
 
-class LoginWaitingState extends LoginState {}
+class LoginInitialState extends LoginState {}
 
 class LoginSuccessState extends LoginState {}
 
