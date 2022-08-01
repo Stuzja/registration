@@ -27,7 +27,10 @@ class HomePage extends StatelessWidget {
             Text(user.email!),
             ElevatedButton(
               child: const Text("Sign out"),
-              onPressed: () => FirebaseAuth.instance.signOut(),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, '/login');
+              },
             )
           ],
         ),

@@ -16,20 +16,27 @@ class ForgotPasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        padding: EdgeInsets.only(top: 36.h, left: 16.w, right: 16.w),
+        child: ListView(children: [
           const CustomBackButton(),
-          Text("Forgot Your Password?",
-              style: CustomTheme.lightTheme.textTheme.headline1),
-          Text(
-              "No worries, you just need to type your email or username and we will send the verification code",
-              style: CustomTheme.lightTheme.textTheme.bodyText1),
-          BlocProvider(
-            create: (context) {
-              return ResetPasswordBloc(repository: LoginRepository());
-            },
-            child: const EmailForResetPasswordWidget(),
-          ),
+          Wrap(
+              crossAxisAlignment: WrapCrossAlignment.start,
+              spacing: 36.h,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text("Forgot Your Password?",
+                      style: CustomTheme.lightTheme.textTheme.headline1),
+                  Text(
+                      "No worries, you just need to type your email or username and we will send the verification code",
+                      style: CustomTheme.lightTheme.textTheme.bodyText1),
+                ]),
+                BlocProvider(
+                  create: (context) {
+                    return ResetPasswordBloc(repository: LoginRepository());
+                  },
+                  child: const EmailForResetPasswordWidget(),
+                ),
+              ]),
         ]),
       ),
     );

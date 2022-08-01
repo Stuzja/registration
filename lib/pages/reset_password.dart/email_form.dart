@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../reset_password/bloc/reset_password_bloc.dart';
 import '../../widgets/buttons/main_button.dart';
+import '../../widgets/custom_theme.dart';
 import '../../widgets/unsecured_textfield.dart';
 
 class EmailForResetPasswordWidget extends StatefulWidget {
@@ -17,7 +19,7 @@ class EmailForResetPasswordWidgetState
   final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Wrap(spacing: 36.h, children: [
       UnsecuredTextField(
           controller: _emailController,
           nameField: "Email or username",

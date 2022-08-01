@@ -20,20 +20,18 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
   Widget build(BuildContext context) {
     return Wrap(runSpacing: 24.h, children: [
       UnsecuredTextField(
-        controller: _emailController,
-        key: const Key('loginForm_usernameInput_textField'),
         onChanged: (String str) {},
         errorText: null,
         nameField: "Username",
       ),
       UnsecuredTextField(
+        controller: _emailController,
         onChanged: (String str) {},
         errorText: null,
-        nameField: "Phone number",
+        nameField: "Email",
       ),
       SecuredTextField(
         controller: _passwordController,
-        key: const Key('loginForm_passwordInput_textField'),
         onChanged: (String str) {},
         nameField: 'Password',
         errorText: null,

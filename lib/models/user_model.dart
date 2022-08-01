@@ -15,6 +15,7 @@ class UserModel {
   StateUserLogged statusLogged = StateUserLogged.unLogged;
   StateUserRegistered statusRegistered = StateUserRegistered.unRegistered;
   bool emailSent = false;
+  bool googleSignIn = false;
 
   UserModel({
     required this.email,

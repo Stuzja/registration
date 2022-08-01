@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/login/login_form.dart';
+import 'package:registration/pages/login/login_google_form.dart';
+import 'package:registration/repositories/login_google_repository.dart';
+import 'package:registration/widgets/buttons/google_button.dart';
 import '../../../widgets/appbar.dart';
 import '../../login/bloc/login_bloc.dart';
 import '../../repositories/login_repository.dart';
@@ -18,14 +21,14 @@ class LoginPage extends StatelessWidget {
       appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(children: [
+        child: ListView(children: [
           SizedBox(
               width: 170.w,
               height: 170.h,
               child: Image.asset("assets/images/logo.png")),
           BlocProvider(
             create: (context) {
-              return LoginBloc(repository: LoginRepository());
+              return LoginBloc(repository: LoginRepository(), loginGoogle: LoginGoogleRepository());
             },
             child: const LoginFormWidget(),
           ),
@@ -38,6 +41,14 @@ class LoginPage extends StatelessWidget {
                   Navigator.pushNamed(context, '/register');
                 }),
           ]),
+           Row(children: [ const Divider(), Text("   or   ",
+                style: CustomTheme.lightTheme.textTheme.bodyText1), const Divider()]),
+           BlocProvider(
+            create: (context) {
+              return LoginBloc(repository: LoginRepository(), loginGoogle: LoginGoogleRepository());
+            },
+            child: const LoginGoogleWidget()
+          ),
         ]),
       ),
     );

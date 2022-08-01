@@ -12,3 +12,7 @@ class LoginSubmitted extends LoginEvent {
   final String password;
   const LoginSubmitted({required this.email, required this.password});
 }
+
+class LoginGoogleClick extends LoginEvent {
+  const LoginGoogleClick();
+}

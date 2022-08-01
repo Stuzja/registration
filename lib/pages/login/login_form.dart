@@ -19,28 +19,35 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
   final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 254.h,
-    child:
-      Column(children: [
-       UnsecuredTextField(
+    return Column(
+      children: [
+        Wrap(spacing: 24.h, children: [
+          UnsecuredTextField(
             controller: _emailController,
             onChanged: (String str) {},
             errorText: null,
             nameField: "Username",
           ),
-          SecuredTextField(
-            controller: _passwordController,
-            onChanged: (String str) {},
-            nameField: 'Password',
-            errorText: null,
-          ),
-          Align(
+          Column(children: [
+            SecuredTextField(
+              controller: _passwordController,
+              onChanged: (String str) {},
+              nameField: 'Password',
+              errorText: null,
+            ),
+            Align(
               alignment: Alignment.topLeft,
-              child: RegularTextButton(
+              child: SizedBox(
+                height: 19,
+                child: RegularTextButton(
                   name: "Forgot password?",
                   onPressed: () {
                     Navigator.pushNamed(context, '/forgotPassword');
-                  })),
+                  },
+                ),
+              ),
+            ),
+          ]),
           BlocListener<LoginBloc, LoginState>(
             listener: (context, state) {
               if (state is LoginFailedState) {}
@@ -56,6 +63,8 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
                       password: _passwordController.text.trim()));
                 }),
           ),
-    ],),);
+        ]),
+      ],
+    );
   }
 }

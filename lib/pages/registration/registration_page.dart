@@ -7,33 +7,33 @@ import '../../registration/bloc/registration_bloc.dart';
 import '../../repositories/login_repository.dart';
 import '../../widgets/buttons/back_button.dart';
 
-
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(children: [
+        padding:
+            EdgeInsets.fromLTRB(16.w, 16.w,  36.h, 62.h),
+        child: ListView(children: [
           const CustomBackButton(),
           SizedBox(
               width: 170.w,
               height: 170.h,
               child: Image.asset("assets/images/logo.png")),
-          BlocProvider(
-            create: (context) {
-              return RegistrationBloc(repository: LoginRepository());
-            },
-            child: const RegistrationFormWidget(),
+          Padding(
+            padding: const EdgeInsets.only(top: 27),
+            child: BlocProvider(
+              create: (context) {
+                return RegistrationBloc(repository: LoginRepository());
+              },
+              child: const RegistrationFormWidget(),
+            ),
           ),
         ]),
       ),
     );
   }
-
- 
 }
