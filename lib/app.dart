@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/pages/create_password_page.dart';
-import 'package:registration/pages/forgot_password_page.dart';
+import 'package:registration/pages/reset_password.dart/create_password_page.dart';
+import 'package:registration/pages/reset_password.dart/forgot_password_page.dart';
 import 'package:registration/pages/login/login_page.dart';
 import 'package:registration/pages/main_page.dart';
 import 'package:registration/pages/registration/registration_page.dart';
 import 'package:registration/pages/splash_page.dart';
-import 'package:registration/pages/verification_page.dart';
+import 'package:registration/pages/reset_password.dart/verification_page.dart';
 import 'package:registration/widgets/custom_theme.dart';
 import 'pages/home_page.dart';
 
