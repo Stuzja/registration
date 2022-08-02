@@ -18,7 +18,8 @@ class UserModel {
   bool googleSignIn = false;
 
   UserModel({
+    this.username,
     required this.email,
-    required this.password,
+    required this.password, 
   });
 }

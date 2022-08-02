@@ -2,16 +2,16 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../models/user_model.dart';
-import '../../repositories/login_repository.dart';
+import '../../repositories/abstract_repository.dart';
 
 part 'reset_password_event.dart';
 part 'reset_password_state.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
-  final LoginRepository repository;
+  final AbstractRepository repository;
   ResetPasswordBloc({
     required this.repository,
-  }) : super(ResetPasswordInitialState()){
+  }) : super(ResetPasswordInitialState()) {
     on<EmailForResetSubmitted>(_onEmailForResetSubmitted);
   }
 
@@ -20,8 +20,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     Emitter<ResetPasswordState> emit,
   ) async {
     emit(ResetPasswordLoadingState());
-    UserModel user =
-        await repository.resetPassword(email: event.email);
+    UserModel user = await repository.resetPassword(email: event.email);
     if (user.emailSent) {
       emit(EmailSuccessState());
     } else {

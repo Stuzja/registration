@@ -8,7 +8,9 @@ abstract class RegistrationEvent extends Equatable {
 }
 
 class RegistrationSubmitted extends RegistrationEvent {
+  final String username;
   final String email;
   final String password;
-  const RegistrationSubmitted({required this.email, required this.password});
+  const RegistrationSubmitted(
+      {required this.username, required this.email, required this.password});
 }

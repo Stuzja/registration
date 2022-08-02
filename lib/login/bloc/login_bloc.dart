@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoadingState());
     UserModel user =
-        await repository.signIn(email: event.email, password: event.password);
+        await repository.signInUser(email: event.email, password: event.password);
     if (user.statusLogged == StateUserLogged.isLogged) {
       emit(LoginSuccessState());
     } else {

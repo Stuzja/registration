@@ -15,8 +15,10 @@ class RegistrationFormWidget extends StatefulWidget {
 }
 
 class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
+   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _passwordAgainController = TextEditingController();
   final _formKeyUsername = GlobalKey<FormState>();
   final _formKeyEmail = GlobalKey<FormState>();
   final _formKeyPassword = GlobalKey<FormState>();
@@ -27,6 +29,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       Form(
           key: _formKeyUsername,
           child: UnsecuredTextField(
+            controller: _usernameController,
             validator: (text) => Validators().validateUsername(text),
             onChanged: (String str) {},
             errorText: null,
@@ -55,7 +58,11 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       Form(
         key: _formKeyPasswordAgain,
         child: SecuredTextField(
-          validator: (text) => Validators().validatePassword(text),
+          validator: (text) {
+            if (_passwordController.text == _passwordAgainController.text) {
+              Validators().validatePassword(text);
+            }
+          },
           onChanged: (String str) {},
           nameField: 'Confirm password',
           errorText: null,
@@ -76,6 +83,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                   _formKeyEmail.currentState!.validate() &
                   _formKeyPasswordAgain.currentState!.validate()) {
                 context.read<RegistrationBloc>().add(RegistrationSubmitted(
+                    username: _usernameController.text.trim(),
                     email: _emailController.text.trim(),
                     password: _passwordController.text.trim()));
               }
