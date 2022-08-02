@@ -5,6 +5,7 @@ import 'package:registration/pages/registration/registration_form.dart';
 import '../../../widgets/appbar.dart';
 import '../../blocs/registration/bloc/registration_bloc.dart';
 import '../../repositories/login_repository.dart';
+import '../../resources/constants/path_images.dart';
 import '../../widgets/buttons/back_button.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class RegistrationPage extends StatelessWidget {
           SizedBox(
               width: 170.w,
               height: 170.h,
-              child: Image.asset("assets/images/logo.png")),
+              child: Image.asset(logo_mobyte)),
           Padding(
             padding: const EdgeInsets.only(top: 27),
             child: BlocProvider(

@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
 
+import '../resources/constants/path_images.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const HomePage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
                 width: 250.w,
                 height: 250.h,
-                child: Image.asset("assets/images/logo.png")),
+                child: Image.asset(logo_mobyte)),
             Text(user.email!),
             ElevatedButton(
               child: const Text("Sign out"),
