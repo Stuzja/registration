@@ -9,12 +9,14 @@ class UnsecuredTextField extends StatelessWidget {
   final String nameField;
   final String? errorText;
   final void Function(String) onChanged;
+  final String? Function(String?)?validator;
   const UnsecuredTextField(
       {Key? key,
       required this.nameField,
       required this.onChanged,
       this.errorText,
-      this.controller})
+      this.controller,
+      required this.validator})
       : super(key: key);
 
   @override
@@ -22,11 +24,8 @@ class UnsecuredTextField extends StatelessWidget {
     return SizedBox(
         height: 64.h,
         width: 328.w,
-        child: TextField(
-   /*       onEditingComplete: () {
-            context.read<LoginBloc>().add(LoginSubmitted(email, password))
-          },*/
-          
+        child: TextFormField(
+          validator: validator,
           controller: controller,
           cursorColor: greyLight,
           decoration: InputDecoration(

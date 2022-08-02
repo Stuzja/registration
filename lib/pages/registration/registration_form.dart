@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/validators/validators.dart';
 import '../../registration/bloc/registration_bloc.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/secured_textfield.dart';
@@ -20,23 +21,27 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
   Widget build(BuildContext context) {
     return Wrap(runSpacing: 24.h, children: [
       UnsecuredTextField(
+        validator: (text) => Validators().validateUsername(text),
         onChanged: (String str) {},
         errorText: null,
         nameField: "Username",
       ),
       UnsecuredTextField(
+        validator: (text) => Validators().validateEmail(text),
         controller: _emailController,
         onChanged: (String str) {},
         errorText: null,
         nameField: "Email",
       ),
       SecuredTextField(
+        validator: (text) => Validators().validatePassword(text),
         controller: _passwordController,
         onChanged: (String str) {},
         nameField: 'Password',
         errorText: null,
       ),
       SecuredTextField(
+        validator: (text) => Validators().validatePassword(text),
         onChanged: (String str) {},
         nameField: 'Confirm password',
         errorText: null,
