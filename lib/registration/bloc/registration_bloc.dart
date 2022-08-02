@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:registration/repositories/abstract_repository.dart';
 import '../../models/user_model.dart';
-import '../../repositories/login_repository.dart';
+
 
 part 'registration_event.dart';
 part 'registration_state.dart';
@@ -20,8 +20,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     Emitter<RegistrationState> emit,
   ) async {
     emit(RegistrationLoadingState());
-    UserModel user =
-        await repository.signUpUser(email: event.email, password: event.password, userName: event.username);
+    UserModel user = await repository.signUp(
+        email: event.email, password: event.password, userName: event.username);
     if (user.statusRegistered == StateUserRegistered.isRegistered) {
       emit(RegistrationSuccessState());
     } else {

@@ -12,10 +12,13 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: SizedBox(
+
+      child: Column(children: [SizedBox(
           width: 250.w,
           height: 250.h,
           child: Image.asset("assets/images/logo.png")),
+          const CircularProgressIndicator(),
+      ]),
     ));
   }
 }

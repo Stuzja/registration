@@ -4,39 +4,9 @@ import '../models/user_json_model.dart';
 import '../models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../validators/validators.dart';
+
 class LoginRepository extends AbstractRepository {
-  @override
-  Future<UserModel> signIn(
-      {required String email, required String password}) async {
-    UserModel user = UserModel(email: email, password: password);
-    try {
-      UserCredential user_credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      if (user_credential.user != null) {
-        user.statusLogged = StateUserLogged.isLogged;
-      }
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
-    return user;
-  }
-
-  @override
-  Future<UserModel> signUp(
-      {required String email, required String password}) async {
-    UserModel user = UserModel(email: email, password: password);
-    try {
-      var user_credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      if (user_credential.user != null) {
-        user.statusRegistered = StateUserRegistered.isRegistered;
-      }
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
-    return user;
-  }
-
   @override
   Future<UserModel> resetPassword({required String email}) async {
     var user = UserModel(email: email, password: "");
@@ -59,25 +29,28 @@ class LoginRepository extends AbstractRepository {
   }
 
   @override
-  Future<UserModel> signInUser(
+  Future<UserModel> signIn(
       {required String email, required String password}) async {
     UserModel user = UserModel(email: email, password: password);
-    try {
-      UserCredential user_credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-email') {
-        String newEmail = await checkIn(username: email);
-        signInUser(email: newEmail, password: password);
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+    if (Validators().validateEmail(email) == null) {
+      try {
+        UserCredential user_credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        user.statusLogged = StateUserLogged.isLogged;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
       }
+    } else {
+      String newEmail = await checkIn(username: email);
+      user = await signIn(email: newEmail, password: password);
     }
-    user.statusLogged = StateUserLogged.isLogged;
     return user;
   }
 
-  Future<UserModel> signUpUser({
+  @override
+  Future<UserModel> signUp({
     required String email,
     required String password,
     required String userName,

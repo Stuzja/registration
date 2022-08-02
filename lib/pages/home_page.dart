@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  //final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: CustomAppBar(),
       body: Center(
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                 width: 250.w,
                 height: 250.h,
                 child: Image.asset("assets/images/logo.png")),
-           // Text(user.email!),
+            Text(user.email!),
             ElevatedButton(
               child: const Text("Sign out"),
               onPressed: () {

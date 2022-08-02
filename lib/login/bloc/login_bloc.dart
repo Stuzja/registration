@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/models/user_model.dart';
 import 'package:registration/repositories/login_google_repository.dart';
-import 'package:registration/repositories/login_repository.dart';
 
 import '../../repositories/abstract_repository.dart';
 
@@ -12,9 +11,10 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AbstractRepository repository;
   final LoginGoogleRepository loginGoogle;
-  LoginBloc({required this.loginGoogle, 
+  LoginBloc({
+    required this.loginGoogle,
     required this.repository,
-  }) : super(LoginInitialState()){
+  }) : super(LoginInitialState()) {
     on<LoginSubmitted>(_onSubmitted);
     on<LoginGoogleClick>(_onClickGoogleButton);
   }
@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoadingState());
     UserModel user =
-        await repository.signInUser(email: event.email, password: event.password);
+        await repository.signIn(email: event.email, password: event.password);
     if (user.statusLogged == StateUserLogged.isLogged) {
       emit(LoginSuccessState());
     } else {
@@ -33,13 +33,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-   void _onClickGoogleButton(
+  void _onClickGoogleButton(
     LoginGoogleClick event,
     Emitter<LoginState> emit,
   ) async {
     emit(LoginLoadingState());
-    bool isSuccess =
-        await loginGoogle.signIn();
+    bool isSuccess = await loginGoogle.signIn();
     if (isSuccess) {
       emit(LoginSuccessState());
     } else {

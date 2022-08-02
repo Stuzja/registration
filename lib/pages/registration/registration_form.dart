@@ -15,7 +15,7 @@ class RegistrationFormWidget extends StatefulWidget {
 }
 
 class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
-   final _usernameController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
@@ -61,6 +61,8 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           validator: (text) {
             if (_passwordController.text == _passwordAgainController.text) {
               Validators().validatePassword(text);
+            } else {
+              return "Passwords don't match";
             }
           },
           onChanged: (String str) {},
@@ -70,6 +72,9 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       ),
       BlocListener<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
+          if (state is RegistrationLoadingState) {
+            Navigator.pushNamed(context, '/splash');
+          }
           if (state is RegistrationFailedState) {}
           if (state is RegistrationSuccessState) {
             Navigator.pushNamed(context, '/home');

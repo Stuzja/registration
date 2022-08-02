@@ -57,7 +57,21 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
         ),
         BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
-            if (state is LoginFailedState) {}
+            if (state is LoginLoadingState) {
+              Navigator.pushNamed(context, '/splash');
+            }
+            if (state is LoginFailedState) {
+              final snackBar = SnackBar(
+                content: const Text(
+                    'The password does not match or there is no such user'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {},
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              Navigator.pushNamed(context, '/login');
+            }
             if (state is LoginSuccessState) {
               Navigator.pushNamed(context, '/home');
             }
