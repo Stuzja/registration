@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:registration/repositories/abstract_repository.dart';
-import '../../models/user_model.dart';
+import '../../../models/user_model.dart';
 
 
 part 'registration_event.dart';

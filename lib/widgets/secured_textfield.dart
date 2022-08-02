@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'colors.dart';
-import 'custom_theme.dart';
+import '../resources/constants/colors.dart';
+import '../resources/theme/custom_theme.dart';
 
 class SecuredTextField extends StatefulWidget {
   final TextEditingController? controller;

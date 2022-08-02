@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/widgets/buttons/google_button.dart';
-import '../../login/bloc/login_bloc.dart';
+
+import '../../blocs/login/bloc/login_bloc.dart';
+
 
 class LoginGoogleWidget extends StatelessWidget {
   const LoginGoogleWidget({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class LoginGoogleWidget extends StatelessWidget {
           }
         },
         child: GoogleButton(
-          onPressed: () => context.read<LoginBloc>().add(LoginGoogleClick()),
+          onPressed: () => context.read<LoginBloc>().add(const LoginGoogleClick()),
         ));
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/models/user_model.dart';
 import 'package:registration/repositories/login_google_repository.dart';
 
-import '../../repositories/abstract_repository.dart';
+import '../../../repositories/abstract_repository.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

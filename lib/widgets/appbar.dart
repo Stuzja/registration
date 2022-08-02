@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import '../resources/constants/colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar({Key? key})

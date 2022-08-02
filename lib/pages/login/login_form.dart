@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../login/bloc/login_bloc.dart';
+
+import '../../blocs/login/bloc/login_bloc.dart';
 import '../../validators/validators.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/buttons/text_button.dart';

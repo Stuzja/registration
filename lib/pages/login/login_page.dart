@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/login/login_form.dart';
 import 'package:registration/pages/login/login_google_form.dart';
 import 'package:registration/repositories/login_google_repository.dart';
-import 'package:registration/widgets/buttons/google_button.dart';
 import '../../../widgets/appbar.dart';
-import '../../login/bloc/login_bloc.dart';
+import '../../blocs/login/bloc/login_bloc.dart';
 import '../../repositories/login_repository.dart';
 import '../../widgets/buttons/text_button.dart';
-import '../../widgets/custom_theme.dart';
+import '../../resources/theme/custom_theme.dart';
 
 
 class LoginPage extends StatelessWidget {

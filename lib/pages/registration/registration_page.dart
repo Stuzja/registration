@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/registration/registration_form.dart';
 import '../../../widgets/appbar.dart';
-import '../../registration/bloc/registration_bloc.dart';
+import '../../blocs/registration/bloc/registration_bloc.dart';
 import '../../repositories/login_repository.dart';
 import '../../widgets/buttons/back_button.dart';
 

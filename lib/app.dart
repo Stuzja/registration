@@ -6,7 +6,7 @@ import 'package:registration/pages/login/login_page.dart';
 import 'package:registration/pages/registration/registration_page.dart';
 import 'package:registration/pages/splash_page.dart';
 import 'package:registration/pages/reset_password.dart/verification_page.dart';
-import 'package:registration/widgets/custom_theme.dart';
+import 'package:registration/resources/theme/custom_theme.dart';
 import 'pages/home_page.dart';
 
 class App extends StatelessWidget {

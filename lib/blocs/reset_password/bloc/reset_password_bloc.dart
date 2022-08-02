@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../models/user_model.dart';
-import '../../repositories/abstract_repository.dart';
-
+import '../../../models/user_model.dart';
+import '../../../repositories/abstract_repository.dart';
 part 'reset_password_event.dart';
 part 'reset_password_state.dart';
 

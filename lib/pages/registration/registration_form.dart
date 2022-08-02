@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/validators/validators.dart';
-import '../../registration/bloc/registration_bloc.dart';
+import '../../blocs/registration/bloc/registration_bloc.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/secured_textfield.dart';
 import '../../widgets/unsecured_textfield.dart';

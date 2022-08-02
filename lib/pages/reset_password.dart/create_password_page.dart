@@ -4,7 +4,7 @@ import 'package:registration/widgets/buttons/main_button.dart';
 import '../../../widgets/appbar.dart';
 import '../../validators/validators.dart';
 import '../../widgets/buttons/back_button.dart';
-import '../../widgets/custom_theme.dart';
+import '../../resources/theme/custom_theme.dart';
 import '../../widgets/secured_textfield.dart';
 
 class CreatePasswordPage extends StatelessWidget {

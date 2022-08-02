@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../custom_theme.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class GoogleButton extends StatelessWidget {
   final Function()? onPressed;

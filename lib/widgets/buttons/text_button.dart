@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:registration/widgets/colors.dart';
-import '../custom_theme.dart';
+import 'package:registration/resources/constants/colors.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class RegularTextButton extends StatelessWidget {
   final String name;
