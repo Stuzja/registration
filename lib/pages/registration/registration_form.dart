@@ -17,34 +17,49 @@ class RegistrationFormWidget extends StatefulWidget {
 class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _formKeyUsername = GlobalKey<FormState>();
+  final _formKeyEmail = GlobalKey<FormState>();
+  final _formKeyPassword = GlobalKey<FormState>();
+  final _formKeyPasswordAgain = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Wrap(runSpacing: 24.h, children: [
-      UnsecuredTextField(
-        validator: (text) => Validators().validateUsername(text),
-        onChanged: (String str) {},
-        errorText: null,
-        nameField: "Username",
+      Form(
+          key: _formKeyUsername,
+          child: UnsecuredTextField(
+            validator: (text) => Validators().validateUsername(text),
+            onChanged: (String str) {},
+            errorText: null,
+            nameField: "Username",
+          )),
+      Form(
+        key: _formKeyEmail,
+        child: UnsecuredTextField(
+          validator: (text) => Validators().validateEmail(text),
+          controller: _emailController,
+          onChanged: (String str) {},
+          errorText: null,
+          nameField: "Email",
+        ),
       ),
-      UnsecuredTextField(
-        validator: (text) => Validators().validateEmail(text),
-        controller: _emailController,
-        onChanged: (String str) {},
-        errorText: null,
-        nameField: "Email",
+      Form(
+        key: _formKeyPassword,
+        child: SecuredTextField(
+          validator: (text) => Validators().validatePassword(text),
+          controller: _passwordController,
+          onChanged: (String str) {},
+          nameField: 'Password',
+          errorText: null,
+        ),
       ),
-      SecuredTextField(
-        validator: (text) => Validators().validatePassword(text),
-        controller: _passwordController,
-        onChanged: (String str) {},
-        nameField: 'Password',
-        errorText: null,
-      ),
-      SecuredTextField(
-        validator: (text) => Validators().validatePassword(text),
-        onChanged: (String str) {},
-        nameField: 'Confirm password',
-        errorText: null,
+      Form(
+        key: _formKeyPasswordAgain,
+        child: SecuredTextField(
+          validator: (text) => Validators().validatePassword(text),
+          onChanged: (String str) {},
+          nameField: 'Confirm password',
+          errorText: null,
+        ),
       ),
       BlocListener<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
@@ -56,9 +71,14 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
         child: MainButtonDark(
             name: "Register",
             onPressed: () {
-              context.read<RegistrationBloc>().add(RegistrationSubmitted(
-                  email: _emailController.text.trim(),
-                  password: _passwordController.text.trim()));
+              if (_formKeyUsername.currentState!.validate() &
+                  _formKeyPassword.currentState!.validate() &
+                  _formKeyEmail.currentState!.validate() &
+                  _formKeyPasswordAgain.currentState!.validate()) {
+                context.read<RegistrationBloc>().add(RegistrationSubmitted(
+                    email: _emailController.text.trim(),
+                    password: _passwordController.text.trim()));
+              }
             }),
       ),
     ]);

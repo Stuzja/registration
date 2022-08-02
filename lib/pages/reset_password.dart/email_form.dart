@@ -18,14 +18,18 @@ class EmailForResetPasswordWidget extends StatefulWidget {
 class EmailForResetPasswordWidgetState
     extends State<EmailForResetPasswordWidget> {
   final _emailController = TextEditingController();
+  final _formKeyEmail = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Wrap(spacing: 36.h, children: [
-      UnsecuredTextField(
-          validator: (text) => Validators().validatePassword(text),
-          controller: _emailController,
-          nameField: "Email or username",
-          onChanged: (String str) {}),
+      Form(
+        key: _formKeyEmail,
+        child: UnsecuredTextField(
+            validator: (text) => Validators().validatePassword(text),
+            controller: _emailController,
+            nameField: "Email or username",
+            onChanged: (String str) {}),
+      ),
       BlocListener<ResetPasswordBloc, ResetPasswordState>(
         listener: (context, state) {
           if (state is EmailFailedState) {}
@@ -36,8 +40,10 @@ class EmailForResetPasswordWidgetState
         child: MainButtonDark(
             name: "Reset my password",
             onPressed: () {
-              context.read<ResetPasswordBloc>().add(
-                  EmailForResetSubmitted(email: _emailController.text.trim()));
+              if (_formKeyEmail.currentState!.validate()) {
+                context.read<ResetPasswordBloc>().add(EmailForResetSubmitted(
+                    email: _emailController.text.trim()));
+              }
             }),
       ),
     ]);

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,62 +23,56 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
+      spacing: 24.h,
       children: [
-        Wrap(spacing: 24.h, children: [
-          UnsecuredTextField(
-            key: _formKeyUsername,
+        Form(
+          key: _formKeyUsername,
+          child: UnsecuredTextField(
             validator: (text) => Validators().validateUsername(text),
             controller: _emailController,
             onChanged: (String str) {},
             errorText: null,
             nameField: "Username",
           ),
-          Column(children: [
-            SecuredTextField(
-              key: _formKeyPassword,
-              validator: (text) => Validators().validatePassword(text),
-              controller: _passwordController,
-              onChanged: (String str) {},
-              nameField: 'Password',
-              errorText: null,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: RegularTextButton(
-                name: "Forgot password?",
-                onPressed: () {
-                  Navigator.pushNamed(context, '/forgotPassword');
-                },
-              ),
-            ),
-          ]),
-          BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) {
-              if (state is LoginFailedState) {}
-              if (state is LoginSuccessState) {
-                Navigator.pushNamed(context, '/home');
-              }
+        ),
+        Form(
+          key: _formKeyPassword,
+          child: SecuredTextField(
+            validator: (text) => Validators().validatePassword(text),
+            controller: _passwordController,
+            onChanged: (String str) {},
+            nameField: 'Password',
+            errorText: null,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: RegularTextButton(
+            name: "Forgot password?",
+            onPressed: () {
+              Navigator.pushNamed(context, '/forgotPassword');
             },
-            child: MainButtonLight(
-                name: "Login",
-                onPressed: () {
-                  /*    if (_formKeyUsername.currentState!.validate() &
-                      _formKeyPassword.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')),
-                    );
-
-                    context.read<LoginBloc>().add(LoginSubmitted(
-                        email: _emailController.text.trim(),
-                        password: _passwordController.text.trim()));
-                  }*/
+          ),
+        ),
+        BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            if (state is LoginFailedState) {}
+            if (state is LoginSuccessState) {
+              Navigator.pushNamed(context, '/home');
+            }
+          },
+          child: MainButtonLight(
+              name: "Login",
+              onPressed: () {
+                if (_formKeyUsername.currentState!.validate() &
+                    _formKeyPassword.currentState!.validate()) {
                   context.read<LoginBloc>().add(LoginSubmitted(
                       email: _emailController.text.trim(),
                       password: _passwordController.text.trim()));
-                }),
-          ),
-        ]),
+                }
+              }),
+        ),
       ],
     );
   }

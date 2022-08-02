@@ -26,14 +26,8 @@ class Validators {
 
   String? validateUsername(String? value) {
     String? _msg;
-    RegExp regex = RegExp(r'^[А-ЯЁ][а-яё]+$');
     if (value == null) {
-      _msg = "Введите текст";
-    } else {
-      var match = regex.firstMatch(value);
-      if (!regex.hasMatch(value)) {
-        _msg = "Введите символами кириллицы с заглавной буквы";
-      }
+      _msg = "Enter your username";
     }
     return _msg;
   }
