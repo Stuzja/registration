@@ -14,6 +14,8 @@ class CustomTheme {
           color: ColorClass.purple,
           elevation: 0,
         ),
+        navigationBarTheme:
+            const NavigationBarThemeData(backgroundColor: ColorClass.purple),
         textTheme: TextTheme(
           labelMedium: TextStyle(
               color: ColorClass.black.withOpacity(0.5),

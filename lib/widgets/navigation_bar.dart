@@ -10,24 +10,29 @@ class FloatingNavigationBar extends StatelessWidget {
       bottomBarItems: [
         BottomBarItemsModel(
           icon: const Icon(Icons.home_outlined, color: Colors.black),
-          iconSelected: const Icon(Icons.home_outlined, color: Colors.white),
-          onTap: () => Navigator.pushNamed(context, '/graphic'),
+          iconSelected: const Icon(Icons.home_outlined, color: Colors.black),
+          dotColor: Colors.black.withOpacity(0.2),
+          onTap: () => Navigator.pushNamed(context, '/home'),
         ),
         BottomBarItemsModel(
-          icon: const Icon(Icons.calendar_month_outlined, color: Colors.white),
+          icon: const Icon(Icons.calendar_month_outlined, color: Colors.black),
           iconSelected:
-              const Icon(Icons.calendar_month_outlined, color: Colors.white),
+              const Icon(Icons.calendar_month_outlined, color: Colors.black),
+          dotColor: Colors.black.withOpacity(0.2),
           onTap: () => Navigator.pushNamed(context, '/plan'),
         ),
         BottomBarItemsModel(
-          icon: const Icon(Icons.wallet_sharp, color: Colors.white),
-          iconSelected: const Icon(Icons.wallet_sharp, color: Colors.white),
+          icon: const Icon(Icons.wallet_sharp, color: Colors.black),
+          iconSelected: const Icon(Icons.wallet_sharp, color: Colors.black),
+          dotColor: Colors.black.withOpacity(0.2),
           onTap: () => Navigator.pushNamed(context, '/total'),
         ),
         BottomBarItemsModel(
-          icon: const Icon(Icons.verified_user_outlined, color: Colors.white),
-          iconSelected: const Icon(Icons.verified_user_outlined, color: Colors.white),
-          onTap: () => Navigator.pushNamed(context, '/home'),
+          icon: const Icon(Icons.verified_user_outlined, color: Colors.black),
+          iconSelected:
+              const Icon(Icons.verified_user_outlined, color: Colors.black),
+          dotColor: Colors.black.withOpacity(0.2),
+          onTap: () => Navigator.pushNamed(context, '/user'),
         ),
       ],
       bottomBarCenterModel: BottomBarCenterModel(
@@ -35,14 +40,14 @@ class FloatingNavigationBar extends StatelessWidget {
         centerIcon: const FloatingCenterButton(
           child: Icon(
             Icons.add,
-            color: AppColors.white,
+            color: AppColors.black,
           ),
         ),
         centerIconChild: [
           FloatingCenterButtonChild(
             child: const Icon(
               Icons.add,
-              color: Colors.white,
+              color: Colors.black,
             ),
             onTap: () {},
           ),
