@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../blocs/reset_password/bloc/reset_password_bloc.dart';
-import '../../validators/validators.dart';
+import '../../resources/validators/validators.dart';
+
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/unsecured_textfield.dart';
 

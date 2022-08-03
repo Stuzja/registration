@@ -4,7 +4,7 @@ import '../models/user_json_model.dart';
 import '../models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../validators/validators.dart';
+import '../resources/validators/validators.dart';
 
 class LoginRepository extends AbstractRepository {
   @override
@@ -12,7 +12,7 @@ class LoginRepository extends AbstractRepository {
     var user = UserModel(email: email, password: "");
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      user.emailSent = true;
+      user.emailSent = true; 
     } on FirebaseAuth catch (e) {
       print(e);
     }

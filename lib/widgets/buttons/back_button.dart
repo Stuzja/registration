@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../resources/constants/colors.dart';
+import 'package:registration/resources/constants/colors.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class CustomBackButton extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          backgroundColor: purple.withOpacity(0.5),
+          backgroundColor: ColorClass.purple.withOpacity(0.5),
           child: const Icon(Icons.arrow_back, color: Colors.white),
         ),
       ),

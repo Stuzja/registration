@@ -7,8 +7,8 @@ import 'package:registration/widgets/appbar.dart';
 import '../resources/constants/path_images.dart';
 import '../widgets/navigation_bar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class PlanPage extends StatelessWidget {
+  const PlanPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

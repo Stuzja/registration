@@ -27,7 +27,7 @@ class UnsecuredTextField extends StatelessWidget {
         child: TextFormField(
           validator: validator,
           controller: controller,
-          cursorColor: greyLight,
+          cursorColor: ColorClass.greyLight,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 18, horizontal: 23),
@@ -37,7 +37,7 @@ class UnsecuredTextField extends StatelessWidget {
             errorText: errorText,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: purple),
+              borderSide: const BorderSide(color: ColorClass.purple),
               borderRadius: BorderRadius.circular(10),
             ),
           ),

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
+import 'package:registration/widgets/navigation_bar.dart';
 
 import '../resources/constants/path_images.dart';
-import '../widgets/navigation_bar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class TotalBudgetPage extends StatelessWidget {
+  const TotalBudgetPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

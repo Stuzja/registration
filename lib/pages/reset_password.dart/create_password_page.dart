@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/main_button.dart';
 import '../../../widgets/appbar.dart';
-import '../../validators/validators.dart';
+import '../../resources/validators/validators.dart';
 import '../../widgets/buttons/back_button.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../../widgets/secured_textfield.dart';

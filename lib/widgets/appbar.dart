@@ -7,7 +7,7 @@ class CustomAppBar extends AppBar {
           key: key,
           iconTheme: const IconThemeData(
             size: 13,
-            color: greyLight,
+            color: ColorClass.greyLight,
           ),
           leading: IconButton(
             icon: const Icon(Icons.circle),
