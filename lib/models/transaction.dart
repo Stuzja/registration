@@ -20,7 +20,7 @@ class Transaction {
       this.description});
 
 
-  Color toColor() {
+  Color getColor() {
     switch (category) {
       case TransactionCategory.salariesDev:
         return salaryDev;
@@ -44,25 +44,31 @@ class Transaction {
         return other;
     }
   }
+
+  @override
+  String toString() {
+    switch (category) {
+      case TransactionCategory.salariesDev:
+        return "Salaries dev.";
+      case TransactionCategory.salariesMg:
+        return "Salaries mg.";
+      case TransactionCategory.internalHr:
+        return "Internal HR";
+      case TransactionCategory.externalHr:
+        return "External HR";
+      case TransactionCategory.credit:
+        return "Credit";
+      case TransactionCategory.dividends:
+        return "Dividends";
+      case TransactionCategory.bankCharges:
+        return "Bank Charges";
+      case TransactionCategory.taxes:
+        return "Taxes";
+      case TransactionCategory.awards:
+        return "Awards";
+      case TransactionCategory.others:
+        return "Others";
+    }
+  }
 }
 
-List<Transaction> listTransaction = [
-  Transaction(
-      type: TransactionType.profit,
-      ready: false,
-      date: DateTime.now(),
-      category: TransactionCategory.awards,
-      value: 1100.000),
-  Transaction(
-      type: TransactionType.loss,
-      ready: true,
-      date: DateTime.now(),
-      category: TransactionCategory.credit,
-      value: 200.000),
-  Transaction(
-      type: TransactionType.loss,
-      ready: false,
-      date: DateTime.now(),
-      category: TransactionCategory.salariesDev,
-      value: 1100.000),
-];

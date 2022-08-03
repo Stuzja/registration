@@ -10,9 +10,11 @@ class TransactionRowElem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = transaction.getColor();
     return Container(
       margin: EdgeInsets.only(right: 9.h),
-      width: 328.w, 
+      padding: EdgeInsets.only(left: 16.w),
+      width: 153.w,
       decoration: const BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -22,13 +24,13 @@ class TransactionRowElem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            transaction.category.toString(),
+            transaction.toString(),
             style: CustomTheme.lightTheme.textTheme.bodyText2
-                ?.copyWith(color: transaction.toColor()),
+                ?.copyWith(color: color),
           ),
           Text("₽${transaction.value.toString()}",
               style: CustomTheme.lightTheme.textTheme.headline2
-                  ?.copyWith(color: transaction.toColor()))
+                  ?.copyWith(color: color))
         ],
       ),
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/models/transaction.dart';
 import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/widgets/transaction_row.dart';
+import '../models/transaction_category.dart';
 import '../resources/theme/custom_theme.dart';
 import '../widgets/navigation_bar.dart';
+import '../widgets/transaction_list.dart';
 
 class PlanPage extends StatelessWidget {
   const PlanPage({Key? key}) : super(key: key);
@@ -57,7 +58,10 @@ class PlanPage extends StatelessWidget {
               const Divider(color: ColorClass.greyDark),
               SizedBox(
                 height: 393.h,
-                child: ListView(),
+                child: ListView(children: [
+                  for (var elem in listTransaction)
+                    TransactionListElem(transaction: elem)
+                ]),
               ),
             ]),
           ),
