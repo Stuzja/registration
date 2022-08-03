@@ -26,11 +26,21 @@ class CustomTheme {
             fontSize: 20,
             fontFamily: "Nunito",
           ),
+          headline2: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 24,
+            fontFamily: "Montserrat",
+          ),
           bodyText1: const TextStyle(
               color: ColorClass.greyDark,
               fontWeight: FontWeight.w400,
               fontSize: 14,
               fontFamily: "Nunito"),
+           bodyText2: const TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 18,
+            fontFamily: "Montserrat",
+          ),
           button: const TextStyle(
               color: ColorClass.purple,
               fontWeight: FontWeight.w600,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/models/transaction.dart';
 import 'package:registration/resources/constants/colors.dart';
+import 'package:registration/widgets/transaction_row.dart';
 import '../resources/theme/custom_theme.dart';
 import '../widgets/navigation_bar.dart';
 
@@ -27,7 +29,6 @@ class PlanPage extends StatelessWidget {
                   ],
                   begin: Alignment.center,
                   end: Alignment.bottomCenter,
-                
                 ),
               ),
               child:
@@ -42,7 +43,13 @@ class PlanPage extends StatelessWidget {
               ])),
           SizedBox(
             height: 145.h,
-            child: ListView(scrollDirection: Axis.horizontal),
+            child: ListView(
+                padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (var elem in listTransaction)
+                    TransactionRowElem(transaction: elem)
+                ]),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 17.w),

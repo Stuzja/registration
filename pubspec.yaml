@@ -93,6 +93,12 @@ flutter:
           weight: 400
         - asset: assets/fonts/Nunito-Bold.ttf
           weight: 600
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
