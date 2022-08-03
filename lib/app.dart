@@ -4,6 +4,7 @@ import 'package:registration/pages/login/login_page.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 import 'resources/router.dart';
 
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 

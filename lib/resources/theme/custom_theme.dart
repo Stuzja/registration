@@ -9,13 +9,11 @@ class CustomTheme {
               primary: ColorClass.purple,
             ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          toolbarHeight: 34.h,
+        appBarTheme: const AppBarTheme(
+          toolbarHeight: 0,
           color: ColorClass.purple,
           elevation: 0,
         ),
-        navigationBarTheme:
-            const NavigationBarThemeData(backgroundColor: ColorClass.purple),
         textTheme: TextTheme(
           labelMedium: TextStyle(
               color: ColorClass.black.withOpacity(0.5),

@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../resources/constants/colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar({Key? key})
       : super(
           key: key,
-          iconTheme: const IconThemeData(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: ColorClass.purple,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.light,
+          ),
+          toolbarHeight: 0.0,
+
+        );
+}
+
+
+          /*iconTheme: const IconThemeData(
             size: 13,
             color: ColorClass.greyLight,
           ),
@@ -27,6 +39,4 @@ class CustomAppBar extends AppBar {
               icon: const Icon(Icons.square),
               onPressed: () {},
             )
-          ],
-        );
-}
+          ],*/

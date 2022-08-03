@@ -10,6 +10,7 @@ import '../../repositories/login_repository.dart';
 import '../../resources/constants/path_images.dart';
 import '../../widgets/buttons/text_button.dart';
 import '../../resources/theme/custom_theme.dart';
+import '../../widgets/divider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -39,12 +40,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.pushNamed(context, '/register');
                   }),
             ]),
-            Row(children: [
-              const Divider(),
-              Text("   or   ",
-                  style: CustomTheme.lightTheme.textTheme.bodyText1),
-              const Divider()
-            ]),
+            const CustomDivider(),
             const LoginGoogleWidget()
           ]),
         ),
