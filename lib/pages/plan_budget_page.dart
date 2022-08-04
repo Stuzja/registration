@@ -9,6 +9,7 @@ class PlanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       bottomNavigationBar: const FloatingNavigationBar(currentIndex: 1,),
         body: BaseBudgetWidget(title: "Profit", list: listTransaction));
   }
 }

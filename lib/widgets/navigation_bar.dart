@@ -1,16 +1,16 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:registration/pages/plan_budget_page.dart';
 import '../resources/constants/colors.dart';
 
 class FloatingNavigationBar extends StatefulWidget {
-  const FloatingNavigationBar({Key? key}) : super(key: key);
+  final int currentIndex;
+  const FloatingNavigationBar({Key? key, required this.currentIndex}) : super(key: key);
 
   @override
-  State<FloatingNavigationBar> createState() => _FloatingNavigationBarState();
+  State<FloatingNavigationBar> createState() => FloatingNavigationBarState();
 }
 
-class _FloatingNavigationBarState extends State<FloatingNavigationBar> {
+class FloatingNavigationBarState extends State<FloatingNavigationBar> {
   var iconList = const [
     Icons.home_outlined,
     Icons.calendar_month_outlined,
@@ -18,23 +18,23 @@ class _FloatingNavigationBarState extends State<FloatingNavigationBar> {
     Icons.verified_user_outlined,
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    // AnimationController _hideBottomBarAnimationController = AnimationController(
-    //   duration: Duration(milliseconds: 200),
-    //   vsync: this,
-    // );
-  }
-
-  void actionOnTap(index) {
-    if (index == 1) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PlanPage()));
+  void _onTapNavigate(index) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        return;
+      case 1:
+        Navigator.pushNamed(context, '/plan');
+        return;
+      case 2:
+        Navigator.pushNamed(context, '/total');
+        return;
+      case 3:
+        Navigator.pushNamed(context, '/user');
+        return;
     }
   }
 
-  int _bottomNavIndex = 0;
   @override
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar.builder(
@@ -57,12 +57,12 @@ class _FloatingNavigationBarState extends State<FloatingNavigationBar> {
       notchSmoothness: NotchSmoothness.verySmoothEdge,
       itemCount: iconList.length,
       splashColor: const Color.fromRGBO(255, 255, 255, 0.2),
-      activeIndex: _bottomNavIndex,
-      onTap: (index) => setState(() {
-        _bottomNavIndex = index;
-        print(_bottomNavIndex);
-        actionOnTap(_bottomNavIndex);
-      }),
+      activeIndex: widget.currentIndex,
+      onTap: (index) => setState(
+        () {
+          _onTapNavigate(index);
+        },
+      ),
     );
   }
 }

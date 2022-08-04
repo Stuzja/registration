@@ -15,6 +15,7 @@ class UserPage extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: CustomAppBar(),
+       bottomNavigationBar: const FloatingNavigationBar(currentIndex: 3,),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

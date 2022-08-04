@@ -30,8 +30,6 @@ class MainTransactionsRepository {
 
     try {
       docTransaction.set(transToJson);
-    } on FirebaseAuthException catch (e) {
-    }
-
+    } on FirebaseAuthException catch (e) {}
   }
 }
