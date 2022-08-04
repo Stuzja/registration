@@ -35,3 +35,6 @@ List<Transaction> listTransaction = [
       category: TransactionCategory.salariesDev,
       value: 1100.000),
 ];
+
+List<Transaction> listTransactionReady =
+    listTransaction.where((element) => element.ready == true).toList();

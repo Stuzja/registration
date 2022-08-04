@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/models/transaction.dart';
 import 'package:registration/resources/constants/path_images.dart';
-import '../resources/theme/custom_theme.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class TransactionListElem extends StatelessWidget {
   final Transaction transaction;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/models/transaction.dart';
-import '../resources/theme/custom_theme.dart';
+import '../../models/transaction.dart';
+import '../../resources/theme/custom_theme.dart';
+
 
 class TransactionRowElem extends StatelessWidget {
   final Transaction transaction;

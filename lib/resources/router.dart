@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../pages/add_transaction_page.dart';
 import '../pages/home_page.dart';
+import '../pages/plan_budget_page.dart';
 import '../pages/user_page.dart';
 import '../pages/login/login_page.dart';
-import '../pages/plan_page.dart';
 import '../pages/registration/registration_page.dart';
 import '../pages/reset_password.dart/create_password_page.dart';
 import '../pages/reset_password.dart/forgot_password_page.dart';
