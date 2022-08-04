@@ -148,6 +148,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.7.1"
   equatable:
     dependency: "direct main"
     description:
@@ -616,6 +623,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.13"
+  toggle_switch:
+    dependency: "direct main"
+    description:
+      name: toggle_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:
@@ -730,4 +744,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.17.6 <3.0.0"
-  flutter: ">=2.11.0-0.1.pre"
+  flutter: ">=3.0.0"

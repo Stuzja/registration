@@ -1,38 +1,76 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
+import '../widgets/buttons/back_button.dart';
+import '../widgets/buttons/main_button.dart';
+import '../widgets/editing_transaction_layout/fields/date_field.dart';
+import '../widgets/editing_transaction_layout/fields/description_field.dart';
+import '../widgets/editing_transaction_layout/fields/drop_down_field.dart';
+import '../widgets/editing_transaction_layout/fields/money_field.dart';
+import '../widgets/editing_transaction_layout/fields/switch_field.dart';
 
-import '../resources/constants/path_images.dart';
-import '../widgets/navigation_bar.dart';
 
 class AddTransactionPage extends StatelessWidget {
   const AddTransactionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    TextEditingController description = TextEditingController();
     return Scaffold(
       appBar: CustomAppBar(),
-      bottomNavigationBar: const FloatingNavigationBar(),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            SizedBox(
-                width: 250.w, height: 250.h, child: Image.asset(logoMobyte)),
-            Text(user.email!),
-            ElevatedButton(
-              child: const Text("Sign out"),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushNamed(context, '/login');
-              },
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 36),
+              child: Row(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 11),
+                    child: CustomBackButton(),
+                  ),
+                  Text(
+                    'Add a transaction',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Nunito',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SwitchField(
+              firstLabel: 'Profit',
+              secondLabel: "Loss",
+              switchTitle: 'Transaction type',
+            ),
+            const SwitchField(
+              firstLabel: 'OK',
+              secondLabel: "Wait",
+              switchTitle: 'Status',
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: DateTextField(),
+            ),
+            const DropDownField(dropItem: ['dsadads', 'daddqwd']),
+            const MoneyField(
+              nameField: "Enter Amount",
+            ),
+            DescriptionField(
+              controller: description,
+              nameField: "Description",
+              onChanged: ((s) {}),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 22),
+              child: MainButtonDark(name: 'Add', onPressed: () {}),
             )
           ],
         ),
-      ),
+      )),
     );
   }
 }

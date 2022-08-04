@@ -49,7 +49,7 @@ class FloatingNavigationBar extends StatelessWidget {
               Icons.add,
               color: Colors.black,
             ),
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, '/add'),
           ),
         ],
       ),

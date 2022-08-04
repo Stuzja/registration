@@ -10,7 +10,7 @@ import '../../repositories/login_repository.dart';
 import '../../resources/constants/path_images.dart';
 import '../../widgets/buttons/text_button.dart';
 import '../../resources/theme/custom_theme.dart';
-import '../../widgets/divider.dart';
+import '../../widgets/login_page_divider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
