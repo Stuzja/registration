@@ -9,6 +9,7 @@ class EditTransactionPage extends StatelessWidget {
     return const Scaffold(
         body: BaseEditingTransactionWidget(
       title: "Edit a transaction",
-    ));
+    ),
+    );
   }
 }

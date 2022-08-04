@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:registration/models/transaction_category.dart';
-
 import '../resources/constants/colors.dart';
 
 class Transaction {
@@ -19,6 +18,14 @@ class Transaction {
       required this.value,
       this.description});
 
+  Map<String, dynamic> toJson() => {
+        'type': FormExtensionType(type).getName,
+        'ready': ready,
+        'category': FormExtensionCategory(category).getName,
+        'value': value,
+        'date': date,
+        'description': description,
+      };
 
   Color getColor() {
     switch (category) {
@@ -42,6 +49,8 @@ class Transaction {
         return awards;
       case TransactionCategory.others:
         return other;
+      case TransactionCategory.profit:
+        return internalHr;
     }
   }
 
@@ -68,7 +77,8 @@ class Transaction {
         return "Awards";
       case TransactionCategory.others:
         return "Others";
+      case TransactionCategory.profit:
+        return "Profit";
     }
   }
 }
-

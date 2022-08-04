@@ -8,7 +8,6 @@ class TotalBudgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: const FloatingNavigationBar(),
         body: BaseBudgetWidget(
             title: "Your total budget", list: listTransactionReady));
   }

@@ -60,12 +60,13 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
         child: SecuredTextField(
           validator: (text) {
             if (_passwordController.text == _passwordAgainController.text) {
-              Validators().validatePassword(text);
+              return Validators().validatePassword(text);
             } else {
               return "Passwords don't match";
             }
           },
           onChanged: (String str) {},
+          controller: _passwordAgainController,
           nameField: 'Confirm password',
           errorText: null,
         ),

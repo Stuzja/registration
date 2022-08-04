@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/models/transaction.dart';
+import 'package:registration/models/transaction_category.dart';
 import 'package:registration/resources/constants/path_images.dart';
+import '../../resources/formatters/formatters.dart';
 import '../../resources/theme/custom_theme.dart';
 
 class TransactionListElem extends StatelessWidget {
@@ -49,7 +51,12 @@ class TransactionListElem extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        Text(transaction.value.toString()),
+        Text(Formatters().toCharacterEarnFormat(transaction),
+            style: CustomTheme.lightTheme.textTheme.bodyText2?.copyWith(
+                fontSize: 16,
+                color: transaction.type == TransactionType.profit
+                    ? Colors.green
+                    : Colors.red)),
         SizedBox(width: 29.w),
         Text(
           ">",
