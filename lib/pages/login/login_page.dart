@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: ListView(children: [
             SizedBox(
-                width: 170.w, height: 170.h, child: Image.asset(logo_mobyte)),
+                width: 170.w, height: 170.h, child: Image.asset(logoMobyte)),
             const LoginFormWidget(),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text("Don’t have an account?",

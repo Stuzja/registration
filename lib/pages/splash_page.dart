@@ -14,12 +14,9 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-
-      child: Column(children: [SizedBox(
-          width: 250.w,
-          height: 250.h,
-          child: Image.asset(logo_mobyte)),
-          const CircularProgressIndicator(),
+      child: Column(children: [
+        SizedBox(width: 250.w, height: 250.h, child: Image.asset(logoMobyte)),
+        const CircularProgressIndicator(),
       ]),
     ));
   }

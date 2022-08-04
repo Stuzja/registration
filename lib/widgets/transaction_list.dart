@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:registration/models/transaction.dart';
+import 'package:registration/resources/constants/path_images.dart';
 import '../resources/theme/custom_theme.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 
 class TransactionListElem extends StatelessWidget {
   final Transaction transaction;
@@ -22,6 +24,16 @@ class TransactionListElem extends StatelessWidget {
             color: color,
             shape: BoxShape.circle,
           ),
+          child: InkWell(
+            onTap: () {},
+            child: transaction.ready
+                ? SizedBox(
+                    height: 24.h,
+                    width: 24.w,
+                    child: Image.asset(checkMark),
+                  )
+                : Container(),
+          ),
         ),
         SizedBox(width: 8.w),
         Column(
@@ -32,7 +44,7 @@ class TransactionListElem extends StatelessWidget {
               style: CustomTheme.lightTheme.textTheme.bodyText2
                   ?.copyWith(color: color),
             ),
-            Text(transaction.date.toString(),
+            Text(DateFormat('d MMMM y').format(transaction.date),
                 style: CustomTheme.lightTheme.textTheme.bodyText2
                     ?.copyWith(fontSize: 12))
           ],

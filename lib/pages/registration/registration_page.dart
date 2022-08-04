@@ -16,14 +16,10 @@ class RegistrationPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Padding(
-        padding:
-            EdgeInsets.fromLTRB(16.w, 16.w,  36.h, 62.h),
+        padding: EdgeInsets.fromLTRB(16.w, 16.w, 36.h, 62.h),
         child: ListView(children: [
           const CustomBackButton(),
-          SizedBox(
-              width: 170.w,
-              height: 170.h,
-              child: Image.asset(logo_mobyte)),
+          SizedBox(width: 170.w, height: 170.h, child: Image.asset(logoMobyte)),
           Padding(
             padding: const EdgeInsets.only(top: 27),
             child: BlocProvider(
