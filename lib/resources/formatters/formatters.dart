@@ -8,7 +8,7 @@ class Formatters {
     return newValue;
   }
 
-  String toCharacterEarnFormat(Transaction transaction) {
+  String toCharacterEarnFormat(TransactionModel transaction) {
     String value = "₽${transaction.value}";
     if (transaction.type == TransactionType.profit) {
       value = "+$value";

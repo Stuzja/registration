@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/transaction.dart';
 import '../../resources/theme/custom_theme.dart';
 
-
 class TransactionRowElem extends StatelessWidget {
-  final Transaction transaction;
+  final TransactionModel transaction;
   const TransactionRowElem({Key? key, required this.transaction})
       : super(key: key);
 

@@ -8,7 +8,7 @@ import '../../resources/formatters/formatters.dart';
 import '../../resources/theme/custom_theme.dart';
 
 class TransactionListElem extends StatelessWidget {
-  final Transaction transaction;
+  final TransactionModel transaction;
   const TransactionListElem({Key? key, required this.transaction})
       : super(key: key);
 

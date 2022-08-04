@@ -56,20 +56,20 @@ extension FormExtensionCategory on TransactionCategory {
   }
 }
 
-List<Transaction> listTransaction = [
-  Transaction(
+List<TransactionModel> listTransaction = [
+  TransactionModel(
       type: TransactionType.profit,
       ready: false,
       date: DateTime.now(),
       category: TransactionCategory.awards,
       value: 1100.000),
-  Transaction(
+  TransactionModel(
       type: TransactionType.loss,
       ready: true,
       date: DateTime.now(),
       category: TransactionCategory.credit,
       value: 200.000),
-  Transaction(
+  TransactionModel(
       type: TransactionType.loss,
       ready: false,
       date: DateTime.now(),
@@ -77,5 +77,5 @@ List<Transaction> listTransaction = [
       value: 1100.000),
 ];
 
-List<Transaction> listTransactionReady =
+List<TransactionModel> listTransactionReady =
     listTransaction.where((element) => element.ready == true).toList();

@@ -62,11 +62,10 @@ class LoginRepository extends AbstractRepository {
     final userToJson = UserJsonModel(
       password: password,
       login: email,
-    );
-    final json = userToJson.toJson();
+    ).toJson();
 
     try {
-      docUser.set(json);
+      docUser.set(userToJson);
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {

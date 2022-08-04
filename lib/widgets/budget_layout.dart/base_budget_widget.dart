@@ -8,7 +8,7 @@ import '../../resources/theme/custom_theme.dart';
 
 class BaseBudgetWidget extends StatelessWidget {
   final String title;
-  final List<Transaction> list;
+  final List<TransactionModel> list;
   const BaseBudgetWidget({Key? key, required this.title, required this.list})
       : super(key: key);
 

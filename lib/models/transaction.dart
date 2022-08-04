@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:registration/models/transaction_category.dart';
 import '../resources/constants/colors.dart';
 
-class Transaction {
+class TransactionModel {
   TransactionType type;
   bool ready;
   DateTime date;
@@ -10,7 +10,7 @@ class Transaction {
   TransactionCategory category;
   String? description;
 
-  Transaction(
+  TransactionModel(
       {required this.type,
       required this.ready,
       required this.date,
