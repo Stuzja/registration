@@ -8,12 +8,14 @@ class CirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(
-        Offset(size.width/ 4, size.height / 3),
+        Offset(size.width / 4, size.height / 3),
         size.height / 1.8,
         Paint()
           ..style = PaintingStyle.fill
-          ..shader = ui.Gradient.linear(Offset.zero, Offset(size.height / 0.9, size.height / 0.9), [color.withOpacity(0), color])
-    );
+          ..shader = ui.Gradient.linear(
+              Offset.zero,
+              Offset(size.height / 0.9, size.height / 0.9),
+              [color.withOpacity(0), color]));
   }
 
   @override

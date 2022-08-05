@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_list.dart';
-import 'package:registration/widgets/budget_layout.dart/transaction_row_elem/transaction_row_widget.dart';
+import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row_widget.dart';
 import '../../models/transaction.dart';
 import '../../resources/theme/custom_theme.dart';
 
@@ -47,7 +47,7 @@ class BaseBudgetWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
               scrollDirection: Axis.horizontal,
               children: [
-                for (var elem in list) TransactionRowElem(transaction: elem)
+                for (var elem in list) TransactionRowCard(transaction: elem)
               ]),
         ),
         Padding(
