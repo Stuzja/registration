@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/budget_layout.dart/base_budget_widget.dart';
-import '../models/transaction_category.dart';
+import '../resources/enums/transaction_type.dart';
 import '../widgets/buttons/floating_bar_button.dart';
 import '../widgets/navigation_bar.dart';
 

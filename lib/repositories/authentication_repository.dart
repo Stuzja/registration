@@ -12,7 +12,7 @@ class AuthenticationRepository extends AbstractRepository {
     var user = UserModel(email: email, password: "");
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      user.emailSent = true; 
+      user.emailSent = true;
     } on FirebaseAuth catch (e) {
       print(e);
     }
@@ -50,13 +50,14 @@ class AuthenticationRepository extends AbstractRepository {
   }
 
   @override
-  Future<UserModel> signUp({
+  Future<bool> signUp({
     required String email,
     required String password,
     required String userName,
   }) async {
     UserModel user =
         UserModel(email: email, password: password, username: userName);
+    bool success = false;
     final docUser =
         FirebaseFirestore.instance.collection('users').doc(userName);
     final userToJson = UserJsonModel(
@@ -75,8 +76,8 @@ class AuthenticationRepository extends AbstractRepository {
         print('The account already exists for that email.');
       }
     }
-    user.statusRegistered = StateUserRegistered.isRegistered;
+    success = true;
 
-    return user;
+    return success;
   }
 }

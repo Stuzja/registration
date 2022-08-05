@@ -20,9 +20,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     Emitter<RegistrationState> emit,
   ) async {
     emit(RegistrationLoadingState());
-    UserModel user = await repository.signUp(
+    bool success = await repository.signUp(
         email: event.email, password: event.password, userName: event.username);
-    if (user.statusRegistered == StateUserRegistered.isRegistered) {
+    if (success) {
       emit(RegistrationSuccessState());
     } else {
       emit(RegistrationFailedState());

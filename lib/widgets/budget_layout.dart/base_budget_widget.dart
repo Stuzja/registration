@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_list.dart';
-import 'package:registration/widgets/budget_layout.dart/transaction_row.dart';
+import 'package:registration/widgets/budget_layout.dart/transaction_row_elem/transaction_row_widget.dart';
 import '../../models/transaction.dart';
 import '../../resources/theme/custom_theme.dart';
 

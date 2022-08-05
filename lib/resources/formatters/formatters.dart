@@ -1,6 +1,5 @@
 import 'package:registration/models/transaction.dart';
-
-import '../../models/transaction_category.dart';
+import '../enums/transaction_type.dart';
 
 class Formatters {
   String toMoneyFormat(String value) {

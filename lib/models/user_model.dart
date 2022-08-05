@@ -3,7 +3,7 @@ enum StateUserLogged {
   unLogged,
 }
 
-enum StateUserRegistered{
+enum StateUserRegistered {
   isRegistered,
   unRegistered,
 }
@@ -13,13 +13,14 @@ class UserModel {
   String? email;
   String? password;
   StateUserLogged statusLogged = StateUserLogged.unLogged;
-  StateUserRegistered statusRegistered = StateUserRegistered.unRegistered;
   bool emailSent = false;
   bool googleSignIn = false;
 
   UserModel({
     this.username,
     required this.email,
-    required this.password, 
+    required this.password,
   });
 }
+
+UserModel? thisUser;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:registration/models/transaction_category.dart';
+import 'package:registration/resources/enums/transaction_category.dart';
 import '../resources/constants/colors.dart';
+import '../resources/enums/transaction_type.dart';
 
 class TransactionModel {
   TransactionType type;
@@ -27,32 +28,7 @@ class TransactionModel {
         'description': description,
       };
 
-  Color getColor() {
-    switch (category) {
-      case TransactionCategory.salariesDev:
-        return salaryDev;
-      case TransactionCategory.salariesMg:
-        return salaryMg;
-      case TransactionCategory.internalHr:
-        return internalHr;
-      case TransactionCategory.externalHr:
-        return externalHr;
-      case TransactionCategory.credit:
-        return credit;
-      case TransactionCategory.dividends:
-        return dividends;
-      case TransactionCategory.bankCharges:
-        return bankCharges;
-      case TransactionCategory.taxes:
-        return taxes;
-      case TransactionCategory.awards:
-        return awards;
-      case TransactionCategory.others:
-        return other;
-      case TransactionCategory.profit:
-        return internalHr;
-    }
-  }
+
 
   @override
   String toString() {

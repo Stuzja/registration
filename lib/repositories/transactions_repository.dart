@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/transaction.dart';
-import '../models/transaction_category.dart';
+import '../resources/enums/transaction_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../resources/enums/transaction_type.dart';
 
 class ActionsWithTransactionsRepository {
   Future addTransaction(

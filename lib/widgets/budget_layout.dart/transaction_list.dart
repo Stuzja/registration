@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/models/transaction.dart';
-import 'package:registration/models/transaction_category.dart';
+import 'package:registration/resources/enums/transaction_category.dart';
 import 'package:registration/resources/constants/path_images.dart';
+import '../../resources/enums/transaction_type.dart';
 import '../../resources/formatters/formatters.dart';
 import '../../resources/theme/custom_theme.dart';
 
@@ -14,7 +15,7 @@ class TransactionListElem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = transaction.getColor();
+    final colorTitle = transaction.category.getColorTitle;
     return Container(
       margin: EdgeInsets.only(top: 11.h),
       child: Row(children: [
@@ -22,7 +23,7 @@ class TransactionListElem extends StatelessWidget {
           height: 48.h,
           width: 48.w,
           decoration: BoxDecoration(
-            color: color,
+            color: colorTitle,
             shape: BoxShape.circle,
           ),
           child: InkWell(
@@ -43,7 +44,7 @@ class TransactionListElem extends StatelessWidget {
             Text(
               transaction.toString(),
               style: CustomTheme.lightTheme.textTheme.bodyText2
-                  ?.copyWith(color: color),
+                  ?.copyWith(color: colorTitle),
             ),
             Text(DateFormat('d MMMM y').format(transaction.date),
                 style: CustomTheme.lightTheme.textTheme.bodyText2
@@ -61,7 +62,7 @@ class TransactionListElem extends StatelessWidget {
         Text(
           ">",
           style: CustomTheme.lightTheme.textTheme.bodyText2
-              ?.copyWith(color: color),
+              ?.copyWith(color: colorTitle),
         )
       ]),
     );

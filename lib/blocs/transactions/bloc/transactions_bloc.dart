@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../models/transaction_category.dart';
+import '../../../resources/enums/transaction_category.dart';
 import '../../../repositories/transactions_repository.dart';
+import '../../../resources/enums/transaction_type.dart';
 
 part 'transactions_event.dart';
 part 'transactions_state.dart';
@@ -20,7 +21,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     emit(TransactionsLoadingState());
     bool addSuccess = await repository.addTransaction(
         id: 1,
-        userName: userName,
+        userName: "userName",
         type: event.type,
         ready: event.ready,
         date: event.date,

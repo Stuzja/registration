@@ -5,7 +5,7 @@ abstract class AbstractRepository {
   Future<String> checkIn({required String username});
   Future<UserModel> signIn(
       {required String email, required String password});
-  Future<UserModel> signUp({
+  Future<bool> signUp({
     required String email,
     required String password,
     required String userName,
