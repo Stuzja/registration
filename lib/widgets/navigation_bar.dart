@@ -4,7 +4,8 @@ import '../resources/constants/colors.dart';
 
 class FloatingNavigationBar extends StatefulWidget {
   final int currentIndex;
-  const FloatingNavigationBar({Key? key, required this.currentIndex}) : super(key: key);
+  const FloatingNavigationBar({Key? key, required this.currentIndex})
+      : super(key: key);
 
   @override
   State<FloatingNavigationBar> createState() => FloatingNavigationBarState();
@@ -66,3 +67,4 @@ class FloatingNavigationBarState extends State<FloatingNavigationBar> {
     );
   }
 }
+

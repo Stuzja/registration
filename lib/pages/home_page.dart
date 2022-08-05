@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
+import 'package:registration/widgets/buttons/floating_bar_button.dart';
 
+import '../resources/constants/colors.dart';
 import '../resources/constants/path_images.dart';
 import '../widgets/navigation_bar.dart';
+import 'add_transaction_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,8 +17,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
+      floatingActionButton: const FloatingActionButtonBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: CustomAppBar(),
-      bottomNavigationBar: const FloatingNavigationBar(currentIndex: 0,),
+      bottomNavigationBar: const FloatingNavigationBar(
+        currentIndex: 0,
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
