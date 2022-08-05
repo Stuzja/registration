@@ -1,4 +1,4 @@
-import 'package:registration/models/transaction.dart';
+import 'package:registration/models/transaction_model.dart';
 import '../enums/transaction_type.dart';
 
 class Formatters {

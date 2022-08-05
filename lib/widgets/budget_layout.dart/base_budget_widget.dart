@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_list.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row_widget.dart';
-import '../../models/transaction.dart';
+import '../../models/transaction_model.dart';
 import '../../resources/theme/custom_theme.dart';
 
 class BaseBudgetWidget extends StatelessWidget {

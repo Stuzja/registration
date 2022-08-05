@@ -6,11 +6,13 @@ class SwitchField extends StatefulWidget {
   final String firstLabel;
   final String secondLabel;
   final String switchTitle;
+  final void Function(int?) onToggle;
   const SwitchField(
       {Key? key,
       required this.firstLabel,
       required this.secondLabel,
-      required this.switchTitle})
+      required this.switchTitle,
+      required this.onToggle})
       : super(key: key);
   @override
   State<SwitchField> createState() => _SwitchFieldState();
@@ -34,7 +36,7 @@ class _SwitchFieldState extends State<SwitchField> {
           ),
         ),
         ToggleSwitch(
-          onToggle: (i) {},
+          onToggle: widget.onToggle,
           minWidth: 164.w,
           minHeight: 64.h,
           cornerRadius: 10.0,

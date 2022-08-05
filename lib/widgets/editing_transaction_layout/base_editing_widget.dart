@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/repositories/transactions_repository.dart';
+import 'package:registration/resources/enums/transaction_category.dart';
+import 'package:registration/resources/enums/transaction_type.dart';
 
+import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
 import '../buttons/main_button.dart';
+import 'button_add_transaction.dart';
 import 'fields/date_field.dart';
 import 'fields/description_field.dart';
 import 'fields/drop_down_field.dart';
@@ -16,54 +23,70 @@ class BaseEditingTransactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var descriptionController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
+    TextEditingController moneyController = TextEditingController();
+    TransactionType type = TransactionType.loss;
+    bool ready = false;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: EdgeInsets.symmetric(horizontal: 14.w),
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 36),
+              padding: EdgeInsets.symmetric(vertical: 36.h),
               child: Row(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 11),
-                    child: CustomBackButton(),
-                  ),
-                  Text(
-                    title,
-                    style: CustomTheme.lightTheme.textTheme.headline1,
-                  ),
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 11.w),
+                      child: const CustomBackButton()),
+                  Text(title,
+                      style: CustomTheme.lightTheme.textTheme.headline1),
                 ],
               ),
             ),
-            const SwitchField(
+            SwitchField(
               firstLabel: 'Profit',
               secondLabel: "Loss",
               switchTitle: 'Transaction type',
+              onToggle: (ind) {
+                if (ind == 0) {
+                  type = TransactionType.profit;
+                } else {
+                  type = TransactionType.loss;
+                }
+              },
             ),
-            const SwitchField(
+            SwitchField(
               firstLabel: 'OK',
               secondLabel: "Wait",
               switchTitle: 'Status',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16),
-              child: DateTextField(),
-            ),
-            const DropDownField(dropItem: ['dsadads', 'daddqwd']),
-            const MoneyField(
-              nameField: "Enter Amount",
-            ),
-            DescriptionField(
-              controller: descriptionController,
-              nameField: "Description",
-              onChanged: ((s) {}),
+              onToggle: (ind) {
+                if (ind == 0) {
+                  ready = true;
+                } else {
+                  ready = false;
+                }
+              },
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 22),
-              child: MainButtonDark(name: 'Add', onPressed: () {}),
-            )
+              padding: EdgeInsets.only(top: 16.h),
+              child: const DateTextField(),
+            ),
+            DropDownField(dropItem:  TransactionCategory.values.map((e) => e.name).toList()),
+            MoneyField(nameField: "Enter Amount", controller: moneyController),
+            DescriptionField(
+                nameField: "Description", controller: descriptionController),
+            BlocProvider(
+                create: (context) {
+                  return TransactionsBloc(
+                      repository: ActionsWithTransactionsRepository());
+                },
+                child: ButtonAddTransactionWidget(
+                  ready: ready,
+                  type: type,
+                  moneyController: moneyController,
+                  descriptionController: descriptionController,
+                )),
           ],
         ),
       ),

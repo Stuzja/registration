@@ -4,14 +4,10 @@ import 'package:registration/resources/constants/colors.dart';
 import '../../../resources/theme/custom_theme.dart';
 
 class DescriptionField extends StatelessWidget {
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final String nameField;
-  final void Function(String) onChanged;
   const DescriptionField(
-      {Key? key,
-      required this.nameField,
-      required this.controller,
-      required this.onChanged})
+      {Key? key, required this.nameField, required this.controller})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -23,8 +19,7 @@ class DescriptionField extends StatelessWidget {
         controller: controller,
         cursorColor: ColorClass.greyDark,
         decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+          contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
           label: Align(
             alignment: Alignment.topLeft,
             child: Padding(
@@ -40,7 +35,6 @@ class DescriptionField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        onChanged: onChanged,
       ),
     );
   }

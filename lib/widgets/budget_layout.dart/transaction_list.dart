@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:registration/models/transaction.dart';
+import 'package:registration/models/transaction_model.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import 'package:registration/resources/constants/path_images.dart';
 import '../../resources/enums/transaction_type.dart';

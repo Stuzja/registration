@@ -1,5 +1,5 @@
 import 'package:registration/resources/enums/transaction_category.dart';
-import '../../models/transaction.dart';
+import '../../models/transaction_model.dart';
 
 enum TransactionType { profit, loss }
 

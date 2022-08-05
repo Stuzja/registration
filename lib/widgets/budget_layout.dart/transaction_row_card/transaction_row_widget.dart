@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
-import '../../../models/transaction.dart';
+import '../../../models/transaction_model.dart';
 import '../../../resources/theme/custom_theme.dart';
 import 'backround_of_card.dart';
 

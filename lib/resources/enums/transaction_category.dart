@@ -16,7 +16,36 @@ enum TransactionCategory {
 }
 
 extension FormExtensionCategory on TransactionCategory {
-  String get getName {
+
+   @override
+  String get getName{
+    switch (this) {
+      case TransactionCategory.salariesDev:
+        return "Salaries dev.";
+      case TransactionCategory.salariesMg:
+        return "Salaries mg.";
+      case TransactionCategory.internalHr:
+        return "Internal HR";
+      case TransactionCategory.externalHr:
+        return "External HR";
+      case TransactionCategory.credit:
+        return "Credit";
+      case TransactionCategory.dividends:
+        return "Dividends";
+      case TransactionCategory.bankCharges:
+        return "Bank Charges";
+      case TransactionCategory.taxes:
+        return "Taxes";
+      case TransactionCategory.awards:
+        return "Awards";
+      case TransactionCategory.others:
+        return "Others";
+      case TransactionCategory.profit:
+        return "Profit";
+    }
+  }
+
+  String get getString {
     switch (this) {
       case TransactionCategory.salariesDev:
         return "salaryDev";

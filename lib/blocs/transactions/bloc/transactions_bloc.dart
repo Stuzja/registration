@@ -10,7 +10,8 @@ part 'transactions_state.dart';
 
 class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
-  TransactionsBloc(this.repository) : super(TransactionsInitialState()) {
+  TransactionsBloc({required this.repository})
+      : super(TransactionsInitialState()) {
     on<NewTransactionSubmitted>(_onSubmitted);
   }
 
