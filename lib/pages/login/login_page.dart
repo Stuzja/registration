@@ -6,7 +6,7 @@ import 'package:registration/pages/login/login_google_form.dart';
 import 'package:registration/repositories/login_google_repository.dart';
 import '../../../widgets/appbar.dart';
 import '../../blocs/login/bloc/login_bloc.dart';
-import '../../repositories/login_repository.dart';
+import '../../repositories/authentication_repository.dart';
 import '../../resources/constants/path_images.dart';
 import '../../widgets/buttons/text_button.dart';
 import '../../resources/theme/custom_theme.dart';
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) {
           return LoginBloc(
-              repository: LoginRepository(),
+              repository: AuthenticationRepository(),
               loginGoogle: LoginGoogleRepository());
         },
         child: Padding(

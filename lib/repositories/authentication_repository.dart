@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../resources/validators/validators.dart';
 
-class LoginRepository extends AbstractRepository {
+class AuthenticationRepository extends AbstractRepository {
   @override
   Future<UserModel> resetPassword({required String email}) async {
     var user = UserModel(email: email, password: "");

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../widgets/appbar.dart';
 import '../../blocs/reset_password/bloc/reset_password_bloc.dart';
-import '../../repositories/login_repository.dart';
+import '../../repositories/authentication_repository.dart';
 import '../../widgets/buttons/back_button.dart';
 import '../../resources/theme/custom_theme.dart';
 import 'email_form.dart';
@@ -32,7 +32,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 ]),
                 BlocProvider(
                   create: (context) {
-                    return ResetPasswordBloc(repository: LoginRepository());
+                    return ResetPasswordBloc(repository: AuthenticationRepository());
                   },
                   child: const EmailForResetPasswordWidget(),
                 ),

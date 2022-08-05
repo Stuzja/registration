@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/registration/registration_form.dart';
 import '../../../widgets/appbar.dart';
 import '../../blocs/registration/bloc/registration_bloc.dart';
-import '../../repositories/login_repository.dart';
+import '../../repositories/authentication_repository.dart';
 import '../../resources/constants/path_images.dart';
 import '../../widgets/buttons/back_button.dart';
 
@@ -24,7 +24,7 @@ class RegistrationPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 27),
             child: BlocProvider(
               create: (context) {
-                return RegistrationBloc(repository: LoginRepository());
+                return RegistrationBloc(repository: AuthenticationRepository());
               },
               child: const RegistrationFormWidget(),
             ),
