@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:registration/repositories/abstract_repository.dart';
-import '../models/user_json_model.dart';
 import '../models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,15 +7,15 @@ import '../resources/validators/validators.dart';
 
 class AuthenticationRepository extends AbstractRepository {
   @override
-  Future<UserModel> resetPassword({required String email}) async {
-    var user = UserModel(email: email, password: "");
+  Future<bool> resetPassword({required String email}) async {
+    var emailSent = false;
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      user.emailSent = true;
+      emailSent = true;
     } on FirebaseAuth catch (e) {
       print(e);
     }
-    return user;
+    return emailSent;
   }
 
   @override
@@ -29,14 +28,14 @@ class AuthenticationRepository extends AbstractRepository {
   }
 
   @override
-  Future<UserModel> signIn(
-      {required String email, required String password}) async {
-    UserModel user = UserModel(email: email, password: password);
+  Future<bool> signIn({required String email, required String password}) async {
+    bool statusLogged = false;
     if (Validators().validateEmail(email) == null) {
       try {
         UserCredential user_credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-        user.statusLogged = StateUserLogged.isLogged;
+        statusLogged = true;
+
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
           print('Wrong password provided for that user.');
@@ -44,9 +43,9 @@ class AuthenticationRepository extends AbstractRepository {
       }
     } else {
       String newEmail = await checkIn(username: email);
-      user = await signIn(email: newEmail, password: password);
+      statusLogged = await signIn(email: newEmail, password: password);
     }
-    return user;
+    return statusLogged;
   }
 
   @override
@@ -60,9 +59,9 @@ class AuthenticationRepository extends AbstractRepository {
     bool success = false;
     final docUser =
         FirebaseFirestore.instance.collection('users').doc(userName);
-    final userToJson = UserJsonModel(
+    final userToJson = UserModel(
       password: password,
-      login: email,
+      email: email,
     ).toJson();
 
     try {

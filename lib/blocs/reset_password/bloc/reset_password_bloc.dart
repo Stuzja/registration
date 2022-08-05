@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../models/user_model.dart';
 import '../../../repositories/abstract_repository.dart';
 part 'reset_password_event.dart';
 part 'reset_password_state.dart';
@@ -19,8 +18,8 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     Emitter<ResetPasswordState> emit,
   ) async {
     emit(ResetPasswordLoadingState());
-    UserModel user = await repository.resetPassword(email: event.email);
-    if (user.emailSent) {
+    bool emailSent = await repository.resetPassword(email: event.email);
+    if (emailSent) {
       emit(EmailSuccessState());
     } else {
       emit(EmailFailedState());

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:registration/models/user_model.dart';
 import 'package:registration/repositories/login_google_repository.dart';
 
 import '../../../repositories/abstract_repository.dart';
@@ -24,9 +23,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     emit(LoginLoadingState());
-    UserModel user =
+    bool statusLogged =
         await repository.signIn(email: event.email, password: event.password);
-    if (user.statusLogged == StateUserLogged.isLogged) {
+    if (statusLogged) {
       emit(LoginSuccessState());
     } else {
       emit(LoginFailedState());
