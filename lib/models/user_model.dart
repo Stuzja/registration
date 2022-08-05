@@ -27,4 +27,4 @@ class UserModel {
       UserModel(email: json['email'], password: json['password']);
 }
 
-UserModel? thisUser;
+UserModel thisUser = UserModel(username: null, email: null, password: null);

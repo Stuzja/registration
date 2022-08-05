@@ -16,7 +16,7 @@ class BaseEditingTransactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController description = TextEditingController();
+    var descriptionController = TextEditingController();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -56,7 +56,7 @@ class BaseEditingTransactionWidget extends StatelessWidget {
               nameField: "Enter Amount",
             ),
             DescriptionField(
-              controller: description,
+              controller: descriptionController,
               nameField: "Description",
               onChanged: ((s) {}),
             ),

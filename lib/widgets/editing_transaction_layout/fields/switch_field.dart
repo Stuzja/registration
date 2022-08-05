@@ -34,6 +34,7 @@ class _SwitchFieldState extends State<SwitchField> {
           ),
         ),
         ToggleSwitch(
+          onToggle: (i) {},
           minWidth: 164.w,
           minHeight: 64.h,
           cornerRadius: 10.0,

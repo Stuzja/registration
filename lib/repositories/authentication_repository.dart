@@ -32,16 +32,18 @@ class AuthenticationRepository extends AbstractRepository {
     bool statusLogged = false;
     if (Validators().validateEmail(email) == null) {
       try {
-        UserCredential user_credential = await FirebaseAuth.instance
+        await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         statusLogged = true;
-
+        thisUser.email = email;
+        thisUser.password = password;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
           print('Wrong password provided for that user.');
         }
       }
     } else {
+      thisUser.username = email;
       String newEmail = await checkIn(username: email);
       statusLogged = await signIn(email: newEmail, password: password);
     }
@@ -54,8 +56,6 @@ class AuthenticationRepository extends AbstractRepository {
     required String password,
     required String userName,
   }) async {
-    UserModel user =
-        UserModel(email: email, password: password, username: userName);
     bool success = false;
     final docUser =
         FirebaseFirestore.instance.collection('users').doc(userName);
@@ -66,8 +66,10 @@ class AuthenticationRepository extends AbstractRepository {
 
     try {
       docUser.set(userToJson);
-      UserCredential userCredential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      thisUser =
+          UserModel(email: email, password: password, username: userName);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
