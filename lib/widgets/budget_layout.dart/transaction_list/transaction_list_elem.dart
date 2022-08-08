@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import 'package:registration/resources/constants/path_images.dart';
-import '../../resources/enums/transaction_type.dart';
-import '../../resources/formatters/formatters.dart';
-import '../../resources/theme/custom_theme.dart';
+import '../../../resources/enums/transaction_type.dart';
+import '../../../resources/formatters/formatters.dart';
+import '../../../resources/theme/custom_theme.dart';
 
 class TransactionListElem extends StatelessWidget {
   final TransactionModel transaction;

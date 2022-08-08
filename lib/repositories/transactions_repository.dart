@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
 import '../resources/enums/transaction_category.dart';
@@ -58,6 +59,25 @@ class ActionsWithTransactionsRepository {
       for (var queryDocumentSnapshot in querySnapshot.docs) {
         var data = jsonDecode(queryDocumentSnapshot.data().toString());
         listTransaction.add(TransactionModel.fromJson(data));
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+    return listTransaction;
+  }
+
+  List<TransactionModel> formatToTransaction(
+      AsyncSnapshot<QuerySnapshot> snapshot) {
+    List<TransactionModel> listTransaction = [];
+    try {
+      print(
+          "-----------------------------------------------------------------------");
+      print(snapshot.data);
+      if (snapshot.data != null) {
+        for (var queryDocumentSnapshot in snapshot.data!.docs) {
+          var data = jsonDecode(queryDocumentSnapshot.data().toString());
+          listTransaction.add(TransactionModel.fromJson(data));
+        }
       }
     } on FirebaseAuthException catch (e) {
       print(e.message);

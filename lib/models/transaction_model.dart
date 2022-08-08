@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
-import '../resources/constants/colors.dart';
 import '../resources/enums/transaction_type.dart';
 
 class TransactionModel {
@@ -33,14 +31,6 @@ class TransactionModel {
         ready = json['ready'],
         value = json['value'],
         description = json['description'],
-        date = json['date'];
+        date = DateTime.parse(json['date'].toDate().toString());
+        
 }
-
-TransactionModel fromJson(Map<String, dynamic> json) => TransactionModel(
-      type: json['type'],
-      category: json['category'],
-      ready: json['ready'],
-      value: json['value'],
-      description: json['description'],
-      date: json['date'],
-    );

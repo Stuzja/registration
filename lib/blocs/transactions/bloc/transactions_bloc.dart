@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:registration/models/transaction_model.dart';
 
 import '../../../resources/enums/transaction_category.dart';
 import '../../../repositories/transactions_repository.dart';
@@ -32,4 +33,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
       emit(TransactionsFailedState());
     }
   }
+
+ 
 }
