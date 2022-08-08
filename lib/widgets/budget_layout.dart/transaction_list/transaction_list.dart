@@ -8,7 +8,7 @@ import '../../../models/transaction_model.dart';
 import '../../../models/user_model.dart';
 import 'transaction_list_elem.dart';
 
-class TransactionListWidget extends StatefulWidget {
+/*class TransactionListWidget extends StatefulWidget {
   const TransactionListWidget({Key? key}) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class TransactionListWidgetState extends State<TransactionListWidget> {
             .collection('users')
             .doc(thisUser.username)
             .collection('transactions')
-            .snapshots(),
+            .snapshots().listen((event) { }),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           return ListView(
             children: [
@@ -41,3 +41,4 @@ class TransactionListWidgetState extends State<TransactionListWidget> {
     );
   }
 }
+*/

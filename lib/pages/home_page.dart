@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/appbar.dart';
 import 'package:registration/widgets/buttons/floating_bar_button.dart';
 
+import '../models/user_model.dart';
 import '../resources/constants/colors.dart';
 import '../resources/constants/path_images.dart';
 import '../widgets/navigation_bar.dart';
@@ -15,7 +16,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       floatingActionButton: const FloatingActionButtonBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -29,7 +29,8 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             SizedBox(
                 width: 250.w, height: 250.h, child: Image.asset(logoMobyte)),
-            Text(user.email!),
+            Text(thisUser.email!),
+            Text(thisUser.username!),
             ElevatedButton(
               child: const Text("Sign out"),
               onPressed: () {

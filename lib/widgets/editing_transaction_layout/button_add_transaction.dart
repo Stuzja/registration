@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../blocs/transactions/bloc/transactions_bloc.dart';
-import '../../resources/enums/transaction_category.dart';
-import '../../resources/enums/transaction_type.dart';
+import 'package:registration/blocs/add_transaction/bloc/add_transaction_bloc.dart';
 import '../buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatefulWidget {
-  final TransactionType type;
-  final TransactionCategory category;
-  final bool ready;
   final TextEditingController moneyController;
   final TextEditingController descriptionController;
-
-  const ButtonAddTransactionWidget(
-      {Key? key,
-      required this.moneyController,
-      required this.descriptionController,
-      required this.ready,
-      required this.type,
-      required this.category})
-      : super(key: key);
+  const ButtonAddTransactionWidget({
+    Key? key,
+    required this.moneyController,
+    required this.descriptionController,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ButtonAddTransactionWidgetState();
@@ -31,13 +21,15 @@ class ButtonAddTransactionWidgetState
     extends State<ButtonAddTransactionWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<TransactionsBloc, TransactionsState>(
+    return BlocListener<AddTransactionBloc, AddTransactionState>(
       listener: (context, state) {
-        if (state is TransactionsFailedState) {}
-        if (state is TransactionsSuccessState) {
+        if (state is AddTransactionFailed) {
+          print("bad");
+        }
+        if (state is AddTransactionLoading) {
           Navigator.pushNamed(context, '/splash');
         }
-        if (state is TransactionsSuccessState) {
+        if (state is AddTransactionSuccess) {
           Navigator.pushNamed(context, '/home');
         }
       },
@@ -46,13 +38,10 @@ class ButtonAddTransactionWidgetState
         child: MainButtonDark(
             name: 'Add',
             onPressed: () {
-              context.read<TransactionsBloc>().add(NewTransactionSubmitted(
-                  type: widget.type,
-                  category: widget.category,
-                  date: DateTime.now(),
-                  value: double.parse(widget.moneyController.text.trim()),
-                  ready: widget.ready,
-                  description: widget.descriptionController.text.trim()));
+              context.read<AddTransactionBloc>().add(TransactionAdd(
+                    money: double.parse(widget.moneyController.text),
+                    description: widget.descriptionController.text,
+                  ));
             }),
       ),
     );

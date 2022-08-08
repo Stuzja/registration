@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
-import '../../../resources/enums/transaction_category.dart';
+import '../../../../resources/theme/custom_theme.dart';
 
 class DropDownField extends StatefulWidget {
   final TextEditingController? controller;
   final List dropItem;
-  final void Function(TransactionCategory)? onSaved;
+  final void Function(String?)? onChanged;
   const DropDownField({
     Key? key,
     required this.dropItem,
     this.controller,
-    this.onSaved,
+    this.onChanged,
   }) : super(key: key);
   @override
   State<DropDownField> createState() => _DropDownFieldState();
@@ -55,21 +54,12 @@ class _DropDownFieldState extends State<DropDownField> {
         items: widget.dropItem
             .map((item) => DropdownMenuItem<String>(
                   value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
+                  child: Text(item,
+                      style: CustomTheme.lightTheme.textTheme.labelMedium
+                          ?.copyWith(color: Colors.black)),
                 ))
             .toList(),
-        validator: (value) {
-          if (value == null) {
-            return 'Please select category.';
-          }
-        },
-        onChanged: (value) {},
-        onSaved: (value) {},
+        onChanged: widget.onChanged,
       ),
     );
   }

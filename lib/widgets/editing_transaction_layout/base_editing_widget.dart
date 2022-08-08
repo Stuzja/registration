@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
-import 'package:registration/resources/enums/transaction_category.dart';
-import 'package:registration/resources/enums/transaction_type.dart';
-
+import 'package:registration/widgets/editing_transaction_layout/fields/switch_fields/readiness_field.dart';
+import '../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
 import 'button_add_transaction.dart';
 import 'fields/date_field.dart';
 import 'fields/description_field.dart';
-import 'fields/drop_down_field.dart';
+import 'fields/drop_down_field/category_field.dart';
 import 'fields/money_field.dart';
-import 'fields/switch_field.dart';
+import 'fields/switch_fields/type_field.dart';
 
 class EditingTransactionWidget extends StatefulWidget {
   final String title;
@@ -30,79 +29,50 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
   Widget build(BuildContext context) {
     TextEditingController descriptionController = TextEditingController();
     TextEditingController moneyController = TextEditingController();
-    TransactionType type = TransactionType.loss;
-    bool ready = false;
-    TransactionCategory category = TransactionCategory.salariesDev;
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 14.w),
-        child: ListView(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 36.h),
-              child: Row(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 11.w),
-                      child: const CustomBackButton()),
-                  Text(widget.title,
-                      style: CustomTheme.lightTheme.textTheme.headline1),
-                ],
+    return BlocProvider(
+      create: (context) {
+        return AddTransactionBloc(
+            repository: ActionsWithTransactionsRepository());
+      },
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 14.w),
+          child: ListView(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 36.h),
+                child: Row(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 11.w),
+                        child: const CustomBackButton()),
+                    Text(widget.title,
+                        style: CustomTheme.lightTheme.textTheme.headline1),
+                  ],
+                ),
               ),
-            ),
-            SwitchField(
-              firstLabel: 'Profit',
-              secondLabel: "Loss",
-              switchTitle: 'Transaction type',
-              onToggle: (ind) {
-                  if (ind == 0) {
-                    type = TransactionType.profit;
-                  } else {
-                    type = TransactionType.loss;
-                  }
-              },
-            ),
-            SwitchField(
-              firstLabel: 'OK',
-              secondLabel: "Wait",
-              switchTitle: 'Status',
-              onToggle: (ind) {
-                if (ind == 0) {
-                  ready = true;
-                } else {
-                  ready = false;
-                }
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 16.h),
-              child: const DateTextField(),
-            ),
-            DropDownField(
-              dropItem:
-                  TransactionCategory.values.map((e) => e.getName).toList(),
-              onSaved: (value) {
-                setState(() {
-                  category = value;
-                });
-              },
-            ),
-            MoneyField(nameField: "Enter Amount", controller: moneyController),
-            DescriptionField(
-                nameField: "Description", controller: descriptionController),
-            BlocProvider(
-                create: (context) {
-                  return TransactionsBloc(
-                      repository: ActionsWithTransactionsRepository());
-                },
-                child: ButtonAddTransactionWidget(
-                  ready: ready,
-                  type: type,
-                  moneyController: moneyController,
-                  descriptionController: descriptionController,
-                  category: category,
-                )),
-          ],
+              const TypeField(),
+              const ReadinessField(),
+              //  Padding(
+              //     padding: EdgeInsets.only(top: 16.h),
+              //   child: const DateTextField(),
+              //   ),
+              const CategoryField(),
+              MoneyField(
+                  nameField: "Enter Amount", controller: moneyController),
+              DescriptionField(
+                  nameField: "Description", controller: descriptionController),
+              BlocProvider(
+                  create: (context) {
+                    return TransactionsBloc(
+                        repository: ActionsWithTransactionsRepository());
+                  },
+                  child: ButtonAddTransactionWidget(
+                    moneyController: moneyController,
+                    descriptionController: descriptionController,
+                  )),
+            ],
+          ),
         ),
       ),
     );
