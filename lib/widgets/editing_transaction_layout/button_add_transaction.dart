@@ -9,6 +9,7 @@ import '../buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatefulWidget {
   final TransactionType type;
+  final TransactionCategory category;
   final bool ready;
   final TextEditingController moneyController;
   final TextEditingController descriptionController;
@@ -18,7 +19,8 @@ class ButtonAddTransactionWidget extends StatefulWidget {
       required this.moneyController,
       required this.descriptionController,
       required this.ready,
-      required this.type})
+      required this.type,
+      required this.category})
       : super(key: key);
 
   @override
@@ -46,7 +48,7 @@ class ButtonAddTransactionWidgetState
             onPressed: () {
               context.read<TransactionsBloc>().add(NewTransactionSubmitted(
                   type: widget.type,
-                  category: TransactionCategory.awards,
+                  category: widget.category,
                   date: DateTime.now(),
                   value: double.parse(widget.moneyController.text.trim()),
                   ready: widget.ready,

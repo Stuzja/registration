@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
+import '../../../resources/enums/transaction_category.dart';
+
 class DropDownField extends StatefulWidget {
   final TextEditingController? controller;
   final List dropItem;
+  final void Function(TransactionCategory)? onSaved;
   const DropDownField({
     Key? key,
     required this.dropItem,
     this.controller,
+    this.onSaved,
   }) : super(key: key);
   @override
   State<DropDownField> createState() => _DropDownFieldState();
 }
 
 class _DropDownFieldState extends State<DropDownField> {
-  String? selectedValue;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,8 +26,6 @@ class _DropDownFieldState extends State<DropDownField> {
       width: 328.w,
       child: DropdownButtonFormField2(
         decoration: InputDecoration(
-          //Add isDense true and zero Padding.
-          //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
           isDense: true,
           contentPadding: EdgeInsets.zero,
           border: OutlineInputBorder(
@@ -34,13 +34,7 @@ class _DropDownFieldState extends State<DropDownField> {
               width: 4,
               color: Color.fromRGBO(117, 117, 117, 1),
             ),
-            // border: Border.all(
-            // width: 4,
-            // color: const Color.fromRGBO(117, 117, 117, 1),
-            //   ),
           ),
-          //Add more decoration as you want here
-          //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
         ),
         isExpanded: true,
         hint: const Text(
@@ -74,12 +68,8 @@ class _DropDownFieldState extends State<DropDownField> {
             return 'Please select category.';
           }
         },
-        onChanged: (value) {
-          //Do something when changing the item if you want.
-        },
-        onSaved: (value) {
-          selectedValue = value.toString();
-        },
+        onChanged: (value) {},
+        onSaved: (value) {},
       ),
     );
   }

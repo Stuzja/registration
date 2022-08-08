@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
@@ -42,5 +44,24 @@ class ActionsWithTransactionsRepository {
       print(e.message);
       return false;
     }
+  }
+
+  Future<List<TransactionModel>> getListTransactions() async {
+    List<TransactionModel> listTransaction = [];
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(thisUser.username)
+          .collection('transactions')
+          .get();
+      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+      for (var queryDocumentSnapshot in querySnapshot.docs) {
+        var data = jsonDecode(queryDocumentSnapshot.data().toString());
+        listTransaction.add(TransactionModel.fromJson(data));
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+    return listTransaction;
   }
 }

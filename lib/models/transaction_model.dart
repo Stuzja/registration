@@ -20,11 +20,27 @@ class TransactionModel {
       this.description});
 
   Map<String, dynamic> toJson() => {
-        'type': FormExtensionType(type).getName,
+        'type': FormExtensionType(type).getString,
         'ready': ready,
         'category': FormExtensionCategory(category).getString,
         'value': value,
         'date': date,
         'description': description,
       };
+  TransactionModel.fromJson(Map<String, dynamic> json)
+      : type = json['type'],
+        category = json['category'],
+        ready = json['ready'],
+        value = json['value'],
+        description = json['description'],
+        date = json['date'];
 }
+
+TransactionModel fromJson(Map<String, dynamic> json) => TransactionModel(
+      type: json['type'],
+      category: json['category'],
+      ready: json['ready'],
+      value: json['value'],
+      description: json['description'],
+      date: json['date'],
+    );

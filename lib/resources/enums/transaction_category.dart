@@ -17,8 +17,7 @@ enum TransactionCategory {
 
 extension FormExtensionCategory on TransactionCategory {
 
-   @override
-  String get getName{
+   String get getName{
     switch (this) {
       case TransactionCategory.salariesDev:
         return "Salaries dev.";

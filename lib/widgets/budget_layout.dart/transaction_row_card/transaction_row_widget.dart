@@ -30,7 +30,7 @@ class TransactionRowCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  transaction.toString(),
+                  transaction.category.getName,
                   style: CustomTheme.lightTheme.textTheme.bodyText2
                       ?.copyWith(color: colorTitle),
                 ),

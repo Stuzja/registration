@@ -4,7 +4,7 @@ import '../../models/transaction_model.dart';
 enum TransactionType { profit, loss }
 
 extension FormExtensionType on TransactionType {
-  String get getName {
+  String get getString {
     switch (this) {
       case TransactionType.profit:
         return "profit";

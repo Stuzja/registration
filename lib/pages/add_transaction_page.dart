@@ -8,7 +8,7 @@ class AddTransactionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: BaseEditingTransactionWidget(
+        body: EditingTransactionWidget(
       title: "Add a transaction",
     ));
   }
