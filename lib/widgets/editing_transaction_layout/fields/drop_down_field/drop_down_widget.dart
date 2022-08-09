@@ -4,13 +4,11 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import '../../../../resources/theme/custom_theme.dart';
 
 class DropDownField extends StatefulWidget {
-  final TextEditingController? controller;
   final List dropItem;
   final void Function(String?)? onChanged;
   const DropDownField({
     Key? key,
     required this.dropItem,
-    this.controller,
     this.onChanged,
   }) : super(key: key);
   @override

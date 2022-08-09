@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/resources/constants/colors.dart';
+import '../../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
 
 class DateTextField extends StatefulWidget {
   const DateTextField({Key? key}) : super(key: key);
@@ -71,13 +73,18 @@ class _DateTextFieldState extends State<DateTextField> {
           if (pickedDate != null) {
             String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
 
+            // ignore: use_build_context_synchronously
+            context
+                .read<AddTransactionBloc>()
+                .add(DateSubmitted(newValue: pickedDate));
+
             setState(() {
               dateInput.text = formattedDate;
             });
           } else {
             print("Date is not selected");
           }
-          ;
+          
         },
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import '../../../resources/enums/transaction_category.dart';
 import '../../../resources/enums/transaction_type.dart';
@@ -19,64 +20,57 @@ class AddTransactionBloc
     on<TransactionAdd>(_onTransactionSubmitted);
   }
 
-  TransactionType _type = TransactionType.loss;
-  bool _readiness = false;
-  TransactionCategory? _category;
-  DateTime? _date;
-
   void _onTypeSubmitted(
     TypeSubmitted event,
     Emitter<AddTransactionState> emit,
   ) {
-    _type = event.newValue;
-    emit(FieldSuccess());
+    prototypeTrans.type = event.newValue;
   }
 
   void _onReadinessSubmitted(
     ReadinessSubmitted event,
     Emitter<AddTransactionState> emit,
   ) {
-    _readiness = event.newValue;
-    emit(FieldSuccess());
+    prototypeTrans.ready = event.newValue;
   }
 
   void _onCategorySubmitted(
     CategorySubmitted event,
     Emitter<AddTransactionState> emit,
-  ) {
-    _category = event.newValue;
-    emit(FieldSuccess());
+  ) async {
+    prototypeTrans.category = event.newValue;
   }
 
   void _onDateSubmitted(
     DateSubmitted event,
     Emitter<AddTransactionState> emit,
   ) {
-    _date = event.newValue;
-    emit(FieldSuccess());
+    prototypeTrans.date = event.newValue;
   }
 
   Future<void> _onTransactionSubmitted(
     TransactionAdd event,
     Emitter<AddTransactionState> emit,
   ) async {
-    //  emit(AddTransactionLoading());
-    if (_category != null) {
+    emit(AddTransactionLoading());
+    if (prototypeTrans.category != null &&
+        prototypeTrans.date != null &&
+        event.money != null) {
       bool addSuccess = await repository.addTransaction(
-          type: _type,
-          ready: _readiness,
-          date: DateTime.now(),
-          category: _category!,
-          value: 123,
-          description: "hhh");
+          type: prototypeTrans.type,
+          ready: prototypeTrans.ready,
+          date: prototypeTrans.date!,
+          category: prototypeTrans.category!,
+          value: event.money!,
+          description: event.description);
       if (addSuccess) {
         emit(AddTransactionSuccess());
       } else {
-        print("!!!!!!!!!!!!!!!!!!!!!!!!");
+        print("Просто не получилось добавить");
         emit(AddTransactionFailed());
       }
     } else {
-      print("------------------------------");
+      print("Не прошло проверку");
       emit(AddTransactionFailed());
     }
   }

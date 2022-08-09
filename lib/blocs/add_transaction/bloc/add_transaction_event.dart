@@ -32,8 +32,7 @@ class DateSubmitted extends AddTransactionEvent {
 }
 
 class TransactionAdd extends AddTransactionEvent {
-  final double money;
+  final double? money;
   final String? description;
-  const TransactionAdd(
-      {required this.money, this.description});
+  const TransactionAdd({required this.money, required this.description});
 }

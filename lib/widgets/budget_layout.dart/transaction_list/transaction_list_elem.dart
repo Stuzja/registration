@@ -15,7 +15,7 @@ class TransactionListElem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorTitle = transaction.category.getColorTitle;
+    final colorTitle = transaction.category!.getColorTitle;
     return Container(
       margin: EdgeInsets.only(top: 11.h),
       child: Row(children: [
@@ -42,11 +42,11 @@ class TransactionListElem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              transaction.category.getName,
+              transaction.category!.getName,
               style: CustomTheme.lightTheme.textTheme.bodyText2
                   ?.copyWith(color: colorTitle),
             ),
-            Text(DateFormat('d MMMM y').format(transaction.date),
+            Text(DateFormat('d MMMM y').format(transaction.date!),
                 style: CustomTheme.lightTheme.textTheme.bodyText2
                     ?.copyWith(fontSize: 12))
           ],

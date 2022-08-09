@@ -5,14 +5,7 @@ import '../../../resources/theme/custom_theme.dart';
 
 class MoneyField extends StatelessWidget {
   final TextEditingController controller;
-  final String nameField;
-  final String? Function(String?)? validator;
-  const MoneyField(
-      {Key? key,
-      required this.nameField,
-      required this.controller,
-      this.validator})
-      : super(key: key);
+  const MoneyField({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +14,12 @@ class MoneyField extends StatelessWidget {
         width: 328.w,
         child: TextFormField(
           keyboardType: TextInputType.number,
-          validator: validator,
           controller: controller,
           cursorColor: ColorClass.greyLight,
           decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 18, horizontal: 23),
-            label: Text(nameField),
+                 EdgeInsets.symmetric(vertical: 18.h, horizontal: 23.w),
+            label: const Text("Enter Amount"),
             labelStyle: CustomTheme.lightTheme.textTheme.labelMedium,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),

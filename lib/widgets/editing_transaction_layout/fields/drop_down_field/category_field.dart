@@ -17,7 +17,8 @@ class CategoryFieldState extends State<CategoryField> {
   Widget build(BuildContext context) {
     return BlocListener<AddTransactionBloc, AddTransactionState>(
       listener: (context, state) {
-        if (state is FieldSuccess) {}
+        if (state is FieldSuccess) {
+        }
       },
       child: DropDownField(
         dropItem: TransactionCategory.values.map((e) => e.getName).toList(),

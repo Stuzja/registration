@@ -12,9 +12,9 @@ class TransactionRowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorTitle = transaction.category.getColorTitle;
-    final colorLight = transaction.category.getColorLight;
-    final colorMain = transaction.category.getColorMain;
+    final colorTitle = transaction.category!.getColorTitle;
+    final colorLight = transaction.category!.getColorLight;
+    final colorMain = transaction.category!.getColorMain;
     return Container(
       margin: EdgeInsets.only(right: 9.h),
       child: Stack(
@@ -30,7 +30,7 @@ class TransactionRowCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  transaction.category.getName,
+                  transaction.category!.getName,
                   style: CustomTheme.lightTheme.textTheme.bodyText2
                       ?.copyWith(color: colorTitle),
                 ),

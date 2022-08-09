@@ -9,7 +9,7 @@ class UnsecuredTextField extends StatelessWidget {
   final String nameField;
   final String? errorText;
   final void Function(String) onChanged;
-  final String? Function(String?)?validator;
+  final String? Function(String?)? validator;
   const UnsecuredTextField(
       {Key? key,
       required this.nameField,
@@ -30,7 +30,7 @@ class UnsecuredTextField extends StatelessWidget {
           cursorColor: ColorClass.greyLight,
           decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 18, horizontal: 23),
+                EdgeInsets.symmetric(vertical: 18.h, horizontal: 23.w),
             label: Text(nameField),
             labelStyle: CustomTheme.lightTheme.textTheme.labelMedium,
             floatingLabelBehavior: FloatingLabelBehavior.never,

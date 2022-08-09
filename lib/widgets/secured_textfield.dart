@@ -43,7 +43,7 @@ class SecuredTextFieldState extends State<SecuredTextField> {
           cursorColor: ColorClass.greyLight,
           decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 18, horizontal: 23),
+                EdgeInsets.symmetric(vertical: 18.h, horizontal: 23.w),
             label: Text(widget.nameField),
             labelStyle: CustomTheme.lightTheme.textTheme.labelMedium,
             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -54,7 +54,7 @@ class SecuredTextFieldState extends State<SecuredTextField> {
               borderRadius: BorderRadius.circular(10),
             ),
             suffixIcon: IconButton(
-              icon: const Icon(Icons.remove_red_eye, size: 20),
+              icon: Icon(Icons.remove_red_eye, size: 20.h),
               color: ColorClass.greyDark,
               onPressed: _showText,
             ),

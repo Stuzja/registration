@@ -20,19 +20,22 @@ List<TransactionModel> listTransaction = [
       ready: false,
       date: DateTime.now(),
       category: TransactionCategory.awards,
-      value: 1100.000),
+      value: 1100.000,
+      description: ""),
   TransactionModel(
       type: TransactionType.loss,
       ready: true,
       date: DateTime.now(),
       category: TransactionCategory.credit,
-      value: 200.000),
+      value: 200.000,
+      description: ""),
   TransactionModel(
       type: TransactionType.loss,
       ready: false,
       date: DateTime.now(),
       category: TransactionCategory.salariesDev,
-      value: 1100.000),
+      value: 1100.000,
+      description: ""),
 ];
 
 List<TransactionModel> listTransactionReady =

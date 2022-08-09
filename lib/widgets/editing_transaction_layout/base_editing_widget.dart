@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/widgets/editing_transaction_layout/fields/switch_fields/readiness_field.dart';
 import '../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
-import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
 import 'button_add_transaction.dart';
@@ -53,24 +52,23 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
               ),
               const TypeField(),
               const ReadinessField(),
-              //  Padding(
-              //     padding: EdgeInsets.only(top: 16.h),
-              //   child: const DateTextField(),
-              //   ),
+              Padding(
+                padding: EdgeInsets.only(top: 16.h),
+                child: const DateTextField(),
+              ),
               const CategoryField(),
-              MoneyField(
-                  nameField: "Enter Amount", controller: moneyController),
-              DescriptionField(
-                  nameField: "Description", controller: descriptionController),
+              MoneyField(controller: moneyController),
+              DescriptionField(controller: descriptionController),
               BlocProvider(
-                  create: (context) {
-                    return TransactionsBloc(
-                        repository: ActionsWithTransactionsRepository());
-                  },
-                  child: ButtonAddTransactionWidget(
-                    moneyController: moneyController,
-                    descriptionController: descriptionController,
-                  )),
+                create: (context) {
+                  return AddTransactionBloc(
+                      repository: ActionsWithTransactionsRepository());
+                },
+                child: ButtonAddTransactionWidget(
+                  moneyController: moneyController,
+                  descriptionController: descriptionController,
+                ),
+              ),
             ],
           ),
         ),
