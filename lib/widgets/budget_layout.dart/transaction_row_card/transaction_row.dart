@@ -6,7 +6,8 @@ import '../../../models/transaction_model.dart';
 import '../../../models/user_model.dart';
 
 class TransactionRowWidget extends StatefulWidget {
-  const TransactionRowWidget({Key? key}) : super(key: key);
+  final bool ready;
+  const TransactionRowWidget({Key? key, required this.ready}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => TransactionRowWidgetState();
@@ -40,9 +41,19 @@ class TransactionRowWidgetState extends State<TransactionRowWidget> {
             padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
             scrollDirection: Axis.horizontal,
             children: [
-              for (var elem in snapshot.data!.docs.map((DocumentSnapshot doc) =>
-                  doc.data()! as Map<String, dynamic>))
-                TransactionRowCard(transaction: TransactionModel.fromSnapshot(elem))
+              if (widget.ready)
+                for (var elem in snapshot.data!.docs
+                    .map((DocumentSnapshot doc) =>
+                        doc.data()! as Map<String, dynamic>)
+                    .where((elem) => elem['ready'] == true))
+                  TransactionRowCard(
+                      transaction: TransactionModel.fromSnapshot(elem))
+              else
+                for (var elem in snapshot.data!.docs.map(
+                    (DocumentSnapshot doc) =>
+                        doc.data()! as Map<String, dynamic>))
+                  TransactionRowCard(
+                      transaction: TransactionModel.fromSnapshot(elem))
             ],
           );
         },

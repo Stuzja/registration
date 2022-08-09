@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import '../resources/enums/transaction_type.dart';
 import '../resources/formatters/formatters.dart';
@@ -29,8 +28,8 @@ class TransactionModel {
       };
   
   TransactionModel.fromSnapshot(Map<String, dynamic> snapshot)
-      : type = Formatters().fromNameToType(snapshot['type']),
-        category = Formatters().fromNameToCategory(snapshot['category']),
+      : type = Formatters().fromStringToType(snapshot['type']),
+        category = Formatters().fromStringToCategory(snapshot['category']),
         ready = snapshot['ready'],
         value = snapshot['value'],
         description = snapshot['description'],

@@ -6,7 +6,9 @@ import '../../../models/user_model.dart';
 import 'transaction_list_elem.dart';
 
 class TransactionListWidget extends StatefulWidget {
-  const TransactionListWidget({Key? key}) : super(key: key);
+  final bool ready;
+  const TransactionListWidget({Key? key, required this.ready})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => TransactionListWidgetState();
@@ -38,10 +40,19 @@ class TransactionListWidgetState extends State<TransactionListWidget> {
 
           return ListView(
             children: [
-              for (var elem in snapshot.data!.docs.map((DocumentSnapshot doc) =>
-                  doc.data()! as Map<String, dynamic>))
-                TransactionListElem(
-                    transaction: TransactionModel.fromSnapshot(elem))
+              if (widget.ready)
+                for (var elem in snapshot.data!.docs
+                    .map((DocumentSnapshot doc) =>
+                        doc.data()! as Map<String, dynamic>)
+                    .where((elem) => elem['ready'] == true))
+                  TransactionListElem(
+                      transaction: TransactionModel.fromSnapshot(elem))
+              else
+                for (var elem in snapshot.data!.docs.map(
+                    (DocumentSnapshot doc) =>
+                        doc.data()! as Map<String, dynamic>))
+                  TransactionListElem(
+                      transaction: TransactionModel.fromSnapshot(elem))
             ],
           );
         },

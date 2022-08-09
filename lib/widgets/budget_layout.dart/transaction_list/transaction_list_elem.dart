@@ -42,7 +42,7 @@ class TransactionListElem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              transaction.category!.getName,
+              transaction.category!.getString,
               style: CustomTheme.lightTheme.textTheme.bodyText2
                   ?.copyWith(color: colorTitle),
             ),

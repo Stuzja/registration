@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/budget_layout.dart/base_budget_widget.dart';
-import '../resources/enums/transaction_type.dart';
 import '../widgets/buttons/floating_bar_button.dart';
 import '../widgets/navigation_bar.dart';
 
@@ -10,9 +9,9 @@ class PlanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const FloatingActionButtonBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-       bottomNavigationBar: const FloatingNavigationBar(currentIndex: 1),
-        body: BaseBudgetWidget(title: "Profit", list: listTransaction));
+        floatingActionButton: const FloatingActionButtonBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: const FloatingNavigationBar(currentIndex: 1),
+        body: BaseBudgetWidget(title: "Profit", ready: false));
   }
 }

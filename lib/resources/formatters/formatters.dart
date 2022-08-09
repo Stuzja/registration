@@ -18,7 +18,7 @@ class Formatters {
     return value;
   }
 
-  TransactionCategory fromNameToCategory(String? value) {
+  TransactionCategory fromStringToCategory(String? value) {
     switch (value) {
       case "Salaries dev.":
         return TransactionCategory.salariesDev;
@@ -47,7 +47,7 @@ class Formatters {
     }
   }
 
-   TransactionType fromNameToType(String? value) {
+   TransactionType fromStringToType(String? value) {
     switch (value) {
       case "profit":
         return TransactionType.profit;

@@ -21,10 +21,10 @@ class CategoryFieldState extends State<CategoryField> {
         }
       },
       child: DropDownField(
-        dropItem: TransactionCategory.values.map((e) => e.getName).toList(),
+        dropItem: TransactionCategory.values.map((e) => e.getString).toList(),
         onChanged: (value) {
           context.read<AddTransactionBloc>().add(CategorySubmitted(
-              newValue: Formatters().fromNameToCategory(value)));
+              newValue: Formatters().fromStringToCategory(value)));
         },
       ),
     );
