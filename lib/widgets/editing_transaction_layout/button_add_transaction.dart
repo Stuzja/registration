@@ -24,7 +24,15 @@ class ButtonAddTransactionWidgetState
     return BlocListener<AddTransactionBloc, AddTransactionState>(
       listener: (context, state) {
         if (state is AddTransactionFailed) {
-          print("bad");
+          final snackBar = SnackBar(
+            content: const Text(
+                'Failed to add transaction'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         if (state is AddTransactionLoading) {
           Navigator.pushNamed(context, '/splash');
