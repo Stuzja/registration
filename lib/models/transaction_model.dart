@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import '../resources/enums/transaction_type.dart';
+import '../resources/formatters/formatters.dart';
 
 class TransactionModel {
   TransactionType type;
@@ -17,7 +19,7 @@ class TransactionModel {
       required this.value,
       required this.description});
 
-  Map<String, dynamic> toJson() => {
+   Map<String, dynamic> toJson() => {
         'type': FormExtensionType(type).getString,
         'ready': ready,
         'category': FormExtensionCategory(category!).getString,
@@ -25,14 +27,15 @@ class TransactionModel {
         'date': date,
         'description': description,
       };
-      
-  TransactionModel.fromJson(Map<String, dynamic> json)
-      : type = json['type'],
-        category = json['category'],
-        ready = json['ready'],
-        value = json['value'],
-        description = json['description'],
-        date = DateTime.parse(json['date'].toDate().toString());
+  
+  TransactionModel.fromSnapshot(Map<String, dynamic> snapshot)
+      : type = Formatters().fromNameToType(snapshot['type']),
+        category = Formatters().fromNameToCategory(snapshot['category']),
+        ready = snapshot['ready'],
+        value = snapshot['value'],
+        description = snapshot['description'],
+        date = snapshot['date'].toDate();
+
 }
 
 TransactionModel prototypeTrans = TransactionModel(

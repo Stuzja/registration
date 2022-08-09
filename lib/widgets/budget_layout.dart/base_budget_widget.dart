@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/constants/colors.dart';
-import 'package:registration/resources/enums/transaction_type.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_list/transaction_list.dart';
-import 'package:registration/widgets/budget_layout.dart/transaction_list/transaction_list_elem.dart';
+import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row.dart';
 import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row_widget.dart';
 import '../../models/transaction_model.dart';
 import '../../resources/theme/custom_theme.dart';
@@ -43,26 +42,18 @@ class BaseBudgetWidget extends StatelessWidget {
                   style: CustomTheme.lightTheme.textTheme.headline1
                       ?.copyWith(color: Colors.white, fontSize: 32)),
             ])),
-        SizedBox(
-          height: 145.h,
-          child: ListView(
-              padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
-              scrollDirection: Axis.horizontal,
-              children: [
-                for (var elem in list) TransactionRowCard(transaction: elem)
-              ]),
-        ),
+        const TransactionRowWidget(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 17.w),
-          child: Column(children: [
-            const Divider(color: ColorClass.greyDark),
-            //  TransactionListWidget(),
-            SizedBox(
+          child: Column(children: const [
+            Divider(color: ColorClass.greyDark),
+            TransactionListWidget(),
+            /* SizedBox(
                 height: 393.h,
                 child: ListView(children: [
                   for (var elem in listTransaction)
                     TransactionListElem(transaction: elem)
-                ])),
+                ])),*/
           ]),
         ),
       ],

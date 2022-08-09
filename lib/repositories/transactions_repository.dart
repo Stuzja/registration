@@ -47,41 +47,28 @@ class ActionsWithTransactionsRepository {
     }
   }
 
-  Future<List<TransactionModel>> getListTransactions() async {
-    List<TransactionModel> listTransaction = [];
+  Future<bool> addWholeTransaction(
+      {required TransactionModel transaction}) async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+      var count = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(thisUser.username)
+              .collection('transactions')
+              .get()
+              .then((res) => res.size) +
+          1;
+      final docTransaction = FirebaseFirestore.instance
           .collection('users')
           .doc(thisUser.username)
           .collection('transactions')
-          .get();
-      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-      for (var queryDocumentSnapshot in querySnapshot.docs) {
-        var data = jsonDecode(queryDocumentSnapshot.data().toString());
-        listTransaction.add(TransactionModel.fromJson(data));
-      }
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-    }
-    return listTransaction;
-  }
+          .doc(count.toString());
+      final transToJson = transaction.toJson();
 
-  List<TransactionModel> formatToTransaction(
-      AsyncSnapshot<QuerySnapshot> snapshot) {
-    List<TransactionModel> listTransaction = [];
-    try {
-      print(
-          "-----------------------------------------------------------------------");
-      print(snapshot.data);
-      if (snapshot.data != null) {
-        for (var queryDocumentSnapshot in snapshot.data!.docs) {
-          var data = jsonDecode(queryDocumentSnapshot.data().toString());
-          listTransaction.add(TransactionModel.fromJson(data));
-        }
-      }
+      docTransaction.set(transToJson);
+      return true;
     } on FirebaseAuthException catch (e) {
       print(e.message);
+      return false;
     }
-    return listTransaction;
   }
 }

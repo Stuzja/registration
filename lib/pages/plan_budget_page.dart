@@ -12,7 +12,7 @@ class PlanPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const FloatingActionButtonBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-       bottomNavigationBar: const FloatingNavigationBar(currentIndex: 1,),
+       bottomNavigationBar: const FloatingNavigationBar(currentIndex: 1),
         body: BaseBudgetWidget(title: "Profit", list: listTransaction));
   }
 }

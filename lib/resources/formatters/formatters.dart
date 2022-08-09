@@ -46,4 +46,15 @@ class Formatters {
         return TransactionCategory.others;
     }
   }
+
+   TransactionType fromNameToType(String? value) {
+    switch (value) {
+      case "profit":
+        return TransactionType.profit;
+      case "loss":
+        return TransactionType.loss;
+      default:
+        return TransactionType.loss;
+    }
+  }
 }

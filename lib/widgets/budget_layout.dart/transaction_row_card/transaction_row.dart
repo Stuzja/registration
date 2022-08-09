@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row_widget.dart';
 import '../../../models/transaction_model.dart';
 import '../../../models/user_model.dart';
-import 'transaction_list_elem.dart';
 
-class TransactionListWidget extends StatefulWidget {
-  const TransactionListWidget({Key? key}) : super(key: key);
+class TransactionRowWidget extends StatefulWidget {
+  const TransactionRowWidget({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => TransactionListWidgetState();
+  State<StatefulWidget> createState() => TransactionRowWidgetState();
 }
 
-class TransactionListWidgetState extends State<TransactionListWidget> {
+class TransactionRowWidgetState extends State<TransactionRowWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 393.h,
+      height: 145.h,
       child: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('users')
@@ -37,11 +37,12 @@ class TransactionListWidgetState extends State<TransactionListWidget> {
           }
 
           return ListView(
+            padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
+            scrollDirection: Axis.horizontal,
             children: [
               for (var elem in snapshot.data!.docs.map((DocumentSnapshot doc) =>
                   doc.data()! as Map<String, dynamic>))
-                TransactionListElem(
-                    transaction: TransactionModel.fromSnapshot(elem))
+                TransactionRowCard(transaction: TransactionModel.fromSnapshot(elem))
             ],
           );
         },

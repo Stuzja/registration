@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:registration/models/transaction_model.dart';
@@ -11,6 +13,15 @@ part 'add_transaction_state.dart';
 class AddTransactionBloc
     extends Bloc<AddTransactionEvent, AddTransactionState> {
   final ActionsWithTransactionsRepository repository;
+/*
+  final _inputEventController = StreamController<AddTransactionEvent>();
+  StreamSink<AddTransactionEvent> get inputEventSink =>
+      _inputEventController.sink;
+
+  final _outputStateController = StreamController<TransactionModel>();
+  Stream<TransactionModel> get outputStateStream =>
+      _outputStateController.stream;
+*/
   AddTransactionBloc({required this.repository})
       : super(AddTransactionInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
@@ -18,6 +29,7 @@ class AddTransactionBloc
     on<CategorySubmitted>(_onCategorySubmitted);
     on<DateSubmitted>(_onDateSubmitted);
     on<TransactionAdd>(_onTransactionSubmitted);
+ //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 
   void _onTypeSubmitted(
@@ -48,22 +60,28 @@ class AddTransactionBloc
     prototypeTrans.date = event.newValue;
   }
 
-  Future<void> _onTransactionSubmitted(
+  void _onTransactionSubmitted(
     TransactionAdd event,
     Emitter<AddTransactionState> emit,
   ) async {
     emit(AddTransactionLoading());
+
     if (prototypeTrans.category != null &&
         prototypeTrans.date != null &&
         event.money != null) {
-      bool addSuccess = await repository.addTransaction(
+      var trans = TransactionModel(
           type: prototypeTrans.type,
           ready: prototypeTrans.ready,
           date: prototypeTrans.date!,
           category: prototypeTrans.category!,
           value: event.money!,
           description: event.description);
+
+      bool addSuccess =
+          await repository.addWholeTransaction(transaction: trans);
+
       if (addSuccess) {
+    //    _outputStateController.sink.add(trans);
         emit(AddTransactionSuccess());
       } else {
         print("Просто не получилось добавить");
