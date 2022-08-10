@@ -16,16 +16,22 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: const FloatingNavigationBar(
         currentIndex: 0,
       ),
-      body: Column(children: [
-        const TopWidget(title: "Your total expenses"),
-        SizedBox(
-          height: 500.h,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: const [LineChartWidget()],
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              const TopWidget(title: "Your total expenses"),
+              SizedBox(
+                height: 500.h,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: const [LineChartWidget()],
+                ),
+              ),
+            ],
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ part of 'transactions_bloc.dart';
 
 abstract class TransactionsState extends Equatable {
   const TransactionsState();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -18,3 +18,5 @@ class TransactionsFailed extends TransactionsState {}
 class FieldSuccess extends TransactionsState {}
 
 class FieldFailed extends TransactionsState {}
+
+class ReadinessChangedSuccess extends TransactionsState {}

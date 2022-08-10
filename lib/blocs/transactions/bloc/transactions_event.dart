@@ -19,6 +19,12 @@ class ReadinessSubmitted extends TransactionsEvent {
   const ReadinessSubmitted({required this.newValue});
 }
 
+class ReadinessChanged extends TransactionsEvent {
+  final TransactionModel transaction;
+
+  const ReadinessChanged({required this.transaction});
+}
+
 class CategorySubmitted extends TransactionsEvent {
   final TransactionCategory newValue;
 

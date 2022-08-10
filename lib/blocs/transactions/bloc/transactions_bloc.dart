@@ -10,8 +10,7 @@ import '../../../resources/enums/transaction_type.dart';
 part 'transactions_event.dart';
 part 'transactions_state.dart';
 
-class TransactionsBloc
-    extends Bloc<TransactionsEvent, TransactionsState> {
+class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
 /*
   final _inputEventController = StreamController<TransactionsEvent>();
@@ -22,14 +21,14 @@ class TransactionsBloc
   Stream<TransactionModel> get outputStateStream =>
       _outputStateController.stream;
 */
-  TransactionsBloc({required this.repository})
-      : super(TransactionsInitial()) {
+  TransactionsBloc({required this.repository}) : super(TransactionsInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
     on<ReadinessSubmitted>(_onReadinessSubmitted);
     on<CategorySubmitted>(_onCategorySubmitted);
     on<DateSubmitted>(_onDateSubmitted);
     on<TransactionAdd>(_onTransactionSubmitted);
- //   _inputEventController.stream.listen(_onTransactionSubmitted);
+    on<ReadinessChanged>(_onReadinessChanged);
+    //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 
   void _onTypeSubmitted(
@@ -44,6 +43,17 @@ class TransactionsBloc
     Emitter<TransactionsState> emit,
   ) {
     prototypeTrans.ready = event.newValue;
+  }
+
+  Future<void> _onReadinessChanged(
+    ReadinessChanged event,
+    Emitter<TransactionsState> emit,
+  ) async {
+    var changed = await repository.changeReadinessTransaction(
+        transaction: event.transaction, newValue: !event.transaction.ready);
+    if (changed) {
+      emit(ReadinessChangedSuccess());
+    }
   }
 
   void _onCategorySubmitted(
@@ -69,7 +79,7 @@ class TransactionsBloc
     if (prototypeTrans.category != null &&
         prototypeTrans.date != null &&
         event.money != null) {
-      var trans = TransactionModel(
+      bool addSuccess = await repository.addTransaction(
           type: prototypeTrans.type,
           ready: prototypeTrans.ready,
           date: prototypeTrans.date!,
@@ -77,11 +87,8 @@ class TransactionsBloc
           value: event.money!,
           description: event.description);
 
-      bool addSuccess =
-          await repository.addWholeTransaction(transaction: trans);
-
       if (addSuccess) {
-    //    _outputStateController.sink.add(trans);
+        //    _outputStateController.sink.add(trans);
         emit(TransactionsSuccess());
       } else {
         print("Просто не получилось добавить");

@@ -3,6 +3,7 @@ import '../resources/enums/transaction_type.dart';
 import '../resources/formatters/formatters.dart';
 
 class TransactionModel {
+  String? id;
   TransactionType type;
   bool ready;
   DateTime? date;
@@ -11,14 +12,16 @@ class TransactionModel {
   String? description;
 
   TransactionModel(
-      {required this.type,
+      {this.id,
+      required this.type,
       required this.ready,
       required this.date,
       required this.category,
       required this.value,
       required this.description});
 
-   Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
+        'id': id,
         'type': FormExtensionType(type).getString,
         'ready': ready,
         'category': FormExtensionCategory(category!).getString,
@@ -26,15 +29,15 @@ class TransactionModel {
         'date': date,
         'description': description,
       };
-  
+
   TransactionModel.fromSnapshot(Map<String, dynamic> snapshot)
-      : type = Formatters().fromStringToType(snapshot['type']),
+      : id = snapshot['id'],
+        type = Formatters().fromStringToType(snapshot['type']),
         category = Formatters().fromStringToCategory(snapshot['category']),
         ready = snapshot['ready'],
         value = snapshot['value'],
         description = snapshot['description'],
         date = snapshot['date'].toDate();
-
 }
 
 TransactionModel prototypeTrans = TransactionModel(
