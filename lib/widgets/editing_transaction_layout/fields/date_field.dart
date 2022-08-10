@@ -71,7 +71,7 @@ class _DateTextFieldState extends State<DateTextField> {
               lastDate: DateTime(2101));
 
           if (pickedDate != null) {
-            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+            String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
 
             // ignore: use_build_context_synchronously
             context
@@ -81,10 +81,7 @@ class _DateTextFieldState extends State<DateTextField> {
             setState(() {
               dateInput.text = formattedDate;
             });
-          } else {
-            print("Date is not selected");
           }
-          
         },
       ),
     );

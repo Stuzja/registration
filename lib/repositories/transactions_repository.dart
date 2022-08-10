@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
@@ -54,5 +52,9 @@ class ActionsWithTransactionsRepository {
       print(e.message);
       return false;
     }
+  }
+
+  double getResultMoney(Stream<QuerySnapshot<Map<String, dynamic>>> stream) {
+    return 2;
   }
 }

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
+import '../../../models/user_model.dart';
 import '../../../resources/enums/transaction_category.dart';
 import '../../../resources/enums/transaction_type.dart';
 
@@ -12,15 +14,15 @@ part 'transactions_state.dart';
 
 class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
-/*
-  final _inputEventController = StreamController<TransactionsEvent>();
+
+  /*final _inputEventController = StreamController<TransactionsEvent>();
   StreamSink<TransactionsEvent> get inputEventSink =>
       _inputEventController.sink;
 
   final _outputStateController = StreamController<TransactionModel>();
   Stream<TransactionModel> get outputStateStream =>
       _outputStateController.stream;
-*/
+  */
   TransactionsBloc({required this.repository}) : super(TransactionsInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
     on<ReadinessSubmitted>(_onReadinessSubmitted);
@@ -28,6 +30,12 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<DateSubmitted>(_onDateSubmitted);
     on<TransactionAdd>(_onTransactionSubmitted);
     on<ReadinessChanged>(_onReadinessChanged);
+  /*  FirebaseFirestore.instance
+        .collection('users')
+        .doc(thisUser.username)
+        .collection('transactions')
+        .snapshots()
+        .listen((event) {});*/
     //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 

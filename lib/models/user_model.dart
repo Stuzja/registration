@@ -1,13 +1,3 @@
-enum StateUserLogged {
-  isLogged,
-  unLogged,
-}
-
-enum StateUserRegistered {
-  isRegistered,
-  unRegistered,
-}
-
 class UserModel {
   String? username;
   String? email;
@@ -20,11 +10,14 @@ class UserModel {
   });
 
   Map<String, dynamic> toJson() => {
+        'username': username,
         'email': email,
         'password': password,
       };
-  static UserModel fromJson(Map<String, dynamic> json) =>
-      UserModel(email: json['email'], password: json['password']);
+  static UserModel fromJson(Map<String, dynamic> json) => UserModel(
+      username: json['username'],
+      email: json['email'],
+      password: json['password']);
 }
 
 UserModel thisUser = UserModel(username: null, email: null, password: null);

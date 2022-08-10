@@ -27,15 +27,15 @@ class TransactionListWidgetState extends State<TransactionListWidget> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong');
+            return const Center(child: Text('Something went wrong'));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+            return const Center(child: Text("Loading"));
           }
 
           if (!snapshot.hasData) {
-            return const Text("Empty");
+            return const Center(child: Text("Empty"));
           }
 
           return ListView(
