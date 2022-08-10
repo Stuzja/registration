@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/widgets/budget_layout.dart/transaction_row_card/transaction_row_widget.dart';
 import '../../../models/transaction_model.dart';
 import '../../../models/user_model.dart';
+import 'transaction_row_widget.dart';
 
 class TransactionRowWidget extends StatefulWidget {
   final bool ready;

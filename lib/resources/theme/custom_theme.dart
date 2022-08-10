@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 
 class CustomTheme {
@@ -31,12 +30,17 @@ class CustomTheme {
             fontSize: 24,
             fontFamily: "Montserrat",
           ),
+          headline3: const TextStyle(
+              color: ColorClass.purple,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              fontFamily: "Inter"),
           bodyText1: const TextStyle(
               color: ColorClass.greyDark,
               fontWeight: FontWeight.w400,
               fontSize: 14,
               fontFamily: "Nunito"),
-           bodyText2: const TextStyle(
+          bodyText2: const TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 18,
             fontFamily: "Montserrat",

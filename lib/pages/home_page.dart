@@ -1,15 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/widgets/appbar.dart';
 import 'package:registration/widgets/buttons/floating_bar_button.dart';
-
-import '../models/user_model.dart';
-import '../resources/constants/colors.dart';
-import '../resources/constants/path_images.dart';
+import 'package:registration/widgets/line_chart/line_chart_widget.dart';
+import 'package:registration/widgets/top_widget.dart';
 import '../widgets/navigation_bar.dart';
-import 'add_transaction_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,28 +13,19 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const FloatingActionButtonBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: CustomAppBar(),
       bottomNavigationBar: const FloatingNavigationBar(
         currentIndex: 0,
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            SizedBox(
-                width: 250.w, height: 250.h, child: Image.asset(logoMobyte)),
-            Text(thisUser.email!),
-            Text(thisUser.username!),
-            ElevatedButton(
-              child: const Text("Sign out"),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushNamed(context, '/login');
-              },
-            )
-          ],
+      body: Column(children: [
+        const TopWidget(title: "Your total expenses"),
+        SizedBox(
+          height: 500.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: const [LineChartWidget()],
+          ),
         ),
-      ),
+      ]),
     );
   }
 }
