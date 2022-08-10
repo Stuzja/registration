@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/blocs/add_transaction/bloc/add_transaction_bloc.dart';
+import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatefulWidget {
@@ -21,9 +21,9 @@ class ButtonAddTransactionWidgetState
     extends State<ButtonAddTransactionWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddTransactionBloc, AddTransactionState>(
+    return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
-        if (state is AddTransactionFailed) {
+        if (state is TransactionsFailed) {
           final snackBar = SnackBar(
             content: const Text(
                 'Failed to add transaction'),
@@ -34,10 +34,10 @@ class ButtonAddTransactionWidgetState
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
-        if (state is AddTransactionLoading) {
+        if (state is TransactionsLoading) {
           Navigator.pushNamed(context, '/splash');
         }
-        if (state is AddTransactionSuccess) {
+        if (state is TransactionsSuccess) {
           Navigator.pushNamed(context, '/home');
         }
       },
@@ -46,7 +46,7 @@ class ButtonAddTransactionWidgetState
         child: MainButtonDark(
             name: 'Add',
             onPressed: () {
-              context.read<AddTransactionBloc>().add(TransactionAdd(
+              context.read<TransactionsBloc>().add(TransactionAdd(
                     money: double.parse(widget.moneyController.text),
                     description: widget.descriptionController.text,
                   ));

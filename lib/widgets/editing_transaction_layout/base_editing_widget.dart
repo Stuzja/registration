@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
+import 'package:registration/widgets/editing_transaction_layout/button_add_transaction.dart';
 import 'package:registration/widgets/editing_transaction_layout/fields/switch_fields/readiness_field.dart';
-import '../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
+import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
-import 'button_add_transaction.dart';
 import 'fields/date_field.dart';
 import 'fields/description_field.dart';
 import 'fields/drop_down_field/category_field.dart';
@@ -30,7 +30,7 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
     TextEditingController moneyController = TextEditingController();
     return BlocProvider(
       create: (context) {
-        return AddTransactionBloc(
+        return TransactionsBloc(
             repository: ActionsWithTransactionsRepository());
       },
       child: SafeArea(
@@ -61,7 +61,7 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
               DescriptionField(controller: descriptionController),
               BlocProvider(
                 create: (context) {
-                  return AddTransactionBloc(
+                  return TransactionsBloc(
                       repository: ActionsWithTransactionsRepository());
                 },
                 child: ButtonAddTransactionWidget(

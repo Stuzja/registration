@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/resources/constants/colors.dart';
-import '../../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
+import '../../../blocs/transactions/bloc/transactions_bloc.dart';
 
 class DateTextField extends StatefulWidget {
   const DateTextField({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class _DateTextFieldState extends State<DateTextField> {
 
             // ignore: use_build_context_synchronously
             context
-                .read<AddTransactionBloc>()
+                .read<TransactionsBloc>()
                 .add(DateSubmitted(newValue: pickedDate));
 
             setState(() {

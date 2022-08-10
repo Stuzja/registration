@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import 'package:registration/resources/constants/path_images.dart';
+import 'package:registration/widgets/budget_layout/transaction_list/button_readiness.dart';
 import '../../../resources/enums/transaction_type.dart';
 import '../../../resources/formatters/formatters.dart';
 import '../../../resources/theme/custom_theme.dart';
@@ -19,24 +20,7 @@ class TransactionListElem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 11.h),
       child: Row(children: [
-        Container(
-          height: 48.h,
-          width: 48.w,
-          decoration: BoxDecoration(
-            color: colorTitle,
-            shape: BoxShape.circle,
-          ),
-          child: InkWell(
-            onTap: () {},
-            child: transaction.ready
-                ? SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: Image.asset(checkMark),
-                  )
-                : Container(),
-          ),
-        ),
+        ButtonElemReadiness(transaction: transaction),
         SizedBox(width: 8.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

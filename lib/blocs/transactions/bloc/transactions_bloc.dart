@@ -7,23 +7,23 @@ import 'package:registration/repositories/transactions_repository.dart';
 import '../../../resources/enums/transaction_category.dart';
 import '../../../resources/enums/transaction_type.dart';
 
-part 'add_transaction_event.dart';
-part 'add_transaction_state.dart';
+part 'transactions_event.dart';
+part 'transactions_state.dart';
 
-class AddTransactionBloc
-    extends Bloc<AddTransactionEvent, AddTransactionState> {
+class TransactionsBloc
+    extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
 /*
-  final _inputEventController = StreamController<AddTransactionEvent>();
-  StreamSink<AddTransactionEvent> get inputEventSink =>
+  final _inputEventController = StreamController<TransactionsEvent>();
+  StreamSink<TransactionsEvent> get inputEventSink =>
       _inputEventController.sink;
 
   final _outputStateController = StreamController<TransactionModel>();
   Stream<TransactionModel> get outputStateStream =>
       _outputStateController.stream;
 */
-  AddTransactionBloc({required this.repository})
-      : super(AddTransactionInitial()) {
+  TransactionsBloc({required this.repository})
+      : super(TransactionsInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
     on<ReadinessSubmitted>(_onReadinessSubmitted);
     on<CategorySubmitted>(_onCategorySubmitted);
@@ -34,37 +34,37 @@ class AddTransactionBloc
 
   void _onTypeSubmitted(
     TypeSubmitted event,
-    Emitter<AddTransactionState> emit,
+    Emitter<TransactionsState> emit,
   ) {
     prototypeTrans.type = event.newValue;
   }
 
   void _onReadinessSubmitted(
     ReadinessSubmitted event,
-    Emitter<AddTransactionState> emit,
+    Emitter<TransactionsState> emit,
   ) {
     prototypeTrans.ready = event.newValue;
   }
 
   void _onCategorySubmitted(
     CategorySubmitted event,
-    Emitter<AddTransactionState> emit,
+    Emitter<TransactionsState> emit,
   ) async {
     prototypeTrans.category = event.newValue;
   }
 
   void _onDateSubmitted(
     DateSubmitted event,
-    Emitter<AddTransactionState> emit,
+    Emitter<TransactionsState> emit,
   ) {
     prototypeTrans.date = event.newValue;
   }
 
   void _onTransactionSubmitted(
     TransactionAdd event,
-    Emitter<AddTransactionState> emit,
+    Emitter<TransactionsState> emit,
   ) async {
-    emit(AddTransactionLoading());
+    emit(TransactionsLoading());
 
     if (prototypeTrans.category != null &&
         prototypeTrans.date != null &&
@@ -82,14 +82,14 @@ class AddTransactionBloc
 
       if (addSuccess) {
     //    _outputStateController.sink.add(trans);
-        emit(AddTransactionSuccess());
+        emit(TransactionsSuccess());
       } else {
         print("Просто не получилось добавить");
-        emit(AddTransactionFailed());
+        emit(TransactionsFailed());
       }
     } else {
       print("Не прошло проверку");
-      emit(AddTransactionFailed());
+      emit(TransactionsFailed());
     }
   }
 }

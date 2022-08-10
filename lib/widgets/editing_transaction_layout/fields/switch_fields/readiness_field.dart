@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
+import '../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import 'switch_widget.dart';
 
 class ReadinessField extends StatefulWidget {
@@ -14,7 +13,7 @@ class ReadinessField extends StatefulWidget {
 class ReadinessFieldState extends State<ReadinessField> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddTransactionBloc, AddTransactionState>(
+    return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
         if (state is FieldSuccess) {}
       },
@@ -30,7 +29,7 @@ class ReadinessFieldState extends State<ReadinessField> {
             value = false;
           }
           context
-              .read<AddTransactionBloc>()
+              .read<TransactionsBloc>()
               .add(ReadinessSubmitted(newValue: value));
         },
       ),

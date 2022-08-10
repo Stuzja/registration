@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../blocs/add_transaction/bloc/add_transaction_bloc.dart';
+import '../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../../resources/enums/transaction_type.dart';
 import 'switch_widget.dart';
 
@@ -14,7 +14,7 @@ class TypeField extends StatefulWidget {
 class TypeFieldState extends State<TypeField> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddTransactionBloc, AddTransactionState>(
+    return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
         if (state is FieldSuccess) {}
       },
@@ -29,9 +29,7 @@ class TypeFieldState extends State<TypeField> {
           } else {
             value = TransactionType.loss;
           }
-          context
-              .read<AddTransactionBloc>()
-              .add(TypeSubmitted(newValue: value));
+          context.read<TransactionsBloc>().add(TypeSubmitted(newValue: value));
         },
       ),
     );
