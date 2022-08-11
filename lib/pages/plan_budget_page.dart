@@ -12,6 +12,6 @@ class PlanPage extends StatelessWidget {
         floatingActionButton: FloatingActionButtonBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: FloatingNavigationBar(currentIndex: 1),
-        body: BaseBudgetWidget(title: "Profit", ready: false));
+        body: BaseBudgetWidget(ready: false));
   }
 }

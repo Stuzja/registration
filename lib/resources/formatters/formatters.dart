@@ -18,6 +18,17 @@ class Formatters {
     return value;
   }
 
+  String getTitleFromMoney(String? title, double sum) {
+    if (title == null) {
+      if (sum >= 0) {
+        return "Profit";
+      } else {
+        return "Loss";
+      }
+    }
+    return title;
+  }
+
   TransactionCategory fromStringToCategory(String? value) {
     switch (value) {
       case "Salaries dev.":
@@ -47,7 +58,7 @@ class Formatters {
     }
   }
 
-   TransactionType fromStringToType(String? value) {
+  TransactionType fromStringToType(String? value) {
     switch (value) {
       case "profit":
         return TransactionType.profit;

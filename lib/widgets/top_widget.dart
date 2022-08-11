@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
+import '../resources/formatters/formatters.dart';
 import '../resources/theme/custom_theme.dart';
 
 class TopWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final bool ready;
-  const TopWidget({Key? key, required this.title, required this.ready})
+  const TopWidget({Key? key, this.title, required this.ready})
       : super(key: key);
 
   @override
@@ -33,16 +34,19 @@ class TopWidget extends StatelessWidget {
           Text("<         Jule         >",
               style: CustomTheme.lightTheme.textTheme.headline1
                   ?.copyWith(color: Colors.white)),
-          Text(title, style: CustomTheme.lightTheme.textTheme.headline1),
           StreamBuilder(
             stream:
                 ActionsWithTransactionsRepository().storageTrans.snapshots(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               var sum = ActionsWithTransactionsRepository()
                   .getResultMoney(snapshot: snapshot, ready: ready);
-              return Text("₽${sum}",
-                  style: CustomTheme.lightTheme.textTheme.headline1
-                      ?.copyWith(color: Colors.white, fontSize: 32));
+              return Column(children: [
+                Text(Formatters().getTitleFromMoney(title, sum),
+                    style: CustomTheme.lightTheme.textTheme.headline1),
+                Text("₽$sum",
+                    style: CustomTheme.lightTheme.textTheme.headline1
+                        ?.copyWith(color: Colors.white, fontSize: 32)),
+              ]);
             },
           ),
         ],

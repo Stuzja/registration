@@ -10,9 +10,9 @@ import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../repositories/transactions_repository.dart';
 
 class BaseBudgetWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final bool ready;
-  const BaseBudgetWidget({Key? key, required this.title, required this.ready})
+  const BaseBudgetWidget({Key? key, this.title, required this.ready})
       : super(key: key);
 
   @override
