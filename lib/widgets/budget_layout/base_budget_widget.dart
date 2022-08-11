@@ -19,7 +19,7 @@ class BaseBudgetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TopWidget(title: title),
+        TopWidget(title: title, ready: ready),
         TransactionRowWidget(ready: ready),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 17.w),

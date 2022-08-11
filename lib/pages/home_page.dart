@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         children: [
           Column(
             children: [
-              const TopWidget(title: "Your total expenses"),
+              const TopWidget(title: "Your total expenses", ready: true),
               SizedBox(
                 height: 500.h,
                 child: ListView(

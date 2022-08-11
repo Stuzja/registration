@@ -30,14 +30,16 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<DateSubmitted>(_onDateSubmitted);
     on<TransactionAdd>(_onTransactionSubmitted);
     on<ReadinessChanged>(_onReadinessChanged);
-  /*  FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('users')
         .doc(thisUser.username)
         .collection('transactions')
         .snapshots()
-        .listen((event) {});*/
+        .listen((event) {});
     //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
+
+  
 
   void _onTypeSubmitted(
     TypeSubmitted event,

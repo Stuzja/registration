@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
 import '../resources/enums/transaction_category.dart';
@@ -54,7 +55,34 @@ class ActionsWithTransactionsRepository {
     }
   }
 
-  double getResultMoney(Stream<QuerySnapshot<Map<String, dynamic>>> stream) {
-    return 2;
+  double getResultMoney({required AsyncSnapshot<dynamic> snapshot, required bool ready}) {
+    if (!snapshot.hasData) {
+      return 0;
+    }
+
+    double sum = 0.0;
+    if (ready) {
+      for (var elem in snapshot.data!.docs
+          .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)
+          .where((elem) => elem['ready'] == true)) {
+        var transaction = TransactionModel.fromSnapshot(elem);
+        if (transaction.type == TransactionType.profit) {
+          sum += transaction.value!;
+        } else {
+          sum -= transaction.value!;
+        }
+      }
+    } else {
+      for (var elem in snapshot.data!.docs
+          .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)) {
+        var transaction = TransactionModel.fromSnapshot(elem);
+        if (transaction.type == TransactionType.profit) {
+          sum += transaction.value!;
+        } else {
+          sum -= transaction.value!;
+        }
+      }
+    }
+    return sum;
   }
 }

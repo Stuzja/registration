@@ -42,3 +42,7 @@ class TransactionAdd extends TransactionsEvent {
   final String? description;
   const TransactionAdd({required this.money, required this.description});
 }
+
+class CalculateSum extends TransactionsEvent { 
+}
+

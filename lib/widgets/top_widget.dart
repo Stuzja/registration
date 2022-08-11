@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/repositories/transactions_repository.dart';
 import '../resources/theme/custom_theme.dart';
 
 class TopWidget extends StatelessWidget {
   final String title;
-  const TopWidget({Key? key, required this.title}) : super(key: key);
+  final bool ready;
+  const TopWidget({Key? key, required this.title, required this.ready})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +34,17 @@ class TopWidget extends StatelessWidget {
               style: CustomTheme.lightTheme.textTheme.headline1
                   ?.copyWith(color: Colors.white)),
           Text(title, style: CustomTheme.lightTheme.textTheme.headline1),
-          Text("₽900.000",
-              style: CustomTheme.lightTheme.textTheme.headline1
-                  ?.copyWith(color: Colors.white, fontSize: 32)),
+          StreamBuilder(
+            stream:
+                ActionsWithTransactionsRepository().storageTrans.snapshots(),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              var sum = ActionsWithTransactionsRepository()
+                  .getResultMoney(snapshot: snapshot, ready: ready);
+              return Text("₽${sum}",
+                  style: CustomTheme.lightTheme.textTheme.headline1
+                      ?.copyWith(color: Color.fromARGB(255, 163, 89, 89), fontSize: 32));
+            },
+          ),
         ],
       ),
     );

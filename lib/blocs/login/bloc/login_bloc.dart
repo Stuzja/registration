@@ -28,7 +28,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (statusLogged) {
       emit(LoginSuccessState());
     } else {
-      print("не получилось");
       emit(LoginFailedState());
     }
   }
