@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             children: [
               const TopWidget(title: "Your total expenses", ready: true),
               SizedBox(
-                height: 500.h,
+                height: 570.h,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [LineChartWidget()],

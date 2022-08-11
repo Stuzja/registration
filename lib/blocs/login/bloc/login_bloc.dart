@@ -16,6 +16,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }) : super(LoginInitialState()) {
     on<LoginSubmitted>(_onSubmitted);
     on<LoginGoogleClick>(_onClickGoogleButton);
+    on<LogoutPressed>(_onLogoutPressed);
   }
 
   void _onSubmitted(
@@ -29,6 +30,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(LoginSuccessState());
     } else {
       emit(LoginFailedState());
+    }
+  }
+
+  void _onLogoutPressed(
+    LogoutPressed event,
+    Emitter<LoginState> emit,
+  ) async {
+    emit(LoginLoadingState());
+    bool statusUnlogged = await repository.signOut();
+    if (statusUnlogged) {
+      emit(LogoutSuccessState());
+    } else {
+      emit(LogoutFailedState());
     }
   }
 

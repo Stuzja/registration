@@ -42,7 +42,7 @@ class TopWidget extends StatelessWidget {
                   .getResultMoney(snapshot: snapshot, ready: ready);
               return Text("₽${sum}",
                   style: CustomTheme.lightTheme.textTheme.headline1
-                      ?.copyWith(color: Color.fromARGB(255, 163, 89, 89), fontSize: 32));
+                      ?.copyWith(color: Colors.white, fontSize: 32));
             },
           ),
         ],
