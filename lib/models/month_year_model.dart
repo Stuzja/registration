@@ -1,17 +1,26 @@
-
 import 'package:intl/intl.dart';
 
 class MonthYear {
   late final int month;
   late final int year;
 
-  MonthYear({required int month, required int year}) {
-    this.year = year + month ~/ 12;
-    this.month = month % 12;
+  MonthYear({required this.month, required this.year}) {
   }
 
   MonthYear operator +(int x) {
-    return MonthYear(month: month + x, year: year);
+    if (month == 12) {
+      return MonthYear(month: 1, year: year + 1);
+    } else {
+      return MonthYear(month: month + x, year: year);
+    }
+  }
+
+  MonthYear operator -(int x) {
+    if (month == 1) {
+      return MonthYear(month: 12, year: year - 1);
+    } else {
+      return MonthYear(month: month - x, year: year);
+    }
   }
 
   @override

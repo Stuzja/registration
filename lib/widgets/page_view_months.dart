@@ -20,7 +20,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
   Widget build(BuildContext context) {
     return Container(
       height: 33.h,
-//      width: 184.w,
+//    width: 184.w,
       alignment: Alignment.center,
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
@@ -28,6 +28,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(--pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
+              monthYear -= 1;
             },
             icon: const Icon(
               Icons.keyboard_arrow_left_outlined,
@@ -39,11 +40,16 @@ class PageViewMonthsState extends State<PageViewMonths> {
             controller: pageController,
             onPageChanged: (index) {
               setState(() {
+                if (index < pageChanged) {
+                  monthYear -= 1;
+                } else {
+                  monthYear += 1;
+                }
                 pageChanged = index;
               });
             },
             itemBuilder: (context, index) {
-              return Text("Jule",
+              return Text(monthYear.toString(),
                   textAlign: TextAlign.center,
                   style: CustomTheme.lightTheme.textTheme.headline1
                       ?.copyWith(color: Colors.white));
@@ -55,6 +61,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(++pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
+              monthYear += 1;
             },
             icon: const Icon(
               Icons.keyboard_arrow_right_outlined,
