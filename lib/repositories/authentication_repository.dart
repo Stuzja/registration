@@ -26,6 +26,13 @@ class AuthenticationRepository extends AbstractRepository {
     return await snap.get('email');
   }
 
+
+  Future<String> checkInUsername({required String email}) async {
+    var snap =
+        await FirebaseFirestore.instance.collection('users').doc(email).get();
+    return await snap.get('userName');
+  }
+
   @override
   Future<bool> signIn({required String email, required String password}) async {
     bool statusLogged = false;
@@ -35,6 +42,7 @@ class AuthenticationRepository extends AbstractRepository {
             .signInWithEmailAndPassword(email: email, password: password);
         thisUser.email = email;
         thisUser.password = password;
+       // thisUser.username ??= await checkInUsername(email: email);
         statusLogged = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
@@ -58,6 +66,7 @@ class AuthenticationRepository extends AbstractRepository {
     bool success = false;
     final docUser =
         FirebaseFirestore.instance.collection('users').doc(userName);
+    final docEmail = FirebaseFirestore.instance.collection('users').doc(email);
     final userToJson = UserModel(
       password: password,
       email: email,
@@ -65,6 +74,7 @@ class AuthenticationRepository extends AbstractRepository {
 
     try {
       docUser.set(userToJson);
+      docEmail.set(userToJson);
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       thisUser =

@@ -59,7 +59,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
         key: _formKeyPasswordAgain,
         child: SecuredTextField(
           validator: (text) {
-            if (_passwordController.text == _passwordAgainController.text) {
+            if (_passwordController.text == text) {
               return Validators().validatePassword(text);
             } else {
               return "Passwords don't match";
@@ -68,7 +68,6 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           onChanged: (String str) {},
           controller: _passwordAgainController,
           nameField: 'Confirm password',
-          errorText: null,
         ),
       ),
       BlocListener<RegistrationBloc, RegistrationState>(

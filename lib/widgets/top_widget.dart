@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
+import 'package:registration/widgets/page_view_months.dart';
 import '../resources/formatters/formatters.dart';
 import '../resources/theme/custom_theme.dart';
 
@@ -29,11 +30,13 @@ class TopWidget extends StatelessWidget {
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text("<         Jule         >",
+          /*Text("<         Jule         >",
               style: CustomTheme.lightTheme.textTheme.headline1
-                  ?.copyWith(color: Colors.white)),
+                  ?.copyWith(color: Colors.white)),*/
+          const PageViewMonths(),
           StreamBuilder(
             stream:
                 ActionsWithTransactionsRepository().storageTrans.snapshots(),
