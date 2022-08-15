@@ -25,10 +25,10 @@ class PageViewMonthsState extends State<PageViewMonths> {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
             onPressed: () {
-              pageController.animateToPage(--pageChanged,
+                pageController.animateToPage(--pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-              monthYear -= 1;
+              monthYear -= 2;
             },
             icon: const Icon(
               Icons.keyboard_arrow_left_outlined,
@@ -61,7 +61,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(++pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-              monthYear += 1;
+          //   monthYear += 1;
             },
             icon: const Icon(
               Icons.keyboard_arrow_right_outlined,

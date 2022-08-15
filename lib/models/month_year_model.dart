@@ -4,8 +4,7 @@ class MonthYear {
   late final int month;
   late final int year;
 
-  MonthYear({required this.month, required this.year}) {
-  }
+  MonthYear({required this.month, required this.year});
 
   MonthYear operator +(int x) {
     if (month == 12) {

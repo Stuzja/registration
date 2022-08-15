@@ -43,6 +43,6 @@ class TransactionAdd extends TransactionsEvent {
   const TransactionAdd({required this.money, required this.description});
 }
 
-class CalculateSum extends TransactionsEvent { 
+class ChangeMonth extends TransactionsEvent { 
 }
 

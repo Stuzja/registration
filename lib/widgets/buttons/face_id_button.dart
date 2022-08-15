@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../resources/constants/colors.dart';
-import '../resources/theme/custom_theme.dart';
+import '../../resources/constants/colors.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class FaceIdSwitcher extends StatefulWidget {
   const FaceIdSwitcher({Key? key}) : super(key: key);
