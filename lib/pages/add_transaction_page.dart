@@ -9,7 +9,7 @@ class AddTransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: EditingTransactionWidget(
-      title: "Add a transaction",
+      title: "Add",
     ));
   }
 }

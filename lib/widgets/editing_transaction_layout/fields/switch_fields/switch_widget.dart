@@ -15,10 +15,10 @@ class SwitchField extends StatefulWidget {
       required this.onToggle})
       : super(key: key);
   @override
-  State<SwitchField> createState() => _SwitchFieldState();
+  State<SwitchField> createState() => SwitchFieldState();
 }
 
-class _SwitchFieldState extends State<SwitchField> {
+class SwitchFieldState extends State<SwitchField> {
   @override
   Widget build(BuildContext context) {
     return Column(

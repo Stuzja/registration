@@ -4,29 +4,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../buttons/main_button.dart';
 
-class ButtonAddTransactionWidget extends StatefulWidget {
+class ButtonAddTransactionWidget extends StatelessWidget {
+  final String title;
   final TextEditingController moneyController;
   final TextEditingController descriptionController;
-  const ButtonAddTransactionWidget({
-    Key? key,
-    required this.moneyController,
-    required this.descriptionController,
-  }) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => ButtonAddTransactionWidgetState();
-}
+  const ButtonAddTransactionWidget(
+      {Key? key,
+      required this.title,
+      required this.moneyController,
+      required this.descriptionController})
+      : super(key: key);
 
-class ButtonAddTransactionWidgetState
-    extends State<ButtonAddTransactionWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
         if (state is TransactionAddFailed) {
           final snackBar = SnackBar(
-            content: const Text(
-                'Failed to add transaction'),
+            content: const Text('Failed to add transaction'),
             action: SnackBarAction(
               label: 'Undo',
               onPressed: () {},
@@ -38,18 +34,21 @@ class ButtonAddTransactionWidgetState
           Navigator.pushNamed(context, '/splash');
         }
         if (state is TransactionAddSuccess) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pop(context);
+          Navigator.pop(context);
         }
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 22.h),
         child: MainButtonDark(
-            name: 'Add',
+            name: title,
             onPressed: () {
-              context.read<TransactionsBloc>().add(TransactionAdd(
-                    money: double.parse(widget.moneyController.text),
-                    description: widget.descriptionController.text,
-                  ));
+              if (true) {
+                context.read<TransactionsBloc>().add(TransactionAdd(
+                      money: double.parse(moneyController.text),
+                      description: descriptionController.text,
+                    ));
+              } else {}
             }),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/widgets/editing_transaction_layout/button_add_transaction.dart';
 import 'package:registration/widgets/editing_transaction_layout/fields/switch_fields/readiness_field.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
+import '../../models/transaction_model.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
 import 'fields/date_field.dart';
@@ -13,21 +14,20 @@ import 'fields/drop_down_field/category_field.dart';
 import 'fields/money_field.dart';
 import 'fields/switch_fields/type_field.dart';
 
-class EditingTransactionWidget extends StatefulWidget {
+class EditingTransactionWidget extends StatelessWidget {
   final String title;
-
-  const EditingTransactionWidget({Key? key, required this.title})
+  final TransactionModel? transaction;
+  const EditingTransactionWidget(
+      {Key? key, required this.title, this.transaction})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => EditingTransactionWidgetState();
-}
-
-class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
-  @override
   Widget build(BuildContext context) {
-    TextEditingController descriptionController = TextEditingController();
-    TextEditingController moneyController = TextEditingController();
+    var descriptionController =
+        TextEditingController(text: transaction?.description ?? "");
+    var moneyController =
+        TextEditingController(text: transaction?.value.toString() ?? "");
+
     return BlocProvider(
       create: (context) {
         return TransactionsBloc(
@@ -45,7 +45,7 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
                     Padding(
                         padding: EdgeInsets.symmetric(horizontal: 11.w),
                         child: const CustomBackButton()),
-                    Text(widget.title,
+                    Text("$title a transaction",
                         style: CustomTheme.lightTheme.textTheme.headline1),
                   ],
                 ),
@@ -54,9 +54,9 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
               const ReadinessField(),
               Padding(
                 padding: EdgeInsets.only(top: 16.h),
-                child: const DateTextField(),
+                child: DateTextField(initialDateTime: transaction?.date),
               ),
-              const CategoryField(),
+               CategoryField(initialCategory: transaction?.category),
               MoneyField(controller: moneyController),
               DescriptionField(controller: descriptionController),
               BlocProvider(
@@ -65,6 +65,7 @@ class EditingTransactionWidgetState extends State<EditingTransactionWidget> {
                       repository: ActionsWithTransactionsRepository());
                 },
                 child: ButtonAddTransactionWidget(
+                  title: title,
                   moneyController: moneyController,
                   descriptionController: descriptionController,
                 ),

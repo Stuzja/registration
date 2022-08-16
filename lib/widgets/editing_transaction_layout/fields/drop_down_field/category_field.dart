@@ -5,22 +5,19 @@ import '../../../../resources/enums/transaction_category.dart';
 import '../../../../resources/formatters/formatters.dart';
 import 'drop_down_widget.dart';
 
-class CategoryField extends StatefulWidget {
-  const CategoryField({Key? key}) : super(key: key);
+class CategoryField extends StatelessWidget {
+  final TransactionCategory? initialCategory;
 
-  @override
-  State<StatefulWidget> createState() => CategoryFieldState();
-}
-
-class CategoryFieldState extends State<CategoryField> {
+  const CategoryField({Key? key, required this.initialCategory})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
-        if (state is FieldSuccess) {
-        }
+        if (state is FieldSuccess) {}
       },
       child: DropDownField(
+        initialCategory: initialCategory,
         dropItem: TransactionCategory.values.map((e) => e.getString).toList(),
         onChanged: (value) {
           context.read<TransactionsBloc>().add(CategorySubmitted(

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:registration/resources/enums/transaction_category.dart';
 import '../../../../resources/theme/custom_theme.dart';
 
 class DropDownField extends StatefulWidget {
   final List dropItem;
+  final TransactionCategory? initialCategory;
   final void Function(String?)? onChanged;
   const DropDownField({
     Key? key,
     required this.dropItem,
-    this.onChanged,
+    this.onChanged, this.initialCategory,
   }) : super(key: key);
   @override
-  State<DropDownField> createState() => _DropDownFieldState();
+  State<DropDownField> createState() => DropDownFieldState();
 }
 
-class _DropDownFieldState extends State<DropDownField> {
+class DropDownFieldState extends State<DropDownField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,6 +36,7 @@ class _DropDownFieldState extends State<DropDownField> {
           ),
         ),
         isExpanded: true,
+       // value: widget.initialCategory.toString(),
         hint: const Text(
           'Category',
           style:

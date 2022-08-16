@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/editing_transaction_layout/base_editing_widget.dart';
+import '../models/transaction_model.dart';
 
 class EditTransactionPage extends StatelessWidget {
-  const EditTransactionPage({Key? key}) : super(key: key);
+  final TransactionModel transaction;
+  const EditTransactionPage({Key? key, required this.transaction}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: EditingTransactionWidget(
-        title: "Edit a transaction",
+        title: "Edit",
+        transaction: transaction,
       ),
     );
   }

@@ -6,7 +6,9 @@ import 'package:registration/resources/constants/colors.dart';
 import '../../../blocs/transactions/bloc/transactions_bloc.dart';
 
 class DateTextField extends StatefulWidget {
-  const DateTextField({Key? key}) : super(key: key);
+  final DateTime? initialDateTime;
+  const DateTextField({Key? key, required this.initialDateTime})
+      : super(key: key);
 
   @override
   State<DateTextField> createState() => _DateTextFieldState();
@@ -16,7 +18,9 @@ class _DateTextFieldState extends State<DateTextField> {
   TextEditingController dateInput = TextEditingController();
   @override
   void initState() {
-    dateInput.text = "";
+    dateInput.text = widget.initialDateTime != null
+        ? DateFormat('dd/MM/yyyy').format(widget.initialDateTime!)
+        : "";
     super.initState();
   }
 
@@ -46,7 +50,8 @@ class _DateTextFieldState extends State<DateTextField> {
         ),
         readOnly: true,
         onTap: () async {
-          DateTime? pickedDate = await showDatePicker(
+          DateTime? pickedDate = widget.initialDateTime;
+          pickedDate = await showDatePicker(
               builder: ((context, child) {
                 return Theme(
                   data: ThemeData.dark().copyWith(
@@ -58,9 +63,7 @@ class _DateTextFieldState extends State<DateTextField> {
                       ),
                       dialogBackgroundColor: ColorClass.purple,
                       textButtonTheme: TextButtonThemeData(
-                        style: TextButton.styleFrom(
-                          primary: Colors.white, // button text color
-                        ),
+                        style: TextButton.styleFrom(primary: Colors.white),
                       )),
                   child: child!,
                 );

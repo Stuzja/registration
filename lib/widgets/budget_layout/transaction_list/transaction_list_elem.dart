@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
-import 'package:registration/widgets/budget_layout/transaction_list/button_editing_menu/button_editing.dart';
+import 'package:registration/widgets/budget_layout/transaction_list/button_editing_menu/button_menu_editing.dart';
 import 'package:registration/widgets/budget_layout/transaction_list/button_readiness.dart';
 import '../../../resources/enums/transaction_type.dart';
 import '../../../resources/formatters/formatters.dart';
