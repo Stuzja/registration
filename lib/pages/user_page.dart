@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/widgets/appbar.dart';
 import 'package:registration/widgets/buttons/face_id_button.dart';
 import 'package:registration/widgets/buttons/logout_text_button.dart';
-
 import '../blocs/login/bloc/login_bloc.dart';
 import '../models/user_model.dart';
 import '../repositories/authentication_repository.dart';
@@ -24,7 +22,6 @@ class UserPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const FloatingActionButtonBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: CustomAppBar(),
       bottomNavigationBar: const FloatingNavigationBar(
         currentIndex: 3,
       ),

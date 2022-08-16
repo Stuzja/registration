@@ -28,8 +28,9 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<ReadinessSubmitted>(_onReadinessSubmitted);
     on<CategorySubmitted>(_onCategorySubmitted);
     on<DateSubmitted>(_onDateSubmitted);
-    on<TransactionAdd>(_onTransactionSubmitted);
+    on<TransactionAdd>(_onTransactionAdd);
     on<ReadinessChanged>(_onReadinessChanged);
+    on<TransactionDelete>(_onTransactionDelete);
     FirebaseFirestore.instance
         .collection('users')
         .doc(thisUser.username)
@@ -38,8 +39,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         .listen((event) {});
     //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
-
-  
 
   void _onTypeSubmitted(
     TypeSubmitted event,
@@ -80,7 +79,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     prototypeTrans.date = event.newValue;
   }
 
-  void _onTransactionSubmitted(
+  void _onTransactionAdd(
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {
@@ -99,14 +98,30 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
 
       if (addSuccess) {
         //    _outputStateController.sink.add(trans);
-        emit(TransactionsSuccess());
+        emit(TransactionAddSuccess());
       } else {
         print("Просто не получилось добавить");
-        emit(TransactionsFailed());
+        emit(TransactionAddFailed());
       }
     } else {
       print("Не прошло проверку");
-      emit(TransactionsFailed());
+      emit(TransactionAddFailed());
+    }
+  }
+
+  void _onTransactionDelete(
+    TransactionDelete event,
+    Emitter<TransactionsState> emit,
+  ) async {
+    emit(TransactionsLoading());
+
+    bool deleteSuccess =
+        await repository.deleteTransaction(transaction: event.transaction);
+    if (deleteSuccess) {
+      emit(TransactionDeleteSuccess());
+    } else {
+      print("Не получилось удалить");
+      emit(TransactionDeleteFailed());
     }
   }
 }

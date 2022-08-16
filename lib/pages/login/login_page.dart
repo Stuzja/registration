@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/pages/login/login_form.dart';
 import 'package:registration/pages/login/login_google_form.dart';
 import 'package:registration/repositories/login_google_repository.dart';
-import '../../../widgets/appbar.dart';
 import '../../blocs/login/bloc/login_bloc.dart';
 import '../../repositories/authentication_repository.dart';
 import '../../resources/constants/path_images.dart';
@@ -18,7 +17,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
       body: BlocProvider(
         create: (context) {
           return LoginBloc(

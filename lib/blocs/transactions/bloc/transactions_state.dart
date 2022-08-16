@@ -11,9 +11,13 @@ class TransactionsInitial extends TransactionsState {}
 
 class TransactionsLoading extends TransactionsState {}
 
-class TransactionsSuccess extends TransactionsState {}
+class TransactionAddSuccess extends TransactionsState {}
 
-class TransactionsFailed extends TransactionsState {}
+class TransactionAddFailed extends TransactionsState {}
+
+class TransactionDeleteSuccess extends TransactionsState {}
+
+class TransactionDeleteFailed extends TransactionsState {}
 
 class FieldSuccess extends TransactionsState {}
 

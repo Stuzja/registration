@@ -18,15 +18,9 @@ class ButtonElemReadiness extends StatefulWidget {
 class ButtonElemReadinessState extends State<ButtonElemReadiness> {
   @override
   Widget build(BuildContext context) {
-    bool ready = widget.transaction.ready;
-
     return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
-        if (state is ReadinessChangedSuccess) {
-          setState(() {
-            ready = !ready;
-          });
-        }
+        if (state is ReadinessChangedSuccess) {}
       },
       child: Container(
         height: 48.h,
@@ -41,7 +35,7 @@ class ButtonElemReadinessState extends State<ButtonElemReadiness> {
                 .read<TransactionsBloc>()
                 .add(ReadinessChanged(transaction: widget.transaction));
           },
-          child: ready
+          child: widget.transaction.ready
               ? SizedBox(
                   height: 24.h,
                   width: 24.w,

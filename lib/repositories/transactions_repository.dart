@@ -41,6 +41,18 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  Future<bool> deleteTransaction(
+      {required TransactionModel transaction}) async {
+    try {
+      final docId = transaction.id;
+      storageTrans.doc(docId).delete();
+      return true;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      return false;
+    }
+  }
+
   Future<bool> changeReadinessTransaction(
       {required TransactionModel transaction, required bool newValue}) async {
     try {
@@ -55,7 +67,8 @@ class ActionsWithTransactionsRepository {
     }
   }
 
-  double getResultMoney({required AsyncSnapshot<dynamic> snapshot, required bool ready}) {
+  double getResultMoney(
+      {required AsyncSnapshot<dynamic> snapshot, required bool ready}) {
     if (!snapshot.hasData) {
       return 0;
     }

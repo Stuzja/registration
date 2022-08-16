@@ -23,7 +23,7 @@ class ButtonAddTransactionWidgetState
   Widget build(BuildContext context) {
     return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
-        if (state is TransactionsFailed) {
+        if (state is TransactionAddFailed) {
           final snackBar = SnackBar(
             content: const Text(
                 'Failed to add transaction'),
@@ -37,7 +37,7 @@ class ButtonAddTransactionWidgetState
         if (state is TransactionsLoading) {
           Navigator.pushNamed(context, '/splash');
         }
-        if (state is TransactionsSuccess) {
+        if (state is TransactionAddSuccess) {
           Navigator.pushNamed(context, '/home');
         }
       },

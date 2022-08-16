@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../widgets/appbar.dart';
 import '../../blocs/reset_password/bloc/reset_password_bloc.dart';
 import '../../repositories/authentication_repository.dart';
 import '../../widgets/buttons/back_button.dart';
@@ -14,7 +13,6 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.only(top: 36.h, left: 16.w, right: 16.w),
         child: ListView(children: [

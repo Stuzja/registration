@@ -43,6 +43,9 @@ class TransactionAdd extends TransactionsEvent {
   const TransactionAdd({required this.money, required this.description});
 }
 
-class ChangeMonth extends TransactionsEvent { 
-}
+class ChangeMonth extends TransactionsEvent {}
 
+class TransactionDelete extends TransactionsEvent {
+  final TransactionModel transaction;
+  const TransactionDelete({required  this.transaction});
+}

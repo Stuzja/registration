@@ -33,9 +33,6 @@ class TopWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          /*Text("<         Jule         >",
-              style: CustomTheme.lightTheme.textTheme.headline1
-                  ?.copyWith(color: Colors.white)),*/
           const PageViewMonths(),
           StreamBuilder(
             stream:
