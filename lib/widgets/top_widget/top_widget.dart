@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
-import 'package:registration/widgets/page_view_months.dart';
-import '../resources/formatters/formatters.dart';
-import '../resources/theme/custom_theme.dart';
+import 'package:registration/widgets/top_widget/page_view_months.dart';
+import '../../resources/formatters/formatters.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class TopWidget extends StatelessWidget {
   final String? title;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../resources/constants/colors.dart';
-import '../resources/theme/custom_theme.dart';
+import '../../../resources/constants/colors.dart';
+import '../../../resources/theme/custom_theme.dart';
 
 // ignore: must_be_immutable
 class UnsecuredTextField extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../models/month_year_model.dart';
-import '../resources/theme/custom_theme.dart';
+import '../../models/month_year_model.dart';
+import '../../resources/theme/custom_theme.dart';
 
 class PageViewMonths extends StatefulWidget {
   const PageViewMonths({Key? key}) : super(key: key);

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/widgets/budget_layout/transaction_list/transaction_list.dart';
 import 'package:registration/widgets/budget_layout/transaction_row_card/transaction_row.dart';
-import 'package:registration/widgets/top_widget.dart';
+import 'package:registration/widgets/top_widget/top_widget.dart';
 
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../repositories/transactions_repository.dart';

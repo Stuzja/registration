@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
@@ -125,5 +126,30 @@ class ActionsWithTransactionsRepository {
       }
     }
     return sum;
+  }
+
+  List<FlSpot> getSpotsForGraphic({required AsyncSnapshot<dynamic> snapshot}) {
+    List<FlSpot> listSpots = [];
+    List<double> listSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    if (!snapshot.hasData) {
+      return listSpots;
+    }
+
+    for (var elem in snapshot.data!.docs
+        .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)
+        .where((elem) => elem['ready'] == true)) {
+      var transaction = TransactionModel.fromSnapshot(elem);
+      if (transaction.type == TransactionType.profit) {
+        listSum[transaction.date!.month - 1] += transaction.value!;
+      } else {
+        listSum[transaction.date!.month - 1] -= transaction.value!;
+      }
+    }
+
+    for (var ind = 0; ind < 12; ind++) {
+      listSpots.add(FlSpot(ind.toDouble(), listSum[ind] / 10000));
+    }
+
+    return listSpots;
   }
 }

@@ -6,7 +6,7 @@ import '../../blocs/reset_password/bloc/reset_password_bloc.dart';
 import '../../resources/validators/validators.dart';
 
 import '../../widgets/buttons/main_button.dart';
-import '../../widgets/unsecured_textfield.dart';
+import '../../widgets/editing_transaction_layout/fields/unsecured_textfield.dart';
 
 class EmailForResetPasswordWidget extends StatefulWidget {
   const EmailForResetPasswordWidget({Key? key}) : super(key: key);
