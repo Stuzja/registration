@@ -11,13 +11,21 @@ class TransactionsInitial extends TransactionsState {}
 
 class TransactionsLoading extends TransactionsState {}
 
+
 class TransactionAddSuccess extends TransactionsState {}
 
 class TransactionAddFailed extends TransactionsState {}
 
+
+class TransactionEditSuccess extends TransactionsState {}
+
+class TransactionEditFailed extends TransactionsState {}
+
+
 class TransactionDeleteSuccess extends TransactionsState {}
 
 class TransactionDeleteFailed extends TransactionsState {}
+
 
 class FieldSuccess extends TransactionsState {}
 

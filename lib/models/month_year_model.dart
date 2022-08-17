@@ -8,7 +8,7 @@ class MonthYear {
 
   MonthYear operator +(int x) {
     if (month == 12) {
-      return MonthYear(month: 1, year: year + 1);
+      return MonthYear(month: x, year: year + 1);
     } else {
       return MonthYear(month: month + x, year: year);
     }
@@ -16,7 +16,7 @@ class MonthYear {
 
   MonthYear operator -(int x) {
     if (month == 1) {
-      return MonthYear(month: 12, year: year - 1);
+      return MonthYear(month: 13-x, year: year - 1);
     } else {
       return MonthYear(month: month - x, year: year);
     }

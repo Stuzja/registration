@@ -41,6 +41,34 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  Future<bool> editTransaction(
+      {required String id,
+      required TransactionType type,
+      required bool ready,
+      required DateTime date,
+      required TransactionCategory category,
+      required double value,
+      String? description}) async {
+    try {
+      final docTransaction = storageTrans.doc(id);
+      final transToJson = TransactionModel(
+              id: id,
+              type: type,
+              ready: ready,
+              date: date,
+              category: category,
+              value: value,
+              description: description)
+          .toJson();
+
+      docTransaction.set(transToJson);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      return false;
+    }
+  }
+
   Future<bool> deleteTransaction(
       {required TransactionModel transaction}) async {
     try {

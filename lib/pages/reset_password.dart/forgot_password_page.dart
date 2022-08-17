@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../blocs/reset_password/bloc/reset_password_bloc.dart';
 import '../../repositories/authentication_repository.dart';
+import '../../widgets/appbar.dart';
 import '../../widgets/buttons/back_button.dart';
 import '../../resources/theme/custom_theme.dart';
 import 'email_form.dart';
@@ -13,6 +14,7 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.only(top: 36.h, left: 16.w, right: 16.w),
         child: ListView(children: [
@@ -30,7 +32,8 @@ class ForgotPasswordPage extends StatelessWidget {
                 ]),
                 BlocProvider(
                   create: (context) {
-                    return ResetPasswordBloc(repository: AuthenticationRepository());
+                    return ResetPasswordBloc(
+                        repository: AuthenticationRepository());
                   },
                   child: const EmailForResetPasswordWidget(),
                 ),

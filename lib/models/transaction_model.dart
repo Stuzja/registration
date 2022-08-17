@@ -41,6 +41,7 @@ class TransactionModel {
 }
 
 TransactionModel prototypeTrans = TransactionModel(
+    id: null,
     category: null,
     type: TransactionType.loss,
     ready: false,

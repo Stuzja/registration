@@ -5,6 +5,7 @@ import 'package:registration/pages/registration/registration_form.dart';
 import '../../blocs/registration/bloc/registration_bloc.dart';
 import '../../repositories/authentication_repository.dart';
 import '../../resources/constants/path_images.dart';
+import '../../widgets/appbar.dart';
 import '../../widgets/buttons/back_button.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -13,6 +14,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 16.w, 36.h, 62.h),
         child: ListView(children: [

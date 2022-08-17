@@ -26,6 +26,7 @@ class MenuEditingDialog {
                           EditTransactionPage(transaction: transaction),
                     ),
                   );
+                  prototypeTrans = transaction;
                 },
                 child: const Text('Edit'),
               ),

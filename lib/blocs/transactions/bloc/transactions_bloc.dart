@@ -31,6 +31,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<TransactionAdd>(_onTransactionAdd);
     on<ReadinessChanged>(_onReadinessChanged);
     on<TransactionDelete>(_onTransactionDelete);
+    on<TransactionEdit>(_onTransactionEdit);
     FirebaseFirestore.instance
         .collection('users')
         .doc(thisUser.username)
@@ -124,4 +125,28 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
       emit(TransactionDeleteFailed());
     }
   }
+
+  void _onTransactionEdit(
+    TransactionEdit event,
+    Emitter<TransactionsState> emit,
+  ) async {
+    emit(TransactionsLoading());
+
+    bool editSuccess = await repository.editTransaction(
+        id: prototypeTrans.id!,
+        type: prototypeTrans.type,
+        ready: prototypeTrans.ready,
+        date: prototypeTrans.date!,
+        category: prototypeTrans.category!,
+        value: event.money!,
+        description: event.description);
+
+    if (editSuccess) {
+      emit(TransactionDeleteSuccess());
+    } else {
+      print("Не получилось удалить");
+      emit(TransactionDeleteFailed());
+    }
+  }
+  
 }

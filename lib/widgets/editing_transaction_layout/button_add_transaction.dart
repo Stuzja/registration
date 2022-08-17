@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
+import '../../models/transaction_model.dart';
 import '../buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatelessWidget {
   final String title;
+  final TransactionModel? transaction;
   final TextEditingController moneyController;
   final TextEditingController descriptionController;
 
@@ -13,7 +15,8 @@ class ButtonAddTransactionWidget extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.moneyController,
-      required this.descriptionController})
+      required this.descriptionController,
+      this.transaction})
       : super(key: key);
 
   @override
@@ -43,12 +46,17 @@ class ButtonAddTransactionWidget extends StatelessWidget {
         child: MainButtonDark(
             name: title,
             onPressed: () {
-              if (true) {
+              if (transaction == null) {
                 context.read<TransactionsBloc>().add(TransactionAdd(
                       money: double.parse(moneyController.text),
                       description: descriptionController.text,
                     ));
-              } else {}
+              } else {
+                context.read<TransactionsBloc>().add(TransactionEdit(
+                      money: double.parse(moneyController.text),
+                      description: descriptionController.text,
+                    ));
+              }
             }),
       ),
     );
