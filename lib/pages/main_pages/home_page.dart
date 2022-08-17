@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/floating_bar_button.dart';
 import 'package:registration/widgets/line_chart/line_chart_widget.dart';
 import 'package:registration/widgets/top_widget/top_widget.dart';
-import '../widgets/navigation_bar.dart';
+import '../../widgets/navigation_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

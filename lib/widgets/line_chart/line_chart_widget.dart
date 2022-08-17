@@ -60,7 +60,7 @@ class LineChartWidget extends StatelessWidget {
                 borderData: FlBorderData(show: false),
                 minX: 0,
                 maxX: 12,
-                minY: 0,
+                minY: -1,
                 maxY: 6,
                 lineBarsData: [
                   LineChartBarData(

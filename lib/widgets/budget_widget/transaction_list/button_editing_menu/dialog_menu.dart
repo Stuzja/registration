@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../../models/transaction_model.dart';
-import '../../../../pages/edit_transaction_page.dart';
+import '../../../../pages/main_pages/edit_transaction_page.dart';
 import '../../../../resources/theme/custom_theme.dart';
 
 class MenuEditingDialog {

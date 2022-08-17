@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/widgets/buttons/face_id_button.dart';
 import 'package:registration/widgets/buttons/logout_text_button.dart';
-import '../blocs/login/bloc/login_bloc.dart';
-import '../models/user_model.dart';
-import '../repositories/authentication_repository.dart';
-import '../repositories/login_google_repository.dart';
-import '../resources/constants/path_images.dart';
-import '../resources/theme/custom_theme.dart';
-import '../widgets/buttons/floating_bar_button.dart';
-import '../widgets/navigation_bar.dart';
+import '../../blocs/login/bloc/login_bloc.dart';
+import '../../models/user_model.dart';
+import '../../repositories/authentication_repository.dart';
+import '../../repositories/login_google_repository.dart';
+import '../../resources/constants/path_images.dart';
+import '../../resources/theme/custom_theme.dart';
+import '../../widgets/buttons/floating_bar_button.dart';
+import '../../widgets/navigation_bar.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({Key? key}) : super(key: key);

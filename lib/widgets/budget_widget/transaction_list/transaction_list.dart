@@ -15,6 +15,18 @@ class TransactionListWidget extends StatefulWidget {
 }
 
 class TransactionListWidgetState extends State<TransactionListWidget> {
+  /*
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseFirestore.instance
+            .collection('users')
+            .doc(thisUser.username)
+            .collection('transactions')
+            .snapshots().listen((event) { })
+  }
+  */
   @override
   Widget build(BuildContext context) {
     return SizedBox(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/editing_transaction_layout/base_editing_widget.dart';
-import '../models/transaction_model.dart';
+import '../../models/transaction_model.dart';
 
 class EditTransactionPage extends StatelessWidget {
   final TransactionModel transaction;

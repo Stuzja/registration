@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/appbar.dart';
-import '../widgets/budget_layout/base_budget_widget.dart';
-import '../widgets/buttons/floating_bar_button.dart';
-import '../widgets/navigation_bar.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/budget_widget/base_budget_widget.dart';
+import '../../widgets/buttons/floating_bar_button.dart';
+import '../../widgets/navigation_bar.dart';
 
 class PlanPage extends StatelessWidget {
   const PlanPage({Key? key}) : super(key: key);

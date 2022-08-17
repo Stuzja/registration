@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:registration/widgets/navigation_bar.dart';
-import '../widgets/appbar.dart';
-import '../widgets/budget_layout/base_budget_widget.dart';
-import '../widgets/buttons/floating_bar_button.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/budget_widget/base_budget_widget.dart';
+import '../../widgets/buttons/floating_bar_button.dart';
 
 class TotalBudgetPage extends StatelessWidget {
   const TotalBudgetPage({Key? key}) : super(key: key);

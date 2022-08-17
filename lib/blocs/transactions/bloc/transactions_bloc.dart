@@ -41,6 +41,22 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 
+/*
+  void _onTransactionsChanged(
+    TransactionAdd event,
+    Emitter<TransactionsState> emit,
+  ) async {
+    await emit.forEach(
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(thisUser.username)
+            .collection('transactions')
+            .snapshots(), onData: ((data) {
+      return TransactionAddSuccess();
+    }));
+  }
+*/
+
   void _onTypeSubmitted(
     TypeSubmitted event,
     Emitter<TransactionsState> emit,
@@ -148,5 +164,4 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
       emit(TransactionDeleteFailed());
     }
   }
-  
 }

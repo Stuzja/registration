@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
-import 'package:registration/widgets/budget_layout/transaction_list/button_editing_menu/dialog_menu.dart';
+import 'package:registration/widgets/budget_widget/transaction_list/button_editing_menu/dialog_menu.dart';
 import '../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../../models/transaction_model.dart';
 
