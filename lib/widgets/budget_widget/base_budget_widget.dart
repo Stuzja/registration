@@ -16,24 +16,28 @@ class BaseBudgetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TopWidget(title: title, ready: ready),
-        TransactionRowWidget(ready: ready),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 17.w),
-          child: Column(children: [
-            const Divider(color: ColorClass.greyDark),
-            BlocProvider(
-              create: (context) {
-                return TransactionsBloc(
-                    repository: ActionsWithTransactionsRepository());
-              },
-              child: TransactionListWidget(ready: ready),
-            ),
-          ]),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) =>
+          TransactionsBloc(repository: ActionsWithTransactionsRepository())
+            ..add(FetchEvent()), 
+    /*   create: (context) {
+        return TransactionsBloc(
+            repository: ActionsWithTransactionsRepository()
+            );
+      },*/
+      child: Column(
+        children: [
+          TopWidget(title: title, ready: ready),
+          TransactionRowWidget(ready: ready),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 17.w),
+            child: Column(children: [
+              const Divider(color: ColorClass.greyDark),
+              TransactionListWidget(ready: ready),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 }

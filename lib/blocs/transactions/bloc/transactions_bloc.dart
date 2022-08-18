@@ -1,8 +1,9 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+
+import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import '../../../models/user_model.dart';
@@ -15,6 +16,8 @@ part 'transactions_state.dart';
 class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
 
+  List<TransactionModel> _transactions = [];
+  MonthYear selectedDate = MonthYear.fromDateTime(DateTime.now());
   /*final _inputEventController = StreamController<TransactionsEvent>();
   StreamSink<TransactionsEvent> get inputEventSink =>
       _inputEventController.sink;
@@ -32,12 +35,14 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<ReadinessChanged>(_onReadinessChanged);
     on<TransactionDelete>(_onTransactionDelete);
     on<TransactionEdit>(_onTransactionEdit);
-    FirebaseFirestore.instance
+    on<FetchEvent>(_onFetch);
+    on<DateChanged>(_onDateChanged);
+    /*FirebaseFirestore.instance
         .collection('users')
         .doc(thisUser.username)
         .collection('transactions')
         .snapshots()
-        .listen((event) {});
+        .listen((event) {});*/
     //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 
@@ -56,6 +61,43 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }));
   }
 */
+
+  Future<void> _onFetch(FetchEvent event, Emitter emit) async {
+    _transactions.clear();
+    emit(FetchLoadingState);
+    try {
+      var allTransactions = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(thisUser.username)
+          .collection('transactions')
+          .get();
+
+      /*for (var elem in allTransactions.docs) {
+        _transactions
+            .add(TransactionModel.fromSnapshot(elem as Map<String, dynamic>));
+      }*/
+
+      _transactions.addAll(allTransactions.docs.map((elem) =>
+          TransactionModel.fromSnapshot(elem as Map<String, dynamic>)));
+
+      final selectedTransactions = _transactions
+          .where((tran) => repository.compareDate(tran.date!, selectedDate))
+          .toList();
+
+      emit(FetchState(selectedTransactions));
+    } catch (e) {
+      print("Возникла ошибка при загрузке транзакций");
+    }
+  }
+
+  void _onDateChanged(DateChanged event, Emitter emit) {
+    print("Ивент вызвался");
+    selectedDate = event.newDate;
+    final selectedTransactions = _transactions
+        .where((tran) => repository.compareDate(tran.date!, selectedDate))
+        .toList();
+    emit(FetchState(selectedTransactions));
+  }
 
   void _onTypeSubmitted(
     TypeSubmitted event,

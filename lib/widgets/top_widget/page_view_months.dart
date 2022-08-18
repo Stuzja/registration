@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../models/month_year_model.dart';
 import '../../resources/theme/custom_theme.dart';
 
@@ -25,10 +26,12 @@ class PageViewMonthsState extends State<PageViewMonths> {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
             onPressed: () {
-                pageController.animateToPage(--pageChanged,
+              pageController.animateToPage(--pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
               monthYear -= 2;
+              BlocProvider.of<TransactionsBloc>(context)
+                  .add(DateChanged(newDate: monthYear));
             },
             icon: const Icon(
               Icons.keyboard_arrow_left_outlined,
@@ -47,6 +50,8 @@ class PageViewMonthsState extends State<PageViewMonths> {
                 }
                 pageChanged = index;
               });
+              BlocProvider.of<TransactionsBloc>(context)
+                  .add(DateChanged(newDate: monthYear));
             },
             itemBuilder: (context, index) {
               return Text(monthYear.toString(),
@@ -61,7 +66,9 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(++pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-          //   monthYear += 1;
+              //   monthYear += 1;
+              BlocProvider.of<TransactionsBloc>(context)
+                  .add(DateChanged(newDate: monthYear));
             },
             icon: const Icon(
               Icons.keyboard_arrow_right_outlined,

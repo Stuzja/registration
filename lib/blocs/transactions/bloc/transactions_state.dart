@@ -32,3 +32,12 @@ class FieldSuccess extends TransactionsState {}
 class FieldFailed extends TransactionsState {}
 
 class ReadinessChangedSuccess extends TransactionsState {}
+
+
+class FetchLoadingState extends TransactionsState {}
+
+class FetchState extends TransactionsState {
+  final List<TransactionModel> transactions;
+
+  const FetchState(this.transactions);
+}

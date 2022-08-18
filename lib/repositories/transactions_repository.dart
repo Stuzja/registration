@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
 import '../resources/enums/transaction_category.dart';
@@ -151,5 +152,17 @@ class ActionsWithTransactionsRepository {
     }
 
     return listSpots;
+  }
+
+  bool compareDate(DateTime date, MonthYear selectedDate) {
+    if (date.year == selectedDate.year) {
+      if (date.month == selectedDate.month) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 }
