@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/resources/constants/colors.dart';
-import '../../models/user_model.dart';
+import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import 'bottom_title_widget.dart';
 import 'left_title_widget.dart';
 
@@ -12,20 +12,20 @@ class LineChartWidget extends StatelessWidget {
   const LineChartWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return AspectRatio(
       aspectRatio: 1.70,
       child: Container(
         padding:
             EdgeInsets.only(right: 18.w, left: 12.w, top: 24.h, bottom: 12.h),
-        child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('users')
-                .doc(thisUser.username)
-                .collection('transactions')
-                .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              return LineChart(LineChartData(
+        child: BlocBuilder<TransactionsBloc, TransactionsState>(
+            builder: (context, state) {
+          if (state is FetchLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is FetchState) {
+            return LineChart(
+              LineChartData(
                 gridData: FlGridData(
                   show: true,
                   drawVerticalLine: false,
@@ -67,7 +67,7 @@ class LineChartWidget extends StatelessWidget {
                 lineBarsData: [
                   LineChartBarData(
                     spots: ActionsWithTransactionsRepository()
-                        .getSpotsForGraphic(snapshot: snapshot),
+                        .getSpotsForGraphic(listTrans: state.transactions),
                     isCurved: true,
                     gradient: const LinearGradient(
                       colors: [
@@ -85,8 +85,12 @@ class LineChartWidget extends StatelessWidget {
                     belowBarData: BarAreaData(show: false),
                   ),
                 ],
-              ));
-            }),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        }),
       ),
     );
   }

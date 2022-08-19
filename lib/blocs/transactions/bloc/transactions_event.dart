@@ -46,7 +46,8 @@ class TransactionAdd extends TransactionsEvent {
 class TransactionEdit extends TransactionsEvent {
   final double? money;
   final String? description;
-  const TransactionEdit({required this.money, required this.description});
+  const TransactionEdit(
+      {required this.money, required this.description});
 }
 
 class TransactionDelete extends TransactionsEvent {

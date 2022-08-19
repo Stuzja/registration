@@ -19,6 +19,7 @@ class MenuEditingDialog {
             children: <Widget>[
               SimpleDialogOption(
                 onPressed: () {
+                  prototypeTrans = transaction;
                   Navigator.push(
                     contextA,
                     MaterialPageRoute(
@@ -26,7 +27,6 @@ class MenuEditingDialog {
                           EditTransactionPage(transaction: transaction),
                     ),
                   );
-                  prototypeTrans = transaction;
                 },
                 child: const Text('Edit'),
               ),

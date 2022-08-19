@@ -20,7 +20,7 @@ class TransactionModel {
       required this.value,
       required this.description});
 
-TransactionModel.fromJson(Map<String, dynamic> json)
+  TransactionModel.fromJson(Map<String, dynamic> json)
       : type = Formatters().fromStringToType(json['type']),
         category = Formatters().fromStringToCategory(json['category']),
         id = json['id'],
@@ -38,15 +38,6 @@ TransactionModel.fromJson(Map<String, dynamic> json)
         'date': date,
         'description': description,
       };
-
-  TransactionModel.fromSnapshot(Map<String, dynamic> snapshot)
-      : id = snapshot['id'],
-        type = Formatters().fromStringToType(snapshot['type']),
-        category = Formatters().fromStringToCategory(snapshot['category']),
-        ready = snapshot['ready'],
-        value = snapshot['value'],
-        description = snapshot['description'],
-        date = snapshot['date'].toDate();
 }
 
 TransactionModel prototypeTrans = TransactionModel(

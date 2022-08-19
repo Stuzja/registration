@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/user_model.dart';
 import '../models/transaction_model.dart';
 import '../resources/enums/transaction_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../resources/enums/transaction_type.dart';
 
 class ActionsWithTransactionsRepository {
@@ -52,6 +50,7 @@ class ActionsWithTransactionsRepository {
       required double value,
       String? description}) async {
     try {
+      print(id);
       final docTransaction = storageTrans.doc(id);
       final transToJson = TransactionModel(
               id: id,
@@ -63,7 +62,7 @@ class ActionsWithTransactionsRepository {
               description: description)
           .toJson();
 
-      docTransaction.set(transToJson);
+      docTransaction.set(transToJson, SetOptions(merge: true));
       return true;
     } on FirebaseAuthException catch (e) {
       print(e.message);
@@ -98,17 +97,14 @@ class ActionsWithTransactionsRepository {
   }
 
   double getResultMoney(
-      {required AsyncSnapshot<dynamic> snapshot, required bool ready}) {
-    if (!snapshot.hasData) {
+      {required List<TransactionModel> listTrans, required bool ready}) {
+    if (listTrans.isEmpty) {
       return 0;
     }
 
     double sum = 0.0;
     if (ready) {
-      for (var elem in snapshot.data!.docs
-          .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)
-          .where((elem) => elem['ready'] == true)) {
-        var transaction = TransactionModel.fromSnapshot(elem);
+      for (var transaction in listTrans.where((tran) => tran.ready == true)) {
         if (transaction.type == TransactionType.profit) {
           sum += transaction.value!;
         } else {
@@ -116,9 +112,7 @@ class ActionsWithTransactionsRepository {
         }
       }
     } else {
-      for (var elem in snapshot.data!.docs
-          .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)) {
-        var transaction = TransactionModel.fromSnapshot(elem);
+      for (var transaction in listTrans) {
         if (transaction.type == TransactionType.profit) {
           sum += transaction.value!;
         } else {
@@ -129,17 +123,14 @@ class ActionsWithTransactionsRepository {
     return sum;
   }
 
-  List<FlSpot> getSpotsForGraphic({required AsyncSnapshot<dynamic> snapshot}) {
+  List<FlSpot> getSpotsForGraphic({required List<TransactionModel> listTrans}) {
     List<FlSpot> listSpots = [];
     List<double> listSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    if (!snapshot.hasData) {
+    if (listTrans.isEmpty) {
       return listSpots;
     }
 
-    for (var elem in snapshot.data!.docs
-        .map((DocumentSnapshot doc) => doc.data()! as Map<String, dynamic>)
-        .where((elem) => elem['ready'] == true)) {
-      var transaction = TransactionModel.fromSnapshot(elem);
+    for (var transaction in listTrans.where((tran) => tran.ready == true)) {
       if (transaction.type == TransactionType.profit) {
         listSum[transaction.date!.month - 1] += transaction.value!;
       } else {
@@ -150,7 +141,6 @@ class ActionsWithTransactionsRepository {
     for (var ind = 0; ind < 12; ind++) {
       listSpots.add(FlSpot(ind.toDouble(), listSum[ind] / 10000));
     }
-
     return listSpots;
   }
 

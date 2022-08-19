@@ -21,7 +21,6 @@ class PageViewMonthsState extends State<PageViewMonths> {
   Widget build(BuildContext context) {
     return Container(
       height: 33.h,
-//    width: 184.w,
       alignment: Alignment.center,
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(

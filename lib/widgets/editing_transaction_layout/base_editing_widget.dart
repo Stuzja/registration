@@ -56,19 +56,14 @@ class EditingTransactionWidget extends StatelessWidget {
                 padding: EdgeInsets.only(top: 16.h),
                 child: DateTextField(initialDateTime: transaction?.date),
               ),
-               CategoryField(initialCategory: transaction?.category),
+              CategoryField(initialCategory: transaction?.category),
               MoneyField(controller: moneyController),
               DescriptionField(controller: descriptionController),
-              BlocProvider(
-                create: (context) {
-                  return TransactionsBloc(
-                      repository: ActionsWithTransactionsRepository());
-                },
-                child: ButtonAddTransactionWidget(
-                  title: title,
-                  moneyController: moneyController,
-                  descriptionController: descriptionController,
-                ),
+              ButtonAddTransactionWidget(
+                transaction: transaction,
+                title: title,
+                moneyController: moneyController,
+                descriptionController: descriptionController,
               ),
             ],
           ),

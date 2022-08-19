@@ -6,43 +6,33 @@ import '../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../models/transaction_model.dart';
 import '../../../resources/constants/path_images.dart';
 
-class ButtonElemReadiness extends StatefulWidget {
+class ButtonElemReadiness extends StatelessWidget {
   final TransactionModel transaction;
   const ButtonElemReadiness({Key? key, required this.transaction})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => ButtonElemReadinessState();
-}
-
-class ButtonElemReadinessState extends State<ButtonElemReadiness> {
-  @override
   Widget build(BuildContext context) {
-    return BlocListener<TransactionsBloc, TransactionsState>(
-      listener: (context, state) {
-        if (state is ReadinessChangedSuccess) {}
-      },
-      child: Container(
-        height: 48.h,
-        width: 48.w,
-        decoration: BoxDecoration(
-          color: widget.transaction.category!.getColorTitle,
-          shape: BoxShape.circle,
-        ),
-        child: InkWell(
-          onTap: () {
-            context
-                .read<TransactionsBloc>()
-                .add(ReadinessChanged(transaction: widget.transaction));
-          },
-          child: widget.transaction.ready
-              ? SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: Image.asset(checkMark),
-                )
-              : Container(),
-        ),
+    return Container(
+      height: 48.h,
+      width: 48.w,
+      decoration: BoxDecoration(
+        color: transaction.category!.getColorTitle,
+        shape: BoxShape.circle,
+      ),
+      child: InkWell(
+        onTap: () {
+          context
+              .read<TransactionsBloc>()
+              .add(ReadinessChanged(transaction: transaction));
+        },
+        child: transaction.ready
+            ? SizedBox(
+                height: 24.h,
+                width: 24.w,
+                child: Image.asset(checkMark),
+              )
+            : Container(),
       ),
     );
   }

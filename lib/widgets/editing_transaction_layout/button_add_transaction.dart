@@ -33,12 +33,21 @@ class ButtonAddTransactionWidget extends StatelessWidget {
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
+        if (state is TransactionEditFailed) {
+          final snackBar = SnackBar(
+            content: const Text('Failed to edit transaction'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
         if (state is TransactionsLoading) {
           Navigator.pushNamed(context, '/splash');
         }
         if (state is TransactionAddSuccess) {
-          Navigator.pop(context);
-          Navigator.pop(context);
+          Navigator.pushNamed(context, '/home');
         }
       },
       child: Padding(
@@ -52,6 +61,7 @@ class ButtonAddTransactionWidget extends StatelessWidget {
                       description: descriptionController.text,
                     ));
               } else {
+                print('yeaah');
                 context.read<TransactionsBloc>().add(TransactionEdit(
                       money: double.parse(moneyController.text),
                       description: descriptionController.text,

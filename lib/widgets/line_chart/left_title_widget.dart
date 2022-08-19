@@ -9,7 +9,7 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
       text = '0';
       break;
     case 1:
-      text = '10K';
+      text = '10k';
       break;
     case 2:
       text = '20k';

@@ -14,12 +14,6 @@ class ButtonEditingMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<TransactionsBloc, TransactionsState>(
       listener: (context, state) {
-        if (state is TransactionsLoading) {
-          Navigator.pushNamed(context, '/splash');
-        }
-        if (state is TransactionDeleteSuccess) {
-          Navigator.pop(context);
-        }
         if (state is TransactionDeleteFailed) {
           Navigator.pop(context);
           final snackBar = SnackBar(

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-
 import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
@@ -51,7 +49,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
 
   Future<void> _onFetch(
       FetchEvent event, Emitter<TransactionsState> emit) async {
-    _transactions.clear();
+    _transactions = [];
     emit(FetchLoadingState());
     try {
       var allTransactions = await FirebaseFirestore.instance
@@ -68,7 +66,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
       final selectedTransactions = _transactions
           .where((tran) => repository.compareDate(tran.date!, selectedDate))
           .toList();
-      print(selectedTransactions.length);
       emit(FetchState(selectedTransactions));
     } catch (e) {
       print("Возникла ошибка при загрузке транзакций");
@@ -78,11 +75,10 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   void _onDateChanged(DateChanged event, Emitter<TransactionsState> emit) {
     emit(FetchLoadingState());
     selectedDate = event.newDate;
-    final _selectedTransactions = _transactions
+    final selectedTransactions = _transactions
         .where((tran) => repository.compareDate(tran.date!, selectedDate))
         .toList();
-    //  print(_selectedTransactions.length);
-    emit(FetchState(_selectedTransactions));
+    emit(FetchState(selectedTransactions));
   }
 
   void _onTypeSubmitted(
@@ -107,6 +103,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         transaction: event.transaction, newValue: !event.transaction.ready);
     if (changed) {
       emit(ReadinessChangedSuccess());
+      add(FetchEvent());
     }
   }
 
@@ -128,6 +125,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {
+    
     emit(TransactionsLoading());
 
     if (prototypeTrans.category != null &&
@@ -141,9 +139,17 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
           value: event.money!,
           description: event.description);
 
+      prototypeTrans = TransactionModel(
+          id: null,
+          category: null,
+          type: TransactionType.loss,
+          ready: false,
+          value: null,
+          description: null,
+          date: null);
       if (addSuccess) {
-        //    _outputStateController.sink.add(trans);
         emit(TransactionAddSuccess());
+        add(FetchEvent());
       } else {
         print("Просто не получилось добавить");
         emit(TransactionAddFailed());
@@ -154,23 +160,21 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }
   }
 
-  void _onTransactionDelete(
+  Future<void> _onTransactionDelete(
     TransactionDelete event,
     Emitter<TransactionsState> emit,
   ) async {
-    emit(TransactionsLoading());
-
     bool deleteSuccess =
         await repository.deleteTransaction(transaction: event.transaction);
     if (deleteSuccess) {
-      emit(TransactionDeleteSuccess());
+      add(FetchEvent());
     } else {
       print("Не получилось удалить");
       emit(TransactionDeleteFailed());
     }
   }
 
-  void _onTransactionEdit(
+  Future<void> _onTransactionEdit(
     TransactionEdit event,
     Emitter<TransactionsState> emit,
   ) async {
@@ -185,11 +189,20 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         value: event.money!,
         description: event.description);
 
+    prototypeTrans = TransactionModel(
+        id: null,
+        category: null,
+        type: TransactionType.loss,
+        ready: false,
+        value: null,
+        description: null,
+        date: null);
     if (editSuccess) {
-      emit(TransactionDeleteSuccess());
+      emit(TransactionAddSuccess());
+      add(FetchEvent());
     } else {
-      print("Не получилось удалить");
-      emit(TransactionDeleteFailed());
+      print("Не получилось изменить");
+      emit(TransactionEditFailed());
     }
   }
 }
