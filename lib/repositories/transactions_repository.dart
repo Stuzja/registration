@@ -144,7 +144,7 @@ class ActionsWithTransactionsRepository {
     return listSpots;
   }
 
-  bool compareDate(DateTime date, MonthYear selectedDate) {
+  bool compareYearMonth(DateTime date, MonthYear selectedDate) {
     if (date.year == selectedDate.year) {
       if (date.month == selectedDate.month) {
         return true;

@@ -22,7 +22,7 @@ class BaseBudgetWidget extends StatelessWidget {
             ..add(FetchEvent()),
       child: Column(
         children: [
-          TopWidget(title: title, ready: ready),
+          TopWidget(title: title, ready: ready, monthly: true),
           TransactionRowWidget(ready: ready),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 17.w),

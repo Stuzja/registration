@@ -16,7 +16,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
 
   List<TransactionModel> _transactions = [];
-  MonthYear selectedDate = MonthYear.fromDateTime(DateTime.now());
+  MonthYear selectedMonth = MonthYear.fromDateTime(DateTime.now());
+  int selectedYear = DateTime.now().year;
 
   TransactionsBloc({required this.repository}) : super(TransactionsInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
@@ -28,7 +29,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<TransactionDelete>(_onTransactionDelete);
     on<TransactionEdit>(_onTransactionEdit);
     on<FetchEvent>(_onFetch);
-    on<DateChanged>(_onDateChanged);
+    on<MonthChanged>(_onMonthChanged);
+    on<YearChanged>(_onYearChanged);
   }
 
 /*
@@ -64,7 +66,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
       }
 
       final selectedTransactions = _transactions
-          .where((tran) => repository.compareDate(tran.date!, selectedDate))
+          .where(
+              (tran) => repository.compareYearMonth(tran.date!, selectedMonth))
           .toList();
       emit(FetchState(selectedTransactions));
     } catch (e) {
@@ -72,11 +75,20 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }
   }
 
-  void _onDateChanged(DateChanged event, Emitter<TransactionsState> emit) {
+  void _onMonthChanged(MonthChanged event, Emitter<TransactionsState> emit) {
     emit(FetchLoadingState());
-    selectedDate = event.newDate;
+    selectedMonth = event.newMonth;
     final selectedTransactions = _transactions
-        .where((tran) => repository.compareDate(tran.date!, selectedDate))
+        .where((tran) => repository.compareYearMonth(tran.date!, selectedMonth))
+        .toList();
+    emit(FetchState(selectedTransactions));
+  }
+
+  void _onYearChanged(YearChanged event, Emitter<TransactionsState> emit) {
+    emit(FetchLoadingState());
+    selectedYear = event.newYear;
+    final selectedTransactions = _transactions
+        .where((tran) => tran.date!.year ==  selectedYear)
         .toList();
     emit(FetchState(selectedTransactions));
   }
@@ -125,7 +137,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {
-    
     emit(TransactionsLoading());
 
     if (prototypeTrans.category != null &&

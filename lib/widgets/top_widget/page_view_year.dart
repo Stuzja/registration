@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
-import '../../models/month_year_model.dart';
 import '../../resources/theme/custom_theme.dart';
 
-class PageViewMonths extends StatefulWidget {
-  const PageViewMonths({Key? key}) : super(key: key);
+class PageViewYear extends StatefulWidget {
+  const PageViewYear({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => PageViewMonthsState();
+  State<StatefulWidget> createState() => PageViewYearState();
 }
 
-class PageViewMonthsState extends State<PageViewMonths> {
-  MonthYear monthYear = MonthYear.fromDateTime(DateTime.now());
+class PageViewYearState extends State<PageViewYear> {
+  int year = DateTime.now().year;
   PageController pageController = PageController(initialPage: 999);
   int pageChanged = 999;
 
@@ -28,7 +27,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(--pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-              monthYear -= 1;
+              year -= 1;
             },
             icon: const Icon(
               Icons.keyboard_arrow_left_outlined,
@@ -41,18 +40,18 @@ class PageViewMonthsState extends State<PageViewMonths> {
             onPageChanged: (index) {
               setState(() {
                 if (index < pageChanged) {
-                  monthYear -= 1;
+                  year -= 1;
                 }
                 if (index > pageChanged) {
-                  monthYear += 1;
+                  year += 1;
                 }
                 pageChanged = index;
               });
               BlocProvider.of<TransactionsBloc>(context)
-                  .add(MonthChanged(newMonth: monthYear));
+                  .add(YearChanged(newYear: year));
             },
             itemBuilder: (context, index) {
-              return Text(monthYear.toString(),
+              return Text(year.toString(),
                   textAlign: TextAlign.center,
                   style: CustomTheme.lightTheme.textTheme.headline1
                       ?.copyWith(color: Colors.white));
@@ -64,7 +63,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(++pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-              monthYear += 1;
+              year += 1;
             },
             icon: const Icon(
               Icons.keyboard_arrow_right_outlined,

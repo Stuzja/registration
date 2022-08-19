@@ -46,8 +46,7 @@ class TransactionAdd extends TransactionsEvent {
 class TransactionEdit extends TransactionsEvent {
   final double? money;
   final String? description;
-  const TransactionEdit(
-      {required this.money, required this.description});
+  const TransactionEdit({required this.money, required this.description});
 }
 
 class TransactionDelete extends TransactionsEvent {
@@ -57,8 +56,14 @@ class TransactionDelete extends TransactionsEvent {
 
 class FetchEvent extends TransactionsEvent {}
 
-class DateChanged extends TransactionsEvent {
-  final MonthYear newDate;
+class MonthChanged extends TransactionsEvent {
+  final MonthYear newMonth;
 
-  const DateChanged({required this.newDate});
+  const MonthChanged({required this.newMonth});
+}
+
+class YearChanged extends TransactionsEvent {
+  final int newYear;
+
+  const YearChanged({required this.newYear});
 }

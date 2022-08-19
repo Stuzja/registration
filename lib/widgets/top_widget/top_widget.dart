@@ -3,14 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/widgets/top_widget/page_view_months.dart';
+import 'package:registration/widgets/top_widget/page_view_year.dart';
 import '../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../resources/formatters/formatters.dart';
 import '../../resources/theme/custom_theme.dart';
 
 class TopWidget extends StatelessWidget {
+  final bool monthly;
   final String? title;
   final bool ready;
-  const TopWidget({Key? key, this.title, required this.ready})
+  const TopWidget(
+      {Key? key, this.title, required this.ready, required this.monthly})
       : super(key: key);
 
   @override
@@ -35,20 +38,24 @@ class TopWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const PageViewMonths(),
+          monthly? const PageViewMonths() : const PageViewYear(),
           BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
               if (state is FetchState) {
                 var sum = ActionsWithTransactionsRepository().getResultMoney(
                     listTrans: state.transactions, ready: ready);
-                return Column(children: [
-                  Text(Formatters().getTitleFromMoney(title, sum),
-                      style: CustomTheme.lightTheme.textTheme.headline1),
-                  Text("₽$sum",
-                      style: CustomTheme.lightTheme.textTheme.headline1
-                          ?.copyWith(color: Colors.white, fontSize: 32)),
-                  SizedBox(height:8.h),
-                ]);
+                return SizedBox(
+                  height: 78.h,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(Formatters().getTitleFromMoney(title, sum),
+                            style: CustomTheme.lightTheme.textTheme.headline1),
+                        Text("₽$sum",
+                            style: CustomTheme.lightTheme.textTheme.headline1
+                                ?.copyWith(color: Colors.white, fontSize: 32)),
+                      ]),
+                );
               } else {
                 return SizedBox(height: 78.h);
               }
