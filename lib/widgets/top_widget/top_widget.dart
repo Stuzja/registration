@@ -13,44 +13,45 @@ class TopWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 124.h,
-      width: 363.w,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(60.0),
-            bottomLeft: Radius.circular(60.0)),
-        gradient: LinearGradient(
-          colors: [
-            Color.fromRGBO(138, 93, 165, 1),
-            Color.fromRGBO(25, 152, 207, 1),
-          ],
-          begin: Alignment.center,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          const PageViewMonths(),
-          StreamBuilder(
-            stream:
-                ActionsWithTransactionsRepository().storageTrans.snapshots(),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              var sum = ActionsWithTransactionsRepository()
-                  .getResultMoney(snapshot: snapshot, ready: ready);
-              return Column(children: [
-                Text(Formatters().getTitleFromMoney(title, sum),
-                    style: CustomTheme.lightTheme.textTheme.headline1),
-                Text("₽$sum",
-                    style: CustomTheme.lightTheme.textTheme.headline1
-                        ?.copyWith(color: Colors.white, fontSize: 32)),
-              ]);
-            },
+    return 
+       Container(
+        height: 124.h,
+        width: 363.w,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(60.0),
+              bottomLeft: Radius.circular(60.0)),
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(138, 93, 165, 1),
+              Color.fromRGBO(25, 152, 207, 1),
+            ],
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
           ),
-        ],
-      ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const PageViewMonths(),
+            StreamBuilder(
+              stream:
+                  ActionsWithTransactionsRepository().storageTrans.snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                var sum = ActionsWithTransactionsRepository()
+                    .getResultMoney(snapshot: snapshot, ready: ready);
+                return Column(children: [
+                  Text(Formatters().getTitleFromMoney(title, sum),
+                      style: CustomTheme.lightTheme.textTheme.headline1),
+                  Text("₽$sum",
+                      style: CustomTheme.lightTheme.textTheme.headline1
+                          ?.copyWith(color: Colors.white, fontSize: 32)),
+                ]);
+              },
+            ),
+          ],
+        ),
     );
   }
 }

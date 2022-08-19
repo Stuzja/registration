@@ -8,7 +8,6 @@ import '../../models/user_model.dart';
 import 'bottom_title_widget.dart';
 import 'left_title_widget.dart';
 
-
 class LineChartWidget extends StatelessWidget {
   const LineChartWidget({Key? key}) : super(key: key);
 
@@ -57,6 +56,9 @@ class LineChartWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                        tooltipBgColor: ColorClass.purple)),
                 borderData: FlBorderData(show: false),
                 minX: 0,
                 maxX: 12,

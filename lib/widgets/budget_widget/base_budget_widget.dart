@@ -19,12 +19,7 @@ class BaseBudgetWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           TransactionsBloc(repository: ActionsWithTransactionsRepository())
-            ..add(FetchEvent()), 
-    /*   create: (context) {
-        return TransactionsBloc(
-            repository: ActionsWithTransactionsRepository()
-            );
-      },*/
+            ..add(FetchEvent()),
       child: Column(
         children: [
           TopWidget(title: title, ready: ready),

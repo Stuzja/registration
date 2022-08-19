@@ -30,7 +30,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
               monthYear -= 2;
-              BlocProvider.of<TransactionsBloc>(context)
+                BlocProvider.of<TransactionsBloc>(context)
                   .add(DateChanged(newDate: monthYear));
             },
             icon: const Icon(
@@ -66,9 +66,6 @@ class PageViewMonthsState extends State<PageViewMonths> {
               pageController.animateToPage(++pageChanged,
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.bounceInOut);
-              //   monthYear += 1;
-              BlocProvider.of<TransactionsBloc>(context)
-                  .add(DateChanged(newDate: monthYear));
             },
             icon: const Icon(
               Icons.keyboard_arrow_right_outlined,

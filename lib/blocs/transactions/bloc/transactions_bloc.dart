@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/transaction_model.dart';
@@ -18,14 +19,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
 
   List<TransactionModel> _transactions = [];
   MonthYear selectedDate = MonthYear.fromDateTime(DateTime.now());
-  /*final _inputEventController = StreamController<TransactionsEvent>();
-  StreamSink<TransactionsEvent> get inputEventSink =>
-      _inputEventController.sink;
 
-  final _outputStateController = StreamController<TransactionModel>();
-  Stream<TransactionModel> get outputStateStream =>
-      _outputStateController.stream;
-  */
   TransactionsBloc({required this.repository}) : super(TransactionsInitial()) {
     on<TypeSubmitted>(_onTypeSubmitted);
     on<ReadinessSubmitted>(_onReadinessSubmitted);
@@ -37,13 +31,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<TransactionEdit>(_onTransactionEdit);
     on<FetchEvent>(_onFetch);
     on<DateChanged>(_onDateChanged);
-    /*FirebaseFirestore.instance
-        .collection('users')
-        .doc(thisUser.username)
-        .collection('transactions')
-        .snapshots()
-        .listen((event) {});*/
-    //   _inputEventController.stream.listen(_onTransactionSubmitted);
   }
 
 /*
@@ -62,9 +49,10 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   }
 */
 
-  Future<void> _onFetch(FetchEvent event, Emitter emit) async {
+  Future<void> _onFetch(
+      FetchEvent event, Emitter<TransactionsState> emit) async {
     _transactions.clear();
-    emit(FetchLoadingState);
+    emit(FetchLoadingState());
     try {
       var allTransactions = await FirebaseFirestore.instance
           .collection('users')
@@ -72,31 +60,29 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
           .collection('transactions')
           .get();
 
-      /*for (var elem in allTransactions.docs) {
-        _transactions
-            .add(TransactionModel.fromSnapshot(elem as Map<String, dynamic>));
-      }*/
-
-      _transactions.addAll(allTransactions.docs.map((elem) =>
-          TransactionModel.fromSnapshot(elem as Map<String, dynamic>)));
+      for (var i = 0; i < allTransactions.docs.length; i++) {
+        var item = allTransactions.docs[i].data();
+        _transactions.add(TransactionModel.fromJson(item));
+      }
 
       final selectedTransactions = _transactions
           .where((tran) => repository.compareDate(tran.date!, selectedDate))
           .toList();
-
+      print(selectedTransactions.length);
       emit(FetchState(selectedTransactions));
     } catch (e) {
       print("Возникла ошибка при загрузке транзакций");
     }
   }
 
-  void _onDateChanged(DateChanged event, Emitter emit) {
-    print("Ивент вызвался");
+  void _onDateChanged(DateChanged event, Emitter<TransactionsState> emit) {
+    emit(FetchLoadingState());
     selectedDate = event.newDate;
-    final selectedTransactions = _transactions
+    final _selectedTransactions = _transactions
         .where((tran) => repository.compareDate(tran.date!, selectedDate))
         .toList();
-    emit(FetchState(selectedTransactions));
+    //  print(_selectedTransactions.length);
+    emit(FetchState(_selectedTransactions));
   }
 
   void _onTypeSubmitted(
@@ -138,7 +124,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     prototypeTrans.date = event.newValue;
   }
 
-  void _onTransactionAdd(
+  Future<void> _onTransactionAdd(
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {

@@ -25,23 +25,35 @@ class UserPage extends StatelessWidget {
       bottomNavigationBar: const FloatingNavigationBar(
         currentIndex: 3,
       ),
-      body: Column(
-        children: [
-          SizedBox(width: 150.w, height: 150.h, child: Image.asset(logoMobyte)),
-          Text(thisUser.email!,
-              style: CustomTheme.lightTheme.textTheme.headline1),
-          Text(thisUser.username!,
-              style: CustomTheme.lightTheme.textTheme.headline1),
-          const FaceIdSwitcher(),
-          BlocProvider(
-            create: (context) {
-              return LoginBloc(
-                  repository: AuthenticationRepository(),
-                  loginGoogle: LoginGoogleRepository());
-            },
-            child: const LogoutButton(),
-          ),
-        ],
+      body: Container(
+        margin: EdgeInsets.only(top: 49.h, bottom: 121.h),
+        child: Column(
+          children: [
+            SizedBox(
+                width: 160.h, height: 160.h, child: Image.asset(logoMobyte)),
+            Container(
+              padding: EdgeInsets.only(top:48.h, bottom: 70.h),
+              child: Column(children: [
+                Text(thisUser.username!,
+                    style: CustomTheme.lightTheme.textTheme.headline1),
+                Text(thisUser.email!,
+                    style: CustomTheme.lightTheme.textTheme.headline1),
+              ]),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 80.h),
+              child: const FaceIdSwitcher(),
+            ),
+            BlocProvider(
+              create: (context) {
+                return LoginBloc(
+                    repository: AuthenticationRepository(),
+                    loginGoogle: LoginGoogleRepository());
+              },
+              child: const LogoutButton(),
+            ),
+          ],
+        ),
       ),
     );
   }

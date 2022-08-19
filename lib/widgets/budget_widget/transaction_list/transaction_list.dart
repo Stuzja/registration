@@ -6,20 +6,9 @@ import 'transaction_list_elem.dart';
 
 class TransactionListWidget extends StatelessWidget {
   final bool ready;
-  const TransactionListWidget({Key? key, required this.ready})
-      : super(key: key);
 
-/*
-  @override
-  void initState() {
-    super.initState();
-    FirebaseFirestore.instance
-            .collection('users')
-            .doc(thisUser.username)
-            .collection('transactions')
-            .snapshots().listen((event) { })
-  }
-*/
+  const TransactionListWidget({super.key, required this.ready});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,7 +16,7 @@ class TransactionListWidget extends StatelessWidget {
         child: BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
           if (state is FetchLoadingState) {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is FetchState) {
             return ListView(
@@ -86,3 +75,27 @@ class TransactionListWidget extends StatelessWidget {
         );
   }
 }
+
+//  late TransactionsBloc _exampleBloc;
+
+ /* @override
+  void initState() {
+    super.initState();
+      BlocProvider.of<TransactionsBloc>(context)
+        .add(FetchEvent());
+ /*   _exampleBloc =
+        TransactionsBloc(repository: ActionsWithTransactionsRepository());
+    _exampleBloc.add(FetchEvent());*/
+    /* FirebaseFirestore.instance
+            .collection('users')
+            .doc(thisUser.username)
+            .collection('transactions')
+            .snapshots().listen((event) { })*/
+  }
+/*@override
+  void dispose() {
+    super.dispose();
+    _exampleBloc.close(); // do not forget to close, prefer use BlocProvider - it would handle it for you
+  }
+*/
+*/
