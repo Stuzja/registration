@@ -16,6 +16,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final ActionsWithTransactionsRepository repository;
 
   List<TransactionModel> _transactions = [];
+  List<TransactionModel> _transactionsByMonth = [];
+  List<TransactionModel> _transactionsByYear = [];
   MonthYear selectedMonth = MonthYear.fromDateTime(DateTime.now());
   int selectedYear = DateTime.now().year;
 
@@ -29,8 +31,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<TransactionDelete>(_onTransactionDelete);
     on<TransactionEdit>(_onTransactionEdit);
     on<FetchEvent>(_onFetch);
-    on<MonthChanged>(_onMonthChanged);
-    on<YearChanged>(_onYearChanged);
+    on<DateChanged>(_onDateChanged);
   }
 
 /*
@@ -48,7 +49,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }));
   }
 */
-
   Future<void> _onFetch(
       FetchEvent event, Emitter<TransactionsState> emit) async {
     _transactions = [];
@@ -65,32 +65,41 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         _transactions.add(TransactionModel.fromJson(item));
       }
 
-      final selectedTransactions = _transactions
+      _transactionsByMonth = _transactions
           .where(
               (tran) => repository.compareYearMonth(tran.date!, selectedMonth))
           .toList();
-      emit(FetchState(selectedTransactions));
+      _transactionsByYear = _transactions
+          .where((tran) => tran.date!.year == selectedYear)
+          .toList();
+      emit(FetchState(
+          transactionsByMonth: _transactionsByMonth,
+          transactionsByYear: _transactionsByYear));
     } catch (e) {
       print("Возникла ошибка при загрузке транзакций");
     }
   }
 
-  void _onMonthChanged(MonthChanged event, Emitter<TransactionsState> emit) {
+  void _onDateChanged(DateChanged event, Emitter<TransactionsState> emit) {
     emit(FetchLoadingState());
-    selectedMonth = event.newMonth;
-    final selectedTransactions = _transactions
-        .where((tran) => repository.compareYearMonth(tran.date!, selectedMonth))
-        .toList();
-    emit(FetchState(selectedTransactions));
-  }
-
-  void _onYearChanged(YearChanged event, Emitter<TransactionsState> emit) {
-    emit(FetchLoadingState());
-    selectedYear = event.newYear;
-    final selectedTransactions = _transactions
-        .where((tran) => tran.date!.year ==  selectedYear)
-        .toList();
-    emit(FetchState(selectedTransactions));
+    if (event.newMonth != null) {
+      selectedMonth = event.newMonth!;
+      _transactionsByMonth = _transactions
+          .where(
+              (tran) => repository.compareYearMonth(tran.date!, selectedMonth))
+          .toList();
+      emit(FetchState(
+          transactionsByMonth: _transactionsByMonth,
+          transactionsByYear: _transactionsByYear));
+    } else {
+      selectedYear = event.newYear!;
+      _transactionsByYear = _transactions
+          .where((tran) => tran.date!.year == selectedYear)
+          .toList();
+      emit(FetchState(
+          transactionsByMonth: _transactionsByMonth,
+          transactionsByYear: _transactionsByYear));
+    }
   }
 
   void _onTypeSubmitted(

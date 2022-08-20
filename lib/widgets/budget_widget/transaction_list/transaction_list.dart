@@ -23,10 +23,10 @@ class TransactionListWidget extends StatelessWidget {
               children: [
                 if (ready)
                   for (var elem
-                      in state.transactions.where((tran) => tran.ready == true))
+                      in state.transactionsByMonth.where((tran) => tran.ready == true))
                     TransactionListElem(transaction: elem)
                 else
-                  for (var elem in state.transactions)
+                  for (var elem in state.transactionsByMonth)
                     TransactionListElem(transaction: elem)
               ],
             );

@@ -38,12 +38,15 @@ class TopWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          monthly? const PageViewMonths() : const PageViewYear(),
+          monthly ? const PageViewMonths() : const PageViewYear(),
           BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
               if (state is FetchState) {
                 var sum = ActionsWithTransactionsRepository().getResultMoney(
-                    listTrans: state.transactions, ready: ready);
+                    listTrans: monthly
+                        ? state.transactionsByMonth
+                        : state.transactionsByYear,
+                    ready: ready);
                 return SizedBox(
                   height: 78.h,
                   child: Column(

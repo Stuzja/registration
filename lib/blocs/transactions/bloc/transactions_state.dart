@@ -26,7 +26,9 @@ class ReadinessChangedSuccess extends TransactionsState {}
 class FetchLoadingState extends TransactionsState {}
 
 class FetchState extends TransactionsState {
-  final List<TransactionModel> transactions;
+  final List<TransactionModel> transactionsByMonth;
+  final List<TransactionModel> transactionsByYear;
 
-  const FetchState(this.transactions);
+  const FetchState(
+      {required this.transactionsByMonth, required this.transactionsByYear});
 }

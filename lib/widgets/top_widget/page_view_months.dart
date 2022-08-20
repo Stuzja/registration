@@ -49,7 +49,7 @@ class PageViewMonthsState extends State<PageViewMonths> {
                 pageChanged = index;
               });
               BlocProvider.of<TransactionsBloc>(context)
-                  .add(MonthChanged(newMonth: monthYear));
+                  .add(DateChanged(newMonth: monthYear));
             },
             itemBuilder: (context, index) {
               return Text(monthYear.toString(),

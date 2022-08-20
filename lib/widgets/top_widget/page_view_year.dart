@@ -48,7 +48,7 @@ class PageViewYearState extends State<PageViewYear> {
                 pageChanged = index;
               });
               BlocProvider.of<TransactionsBloc>(context)
-                  .add(YearChanged(newYear: year));
+                  .add(DateChanged(newYear: year));
             },
             itemBuilder: (context, index) {
               return Text(year.toString(),

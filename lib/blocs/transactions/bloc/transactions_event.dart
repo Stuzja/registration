@@ -56,14 +56,9 @@ class TransactionDelete extends TransactionsEvent {
 
 class FetchEvent extends TransactionsEvent {}
 
-class MonthChanged extends TransactionsEvent {
-  final MonthYear newMonth;
+class DateChanged extends TransactionsEvent {
+  final MonthYear? newMonth;
+  final int? newYear;
 
-  const MonthChanged({required this.newMonth});
-}
-
-class YearChanged extends TransactionsEvent {
-  final int newYear;
-
-  const YearChanged({required this.newYear});
+  const DateChanged({this.newMonth, this.newYear});
 }
