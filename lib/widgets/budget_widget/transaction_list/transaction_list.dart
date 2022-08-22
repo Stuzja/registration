@@ -12,7 +12,7 @@ class TransactionListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 393.h,
+        height: 440.h,
         child: BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
           if (state is FetchLoadingState) {
