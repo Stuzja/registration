@@ -1,6 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import '../resources/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/widgets/navigation_bar/icons.dart';
+import '../../resources/constants/colors.dart';
 
 class FloatingNavigationBar extends StatefulWidget {
   final int currentIndex;
@@ -12,13 +14,6 @@ class FloatingNavigationBar extends StatefulWidget {
 }
 
 class FloatingNavigationBarState extends State<FloatingNavigationBar> {
-  var iconList = const [
-    Icons.home_outlined,
-    Icons.calendar_month_outlined,
-    Icons.wallet_sharp,
-    Icons.verified_user_outlined,
-  ];
-
   void _onTapNavigate(index) {
     switch (index) {
       case 0:
@@ -40,23 +35,16 @@ class FloatingNavigationBarState extends State<FloatingNavigationBar> {
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar.builder(
       tabBuilder: (int index, bool isActive) {
-        final color =
-            isActive ? Colors.white : const Color.fromRGBO(255, 255, 255, 0.2);
-        return Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                iconList[index],
-                size: 24,
-                color: color,
-              )
-            ]);
+        final colorActive = isActive ? Colors.white24 : Colors.transparent;
+        return IconWidget(
+          colorActive: colorActive,
+          image: listIcons[index],
+        );
       },
       backgroundColor: ColorClass.purple,
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.verySmoothEdge,
-      itemCount: iconList.length,
+      itemCount: 4,
       splashColor: const Color.fromRGBO(255, 255, 255, 0.2),
       activeIndex: widget.currentIndex,
       onTap: (index) => setState(
@@ -67,4 +55,3 @@ class FloatingNavigationBarState extends State<FloatingNavigationBar> {
     );
   }
 }
-
