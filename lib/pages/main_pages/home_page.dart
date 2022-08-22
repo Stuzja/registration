@@ -1,47 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/pages/main_pages/user_page.dart';
 import 'package:registration/widgets/buttons/floating_bar_button.dart';
-import 'package:registration/widgets/line_chart/line_chart_widget.dart';
-import 'package:registration/widgets/top_widget/top_widget.dart';
-import '../../blocs/transactions/bloc/transactions_bloc.dart';
-import '../../repositories/transactions_repository.dart';
-import '../../widgets/navigation_bar.dart';
+import '../../widgets/budget_widget/base_budget_widget.dart';
+import '../../widgets/navigation_bar/navigation_bar.dart';
+import 'graphic_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  int index = 0;
+
+  void setIndex(int newIndex) {
+    setState(() {
+      index = newIndex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const FloatingActionButtonBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: const FloatingNavigationBar(
-        currentIndex: 0,
-      ),
-      body: BlocProvider(
-        create: (context) =>
-            TransactionsBloc(repository: ActionsWithTransactionsRepository())
-              ..add(FetchEvent()),
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                const TopWidget(
-                    title: "Your total expenses", ready: true, monthly: false),
-                Container(
-                  alignment: Alignment.topCenter,
-                  height: 500.h,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: const [LineChartWidget()],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+        floatingActionButton: const FloatingActionButtonBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: FloatingNavigationBar(setIndex: setIndex),
+        body: pages[index]);
   }
 }
+
+List<Widget> pages = const [
+  GraphicPage(),
+  BaseBudgetWidget(ready: false),
+  BaseBudgetWidget(title: "Your total budget", ready: true),
+  UserPage()
+];
+
