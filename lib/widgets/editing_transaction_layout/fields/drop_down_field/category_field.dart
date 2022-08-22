@@ -12,18 +12,12 @@ class CategoryField extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocListener<TransactionsBloc, TransactionsState>(
-      listener: (context, state) {
-        if (state is FieldSuccess) {}
-      },
-      child: DropDownField(
+    return DropDownField(
         initialCategory: initialCategory,
         dropItem: TransactionCategory.values.map((e) => e.getString).toList(),
         onChanged: (value) {
           context.read<TransactionsBloc>().add(CategorySubmitted(
               newValue: Formatters().fromStringToCategory(value)));
-        },
-      ),
-    );
+        });
   }
 }

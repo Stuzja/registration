@@ -11,7 +11,8 @@ class DropDownField extends StatefulWidget {
   const DropDownField({
     Key? key,
     required this.dropItem,
-    this.onChanged, this.initialCategory,
+    this.onChanged,
+    this.initialCategory,
   }) : super(key: key);
   @override
   State<DropDownField> createState() => DropDownFieldState();
@@ -36,12 +37,9 @@ class DropDownFieldState extends State<DropDownField> {
           ),
         ),
         isExpanded: true,
-       // value: widget.initialCategory.toString(),
-        hint: const Text(
-          'Category',
-          style:
-              TextStyle(fontSize: 14, color: Color.fromRGBO(27, 27, 27, 0.5)),
-        ),
+        // value: widget.initialCategory.toString(),
+        hint: Text('Category',
+            style: CustomTheme.lightTheme.textTheme.labelMedium),
         icon: const Icon(
           Icons.arrow_drop_down,
           color: Colors.black45,

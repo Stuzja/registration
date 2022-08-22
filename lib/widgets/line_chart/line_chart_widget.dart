@@ -12,7 +12,7 @@ class LineChartWidget extends StatelessWidget {
   const LineChartWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.70,
       child: Container(
@@ -20,9 +20,6 @@ class LineChartWidget extends StatelessWidget {
             EdgeInsets.only(right: 18.w, left: 12.w, top: 24.h, bottom: 12.h),
         child: BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
-          if (state is FetchLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
           if (state is FetchState) {
             return LineChart(
               LineChartData(
@@ -42,7 +39,7 @@ class LineChartWidget extends StatelessWidget {
                   bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
-                      reservedSize: 30,
+                      reservedSize: 66,
                       interval: 1,
                       getTitlesWidget: bottomTitleWidgets,
                     ),
@@ -67,17 +64,18 @@ class LineChartWidget extends StatelessWidget {
                 lineBarsData: [
                   LineChartBarData(
                     spots: ActionsWithTransactionsRepository()
-                        .getSpotsForGraphic(listTrans: state.transactionsByYear),
+                        .getSpotsForGraphic(
+                            listTrans: state.transactionsByYear),
                     isCurved: true,
                     gradient: const LinearGradient(
                       colors: [
-                        Colors.white,
+                        ColorClass.almostWhite,
                         ColorClass.purple,
                       ],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
-                    barWidth: 5,
+                    barWidth: 4,
                     isStrokeCapRound: true,
                     dotData: FlDotData(
                       show: false,

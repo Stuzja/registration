@@ -7,7 +7,7 @@ import '../../resources/validators/validators.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/buttons/text_button.dart';
 import '../../widgets/secured_textfield.dart';
-import '../../widgets/editing_transaction_layout/fields/unsecured_textfield.dart';
+import '../../widgets/unsecured_textfield.dart';
 
 class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({Key? key}) : super(key: key);

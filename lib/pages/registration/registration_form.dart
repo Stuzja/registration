@@ -5,7 +5,7 @@ import '../../blocs/registration/bloc/registration_bloc.dart';
 import '../../resources/validators/validators.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/secured_textfield.dart';
-import '../../widgets/editing_transaction_layout/fields/unsecured_textfield.dart';
+import '../../widgets/unsecured_textfield.dart';
 
 class RegistrationFormWidget extends StatefulWidget {
   const RegistrationFormWidget({Key? key}) : super(key: key);

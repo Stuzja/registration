@@ -126,18 +126,15 @@ class ActionsWithTransactionsRepository {
   List<FlSpot> getSpotsForGraphic({required List<TransactionModel> listTrans}) {
     List<FlSpot> listSpots = [];
     List<double> listSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    if (listTrans.isEmpty) {
-      return listSpots;
-    }
-
-    for (var transaction in listTrans.where((tran) => tran.ready == true)) {
-      if (transaction.type == TransactionType.profit) {
-        listSum[transaction.date!.month - 1] += transaction.value!;
-      } else {
-        listSum[transaction.date!.month - 1] -= transaction.value!;
+    if (listTrans.isNotEmpty) {
+      for (var transaction in listTrans.where((tran) => tran.ready == true)) {
+        if (transaction.type == TransactionType.profit) {
+          listSum[transaction.date!.month - 1] += transaction.value!;
+        } else {
+          listSum[transaction.date!.month - 1] -= transaction.value!;
+        }
       }
     }
-
     for (var ind = 0; ind < 12; ind++) {
       listSpots.add(FlSpot(ind.toDouble(), listSum[ind] / 10000));
     }

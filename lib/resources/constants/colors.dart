@@ -6,6 +6,7 @@ class ColorClass {
   static const black = Color.fromRGBO(27, 27, 27, 1);
   static const greyLight = Color.fromRGBO(196, 196, 196, 1);
   static const greyDark = Color.fromRGBO(117, 117, 117, 1);
+  static const almostWhite = Color.fromRGBO(231, 231, 234, 1);
 }
 
 const salaryDevTitle = Color.fromRGBO(167, 49, 49, 1);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../resources/constants/colors.dart';
-import '../../../resources/theme/custom_theme.dart';
+import '../resources/constants/colors.dart';
+import '../resources/theme/custom_theme.dart';
 
 // ignore: must_be_immutable
 class UnsecuredTextField extends StatelessWidget {
@@ -27,7 +27,7 @@ class UnsecuredTextField extends StatelessWidget {
         child: TextFormField(
           validator: validator,
           controller: controller,
-          cursorColor: ColorClass.greyLight,
+          cursorColor: const Color.fromARGB(255, 3, 2, 2),
           decoration: InputDecoration(
             contentPadding:
                 EdgeInsets.symmetric(vertical: 18.h, horizontal: 23.w),

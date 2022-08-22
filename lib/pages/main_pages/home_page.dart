@@ -29,8 +29,9 @@ class HomePage extends StatelessWidget {
               children: [
                 const TopWidget(
                     title: "Your total expenses", ready: true, monthly: false),
-                SizedBox(
-                  height: 570.h,
+                Container(
+                  alignment: Alignment.topCenter,
+                  height: 500.h,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: const [LineChartWidget()],

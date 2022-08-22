@@ -49,7 +49,7 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
 
   return SideTitleWidget(
     axisSide: meta.axisSide,
-    space: 10.h,
+    space: 30.h,
     child: Text(text, style: CustomTheme.lightTheme.textTheme.headline3),
   );
 }

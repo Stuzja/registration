@@ -9,10 +9,9 @@ import '../../models/transaction_model.dart';
 import '../../resources/theme/custom_theme.dart';
 import '../buttons/back_button.dart';
 import 'fields/date_field.dart';
-import 'fields/description_field.dart';
 import 'fields/drop_down_field/category_field.dart';
-import 'fields/money_field.dart';
 import 'fields/switch_fields/type_field.dart';
+import 'fields/transaction_field.dart';
 
 class EditingTransactionWidget extends StatelessWidget {
   final String title;
@@ -52,13 +51,20 @@ class EditingTransactionWidget extends StatelessWidget {
               ),
               const TypeField(),
               const ReadinessField(),
-              Padding(
-                padding: EdgeInsets.only(top: 16.h),
-                child: DateTextField(initialDateTime: transaction?.date),
-              ),
+              SizedBox(height: 16.h),
+              DateTextField(initialDateTime: transaction?.date),
+              SizedBox(height: 16.h),
               CategoryField(initialCategory: transaction?.category),
-              MoneyField(controller: moneyController),
-              DescriptionField(controller: descriptionController),
+              TransactionField(
+                  controller: moneyController,
+                  keyboardType: TextInputType.number,
+                  labelText: "Enter Amount"),
+              SizedBox(height: 16.h),
+              TransactionField(
+                  controller: descriptionController,
+                  keyboardType: TextInputType.text,
+                  labelText: "Description",
+                  maxLines: 7),
               ButtonAddTransactionWidget(
                 transaction: transaction,
                 title: title,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+import '../../../../resources/theme/custom_theme.dart';
+
 class SwitchField extends StatefulWidget {
   final String firstLabel;
   final String secondLabel;
@@ -28,11 +30,7 @@ class SwitchFieldState extends State<SwitchField> {
           padding: const EdgeInsets.only(top: 4),
           child: Text(
             widget.switchTitle,
-            style: const TextStyle(
-              color: Color.fromRGBO(27, 27, 27, 0.5),
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
+            style:CustomTheme.lightTheme.textTheme.labelMedium,
           ),
         ),
         ToggleSwitch(
