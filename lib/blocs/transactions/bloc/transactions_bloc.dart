@@ -64,7 +64,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         var item = allTransactions.docs[i].data();
         _transactions.add(TransactionModel.fromJson(item));
       }
-
+      _transactions.sort((a, b) => a.date!.compareTo(b.date!));
       _transactionsByMonth = _transactions
           .where(
               (tran) => repository.compareYearMonth(tran.date!, selectedMonth))

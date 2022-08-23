@@ -32,3 +32,41 @@ class FetchState extends TransactionsState {
   const FetchState(
       {required this.transactionsByMonth, required this.transactionsByYear});
 }
+
+class TransactionCreate extends TransactionsState {
+  final String id;
+  final TransactionType type;
+  final bool ready;
+  final DateTime date;
+  final double value;
+  final TransactionCategory category;
+  final String? description;
+
+  const TransactionCreate(
+      {required this.id,
+      required this.type,
+      required this.ready,
+      required this.date,
+      required this.value,
+      required this.category,
+      required this.description});
+
+  TransactionCreate copyWith(
+      String? id,
+      TransactionType? type,
+      bool? ready,
+      DateTime? date,
+      double? value,
+      TransactionCategory? category,
+      String? description) {
+    return TransactionCreate(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      ready: ready ?? this.ready,
+      date: date ?? this.date,
+      value: value ?? this.value,
+      category: category ?? this.category,
+      description: description,
+    );
+  }
+}
