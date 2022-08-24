@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
 
-import '../buttons/main_button.dart';
+import '../../../common_widgets/buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatelessWidget {
   final String title;

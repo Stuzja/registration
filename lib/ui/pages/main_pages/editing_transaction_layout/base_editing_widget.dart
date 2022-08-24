@@ -5,9 +5,11 @@ import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
-import 'package:registration/widgets/editing_transaction_layout/button_add_transaction.dart';
+import 'package:registration/ui/pages/main_pages/editing_transaction_layout/fields/switch_fields/new_switch_field/switch_chapter.dart';
 
-import '../buttons/back_button.dart';
+import '../../../common_widgets/buttons/back_button.dart';
+
+import 'button_add_transaction.dart';
 import 'fields/date_field.dart';
 import 'fields/drop_down_field/category_field.dart';
 import 'fields/switch_fields/readiness_field.dart';
@@ -28,12 +30,7 @@ class EditingTransactionWidget extends StatelessWidget {
     var moneyController =
         TextEditingController(text: transaction?.value.toString() ?? "");
 
-    return BlocProvider(
-      create: (context) {
-        return TransactionsBloc(
-            repository: ActionsWithTransactionsRepository());
-      },
-      child: SafeArea(
+    return SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.w),
           child: ListView(
@@ -75,7 +72,7 @@ class EditingTransactionWidget extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

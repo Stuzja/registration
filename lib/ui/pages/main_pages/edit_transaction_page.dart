@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:registration/widgets/editing_transaction_layout/base_editing_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
+import 'package:registration/models/transaction_model.dart';
+import 'package:registration/repositories/transactions_repository.dart';
 
-import '../../../models/transaction_model.dart';
-
+import 'editing_transaction_layout/base_editing_widget.dart';
 
 class EditTransactionPage extends StatelessWidget {
   final TransactionModel transaction;
-  const EditTransactionPage({Key? key, required this.transaction}) : super(key: key);
+  const EditTransactionPage({Key? key, required this.transaction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: EditingTransactionWidget(
-        title: "Edit",
-        transaction: transaction,
+    return BlocProvider(
+      create: (context) {
+        return TransactionsBloc(
+            repository: ActionsWithTransactionsRepository());
+      },
+      child: Scaffold(
+        body: EditingTransactionWidget(
+          title: "Edit",
+          transaction: transaction,
+        ),
       ),
     );
   }
