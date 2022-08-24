@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../pages/main_pages/add_transaction_page.dart';
-import '../pages/main_pages/home_page.dart';
-import '../pages/main_pages/splash_page.dart';
-import '../pages/login/login_page.dart';
-import '../pages/registration/registration_page.dart';
-import '../pages/reset_password.dart/create_password_page.dart';
-import '../pages/reset_password.dart/forgot_password_page.dart';
-import '../pages/reset_password.dart/verification_page.dart';
+
+import '../ui/pages/login/login_page.dart';
+import '../ui/pages/main_pages/add_transaction_page.dart';
+import '../ui/pages/main_pages/home_page.dart';
+import '../ui/pages/main_pages/splash_page.dart';
+import '../ui/pages/registration/registration_page.dart';
+import '../ui/pages/reset_password.dart/create_password_page.dart';
+import '../ui/pages/reset_password.dart/forgot_password_page.dart';
+import '../ui/pages/reset_password.dart/verification_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
