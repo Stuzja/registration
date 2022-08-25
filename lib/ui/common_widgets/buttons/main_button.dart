@@ -5,7 +5,7 @@ import 'package:registration/resources/theme/custom_theme.dart';
 
 class MainButtonLight extends StatelessWidget {
   final String name;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   const MainButtonLight({Key? key, required this.name, required this.onPressed})
       : super(key: key);
@@ -28,7 +28,7 @@ class MainButtonLight extends StatelessWidget {
 
 class MainButtonDark extends StatelessWidget {
   final String name;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   const MainButtonDark({Key? key, required this.name, required this.onPressed})
       : super(key: key);

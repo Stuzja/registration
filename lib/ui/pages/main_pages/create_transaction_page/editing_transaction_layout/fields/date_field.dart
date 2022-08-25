@@ -62,7 +62,7 @@ class _DateTextFieldState extends State<DateTextField> {
           // ignore: use_build_context_synchronously
           context
               .read<TransactionsBloc>()
-              .add(DateSubmitted(newValue: pickedDate));
+              .add(FieldSubmitted(date: pickedDate));
 
           setState(() {
             dateInput.text = formattedDate;

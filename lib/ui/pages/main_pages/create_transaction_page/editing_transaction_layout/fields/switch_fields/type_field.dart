@@ -30,7 +30,7 @@ class TypeFieldState extends State<TypeField> {
           } else {
             value = TransactionType.loss;
           }
-          context.read<TransactionsBloc>().add(TypeSubmitted(newValue: value));
+          context.read<TransactionsBloc>().add(FieldSubmitted(type: value));
         },
       ),
     );

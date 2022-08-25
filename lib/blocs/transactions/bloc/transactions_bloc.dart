@@ -26,12 +26,14 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<ReadinessSubmitted>(_onReadinessSubmitted);
     on<CategorySubmitted>(_onCategorySubmitted);
     on<DateSubmitted>(_onDateSubmitted);
+
     on<TransactionAdd>(_onTransactionAdd);
     on<ReadinessChanged>(_onReadinessChanged);
     on<TransactionDelete>(_onTransactionDelete);
     on<TransactionEdit>(_onTransactionEdit);
     on<FetchEvent>(_onFetch);
     on<DateChanged>(_onDateChanged);
+    on<FieldSubmitted>(_onFieldSubmitted);
   }
 
 /*
@@ -142,40 +144,61 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     prototypeTrans.date = event.newValue;
   }
 
+  void _onFieldSubmitted(
+    FieldSubmitted event,
+    Emitter<TransactionsState> emit,
+  ) {
+    if (event.category != null) {
+      prototypeTrans.category = event.category;
+    }
+    if (event.date != null) {
+      prototypeTrans.date = event.date;
+    }
+    if (event.value != null) {
+      prototypeTrans.value = event.value;
+    }
+    if (event.type != null) {
+      prototypeTrans.type = event.type!;
+    }
+    if (event.ready != null) {
+      prototypeTrans.ready = event.ready!;
+    }
+    if (event.description != null) {
+      prototypeTrans.description = event.description;
+    }
+    print(prototypeTrans.fieldsCollected);
+    if (prototypeTrans.fieldsCollected) {
+      emit(FieldsCollected());
+    }
+  }
+
   Future<void> _onTransactionAdd(
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {
     emit(TransactionsLoading());
 
-    if (prototypeTrans.category != null &&
-        prototypeTrans.date != null &&
-        event.money != null) {
-      bool addSuccess = await repository.addTransaction(
-          type: prototypeTrans.type,
-          ready: prototypeTrans.ready,
-          date: prototypeTrans.date!,
-          category: prototypeTrans.category!,
-          value: event.money!,
-          description: event.description);
+    bool addSuccess = await repository.addTransaction(
+        type: prototypeTrans.type,
+        ready: prototypeTrans.ready,
+        date: prototypeTrans.date!,
+        category: prototypeTrans.category!,
+        value: prototypeTrans.value!,
+        description: prototypeTrans.description!);
 
-      prototypeTrans = TransactionModel(
-          id: null,
-          category: null,
-          type: TransactionType.loss,
-          ready: false,
-          value: null,
-          description: null,
-          date: null);
-      if (addSuccess) {
-        emit(TransactionAddSuccess());
-        add(FetchEvent());
-      } else {
-        print("Просто не получилось добавить");
-        emit(TransactionAddFailed());
-      }
+    prototypeTrans = TransactionModel(
+        id: null,
+        category: null,
+        type: TransactionType.loss,
+        ready: false,
+        value: null,
+        description: null,
+        date: null);
+    if (addSuccess) {
+      emit(TransactionAddSuccess());
+      add(FetchEvent());
     } else {
-      print("Не прошло проверку");
+      print("Просто не получилось добавить");
       emit(TransactionAddFailed());
     }
   }
@@ -206,8 +229,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         ready: prototypeTrans.ready,
         date: prototypeTrans.date!,
         category: prototypeTrans.category!,
-        value: event.money!,
-        description: event.description);
+        value: prototypeTrans.value!,
+        description: prototypeTrans.description);
 
     prototypeTrans = TransactionModel(
         id: null,

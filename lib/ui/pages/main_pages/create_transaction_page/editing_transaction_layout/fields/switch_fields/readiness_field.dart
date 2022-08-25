@@ -31,7 +31,7 @@ class ReadinessFieldState extends State<ReadinessField> {
           }
           context
               .read<TransactionsBloc>()
-              .add(ReadinessSubmitted(newValue: value));
+              .add(FieldSubmitted(ready: value));
         },
       ),
     );

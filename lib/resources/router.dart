@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../ui/pages/login/login_page.dart';
 import '../ui/pages/main_pages/create_transaction_page/add_transaction_page.dart';
 import '../ui/pages/main_pages/home_page.dart';
-import '../ui/pages/main_pages/new_create_transaction_page/create_transaction_page.dart';
 import '../ui/pages/main_pages/splash_page.dart';
 import '../ui/pages/registration/registration_page.dart';
 import '../ui/pages/reset_password.dart/create_password_page.dart';
@@ -28,8 +27,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const HomePage());
     case '/add':
       return MaterialPageRoute(builder: (_) => const AddTransactionPage());
-    case '/create':
-      return MaterialPageRoute(builder: (_) => const CreateTransactionPage());
     default:
       return MaterialPageRoute(
           builder: (_) => Scaffold(

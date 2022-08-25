@@ -10,6 +10,7 @@ class TransactionField extends StatelessWidget {
   final int? maxLines;
   final void Function()? onTap;
   final bool? readOnly;
+  final void Function(String)? onFieldSubmitted;
   const TransactionField(
       {Key? key,
       required this.controller,
@@ -17,7 +18,8 @@ class TransactionField extends StatelessWidget {
       this.keyboardType,
       this.maxLines,
       this.onTap,
-      this.readOnly})
+      this.readOnly,
+      this.onFieldSubmitted})
       : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class TransactionField extends StatelessWidget {
     return SizedBox(
       width: 328.w,
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmitted,
         maxLines: maxLines,
         keyboardType: keyboardType,
         controller: controller,

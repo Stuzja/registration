@@ -5,20 +5,21 @@ import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
 
-
-class ButtonAddTransactionWidget extends StatelessWidget {
+class ButtonAddTransactionWidget extends StatefulWidget {
   final String title;
   final TransactionModel? transaction;
-  final TextEditingController moneyController;
-  final TextEditingController descriptionController;
 
   const ButtonAddTransactionWidget(
-      {Key? key,
-      required this.title,
-      required this.moneyController,
-      required this.descriptionController,
-      this.transaction})
+      {Key? key, required this.title, this.transaction})
       : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => ButtonAddTransactionWidgetState();
+}
+
+class ButtonAddTransactionWidgetState
+    extends State<ButtonAddTransactionWidget> {
+  bool isDisable = true;
 
   @override
   Widget build(BuildContext context) {
@@ -50,24 +51,25 @@ class ButtonAddTransactionWidget extends StatelessWidget {
         if (state is TransactionAddSuccess) {
           Navigator.pushNamed(context, '/home');
         }
+        if (state is FieldsCollected) {
+          setState(() {
+            isDisable = false;
+          });
+        }
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 22.h),
         child: MainButtonDark(
-            name: title,
-            onPressed: () {
-              if (transaction == null) {
-                context.read<TransactionsBloc>().add(TransactionAdd(
-                      money: double.parse(moneyController.text),
-                      description: descriptionController.text,
-                    ));
-              } else {
-                context.read<TransactionsBloc>().add(TransactionEdit(
-                      money: double.parse(moneyController.text),
-                      description: descriptionController.text,
-                    ));
-              }
-            }),
+            name: widget.title,
+            onPressed: isDisable
+                ? null
+                : () {
+                    if (widget.transaction == null) {
+                      context.read<TransactionsBloc>().add(TransactionAdd());
+                    } else {
+                      context.read<TransactionsBloc>().add(TransactionEdit());
+                    }
+                  }),
       ),
     );
   }

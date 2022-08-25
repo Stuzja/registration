@@ -37,17 +37,9 @@ class DateSubmitted extends TransactionsEvent {
   const DateSubmitted({required this.newValue});
 }
 
-class TransactionAdd extends TransactionsEvent {
-  final double? money;
-  final String? description;
-  const TransactionAdd({required this.money, required this.description});
-}
+class TransactionAdd extends TransactionsEvent {}
 
-class TransactionEdit extends TransactionsEvent {
-  final double? money;
-  final String? description;
-  const TransactionEdit({required this.money, required this.description});
-}
+class TransactionEdit extends TransactionsEvent {}
 
 class TransactionDelete extends TransactionsEvent {
   final TransactionModel transaction;
@@ -61,4 +53,23 @@ class DateChanged extends TransactionsEvent {
   final int? newYear;
 
   const DateChanged({this.newMonth, this.newYear});
+}
+
+class FieldSubmitted extends TransactionsEvent {
+  final TransactionType? type;
+  final bool? ready;
+  final DateTime? date;
+  final double? value;
+  final TransactionCategory? category;
+  final String? description;
+  final TransactionModel? transaction;
+
+  const FieldSubmitted(
+      {this.type,
+      this.ready,
+      this.date,
+      this.value,
+      this.category,
+      this.description,
+      this.transaction});
 }

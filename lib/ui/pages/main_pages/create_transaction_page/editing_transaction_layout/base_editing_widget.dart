@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 
 import 'package:registration/models/transaction_model.dart';
 
@@ -54,18 +56,24 @@ class EditingTransactionWidget extends StatelessWidget {
             TransactionField(
                 controller: moneyController,
                 keyboardType: TextInputType.number,
+                onFieldSubmitted: (newValue) {
+                  context.read<TransactionsBloc>().add(FieldSubmitted(
+                      value: double.parse(moneyController.text)));
+                },
                 labelText: "Enter Amount"),
             SizedBox(height: 16.h),
             TransactionField(
                 controller: descriptionController,
                 keyboardType: TextInputType.text,
                 labelText: "Description",
+                onFieldSubmitted: (newValue) {
+                  context.read<TransactionsBloc>().add(FieldSubmitted(
+                      value: double.parse(moneyController.text)));
+                },
                 maxLines: 7),
             ButtonAddTransactionWidget(
               transaction: transaction,
-              title: title,
-              moneyController: moneyController,
-              descriptionController: descriptionController,
+              title: title
             ),
           ],
         ),

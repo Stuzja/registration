@@ -17,8 +17,8 @@ class CategoryField extends StatelessWidget {
         initialCategory: initialCategory,
         dropItem: TransactionCategory.values.map((e) => e.getString).toList(),
         onChanged: (value) {
-          context.read<TransactionsBloc>().add(CategorySubmitted(
-              newValue: Formatters().fromStringToCategory(value)));
+          context.read<TransactionsBloc>().add(FieldSubmitted(
+              category: Formatters().fromStringToCategory(value)));
         });
   }
 }
