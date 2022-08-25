@@ -15,8 +15,7 @@ class EditTransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        return TransactionsBloc(
-            repository: ActionsWithTransactionsRepository());
+        return TransactionsBloc(repository: TransactionRepository());
       },
       child: Scaffold(
         body: EditingTransactionWidget(

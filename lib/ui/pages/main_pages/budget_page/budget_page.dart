@@ -23,7 +23,7 @@ class BaseBudgetPage extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           create: (context) =>
-              TransactionsBloc(repository: ActionsWithTransactionsRepository())
+              TransactionsBloc(repository: TransactionRepository())
                 ..add(FetchEvent()),
           child: SizedBox(
             child: Column(

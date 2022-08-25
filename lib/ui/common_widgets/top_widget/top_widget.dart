@@ -9,7 +9,6 @@ import '../../../resources/theme/custom_theme.dart';
 import 'page_view_months.dart';
 import 'page_view_year.dart';
 
-
 class TopWidget extends StatelessWidget {
   final bool monthly;
   final String? title;
@@ -44,7 +43,7 @@ class TopWidget extends StatelessWidget {
           BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
               if (state is FetchState) {
-                var sum = ActionsWithTransactionsRepository().getResultMoney(
+                var sum = TransactionRepository().getResultMoney(
                     listTrans: monthly
                         ? state.transactionsByMonth
                         : state.transactionsByYear,

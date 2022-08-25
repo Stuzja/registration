@@ -6,7 +6,7 @@ import 'package:registration/resources/theme/custom_theme.dart';
 class SwitchButton extends StatelessWidget {
   final String title;
   final bool isPicked;
-  final void Function(Object)? onTap;
+  final void Function()? onTap;
   const SwitchButton(
       {Key? key, required this.title, required this.isPicked, this.onTap})
       : super(key: key);

@@ -7,16 +7,14 @@ import '../../../repositories/transactions_repository.dart';
 import '../../common_widgets/line_chart/line_chart_widget.dart';
 import '../../common_widgets/top_widget/top_widget.dart';
 
-
 class GraphicPage extends StatelessWidget {
   const GraphicPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          TransactionsBloc(repository: ActionsWithTransactionsRepository())
-            ..add(FetchEvent()),
+      create: (context) => TransactionsBloc(repository: TransactionRepository())
+        ..add(FetchEvent()),
       child: ListView(
         children: [
           Column(

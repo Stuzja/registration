@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/transaction_model.dart';
-import 'package:registration/repositories/transactions_repository.dart';
 import '../../../models/user_model.dart';
+import '../../../repositories/abstract_transaction_repository.dart';
 import '../../../resources/enums/transaction_category.dart';
 import '../../../resources/enums/transaction_type.dart';
 
@@ -13,7 +13,7 @@ part 'transactions_event.dart';
 part 'transactions_state.dart';
 
 class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
-  final ActionsWithTransactionsRepository repository;
+  final AbstractTransactionRepository repository;
 
   List<TransactionModel> _transactions = [];
   List<TransactionModel> _transactionsByMonth = [];

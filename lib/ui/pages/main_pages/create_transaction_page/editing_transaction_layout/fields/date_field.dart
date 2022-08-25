@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/resources/constants/colors.dart';
 
-import '../../../../../blocs/transactions/bloc/transactions_bloc.dart';
+
 import 'transaction_field.dart';
 
 class DateTextField extends StatefulWidget {

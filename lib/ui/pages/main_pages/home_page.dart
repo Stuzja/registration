@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:registration/ui/pages/main_pages/user_page.dart';
 
-import '../../common_widgets/buttons/floating_bar_button.dart';
+import '../../common_widgets/navigation_bar/floating_bar_button.dart';
 import '../../common_widgets/navigation_bar/navigation_bar.dart';
 
 import 'budget_page/budget_page.dart';

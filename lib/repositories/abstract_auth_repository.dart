@@ -1,4 +1,4 @@
-abstract class AbstractRepository {
+abstract class AbstractAuthRepository {
   Future<bool> resetPassword({required String email});
   Future<String> checkInEmail({required String username});
   Future<bool> signIn({required String email, required String password});

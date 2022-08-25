@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
-import 'package:registration/ui/pages/main_pages/editing_transaction_layout/fields/switch_fields/new_switch_field/switch_button.dart';
+
 import 'package:toggle_switch/toggle_switch.dart';
+
+import 'switch_button.dart';
 
 class SwitchField extends StatelessWidget {
   final String firstLabel;

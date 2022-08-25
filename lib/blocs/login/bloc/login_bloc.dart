@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/repositories/login_google_repository.dart';
 
-import '../../../repositories/abstract_repository.dart';
+import '../../../repositories/abstract_auth_repository.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final AbstractRepository repository;
+  final AbstractAuthRepository repository;
   final LoginGoogleRepository loginGoogle;
   LoginBloc({
     required this.loginGoogle,

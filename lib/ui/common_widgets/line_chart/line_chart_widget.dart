@@ -64,9 +64,8 @@ class LineChartWidget extends StatelessWidget {
                 maxY: 6,
                 lineBarsData: [
                   LineChartBarData(
-                    spots: ActionsWithTransactionsRepository()
-                        .getSpotsForGraphic(
-                            listTrans: state.transactionsByYear),
+                    spots: TransactionRepository().getSpotsForGraphic(
+                        listTrans: state.transactionsByYear),
                     isCurved: true,
                     gradient: const LinearGradient(
                       colors: [

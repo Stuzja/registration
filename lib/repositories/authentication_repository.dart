@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:registration/repositories/abstract_repository.dart';
+import 'package:registration/repositories/abstract_auth_repository.dart';
 import '../models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../resources/validators/validators.dart';
 
-class AuthenticationRepository extends AbstractRepository {
+class AuthenticationRepository extends AbstractAuthRepository {
   @override
   Future<bool> resetPassword({required String email}) async {
     var emailSent = false;
@@ -26,7 +26,6 @@ class AuthenticationRepository extends AbstractRepository {
     return await snap.get('email');
   }
 
-
   Future<String> checkInUsername({required String email}) async {
     var snap =
         await FirebaseFirestore.instance.collection('users').doc(email).get();
@@ -42,7 +41,7 @@ class AuthenticationRepository extends AbstractRepository {
             .signInWithEmailAndPassword(email: email, password: password);
         thisUser.email = email;
         thisUser.password = password;
-       // thisUser.username ??= await checkInUsername(email: email);
+        // thisUser.username ??= await checkInUsername(email: email);
         statusLogged = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {

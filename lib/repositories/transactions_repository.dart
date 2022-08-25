@@ -2,17 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:registration/models/month_year_model.dart';
 import 'package:registration/models/user_model.dart';
+import 'package:registration/repositories/abstract_transaction_repository.dart';
 import '../models/transaction_model.dart';
 import '../resources/enums/transaction_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../resources/enums/transaction_type.dart';
 
-class ActionsWithTransactionsRepository {
+class TransactionRepository extends AbstractTransactionRepository{
   var storageTrans = FirebaseFirestore.instance
       .collection('users')
       .doc(thisUser.username)
       .collection('transactions');
 
+  @override
   Future<bool> addTransaction(
       {required TransactionType type,
       required bool ready,
@@ -41,6 +43,7 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  @override
   Future<bool> editTransaction(
       {required String id,
       required TransactionType type,
@@ -50,7 +53,6 @@ class ActionsWithTransactionsRepository {
       required double value,
       String? description}) async {
     try {
-      print(id);
       final docTransaction = storageTrans.doc(id);
       final transToJson = TransactionModel(
               id: id,
@@ -70,6 +72,7 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  @override
   Future<bool> deleteTransaction(
       {required TransactionModel transaction}) async {
     try {
@@ -82,6 +85,7 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  @override
   Future<bool> changeReadinessTransaction(
       {required TransactionModel transaction, required bool newValue}) async {
     try {
@@ -96,6 +100,7 @@ class ActionsWithTransactionsRepository {
     }
   }
 
+  @override
   double getResultMoney(
       {required List<TransactionModel> listTrans, required bool ready}) {
     if (listTrans.isEmpty) {
@@ -123,6 +128,7 @@ class ActionsWithTransactionsRepository {
     return sum;
   }
 
+  @override
   List<FlSpot> getSpotsForGraphic({required List<TransactionModel> listTrans}) {
     List<FlSpot> listSpots = [];
     List<double> listSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -141,6 +147,7 @@ class ActionsWithTransactionsRepository {
     return listSpots;
   }
 
+  @override
   bool compareYearMonth(DateTime date, MonthYear selectedDate) {
     if (date.year == selectedDate.year) {
       if (date.month == selectedDate.month) {

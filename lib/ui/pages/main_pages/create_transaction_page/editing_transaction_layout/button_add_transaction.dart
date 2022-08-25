@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
+import 'package:registration/ui/common_widgets/buttons/main_button.dart';
 
-import '../../../common_widgets/buttons/main_button.dart';
 
 class ButtonAddTransactionWidget extends StatelessWidget {
   final String title;
@@ -62,7 +62,6 @@ class ButtonAddTransactionWidget extends StatelessWidget {
                       description: descriptionController.text,
                     ));
               } else {
-                print('yeaah');
                 context.read<TransactionsBloc>().add(TransactionEdit(
                       money: double.parse(moneyController.text),
                       description: descriptionController.text,

@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:registration/repositories/abstract_repository.dart';
+import 'package:registration/repositories/abstract_auth_repository.dart';
 
 part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  final AbstractRepository repository;
+  final AbstractAuthRepository repository;
   RegistrationBloc({
     required this.repository,
   }) : super(RegistrationInitialState()) {
