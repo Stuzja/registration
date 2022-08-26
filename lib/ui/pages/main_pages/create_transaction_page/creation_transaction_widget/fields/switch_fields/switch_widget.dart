@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/resources/constants/colors.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class SwitchField extends StatefulWidget {
+class SwitchField extends StatelessWidget {
+  final int? initialValue;
   final String firstLabel;
   final String secondLabel;
   final String switchTitle;
@@ -13,13 +15,10 @@ class SwitchField extends StatefulWidget {
       required this.firstLabel,
       required this.secondLabel,
       required this.switchTitle,
-      required this.onToggle})
+      required this.onToggle,
+      this.initialValue})
       : super(key: key);
-  @override
-  State<SwitchField> createState() => SwitchFieldState();
-}
 
-class SwitchFieldState extends State<SwitchField> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,12 +27,13 @@ class SwitchFieldState extends State<SwitchField> {
         Padding(
           padding: const EdgeInsets.only(top: 4),
           child: Text(
-            widget.switchTitle,
+            switchTitle,
             style: CustomTheme.lightTheme.textTheme.labelMedium,
           ),
         ),
         ToggleSwitch(
-          onToggle: widget.onToggle,
+          initialLabelIndex: initialValue ?? 1,
+          onToggle: onToggle,
           minWidth: 164.w,
           minHeight: 64.h,
           cornerRadius: 10.0,
@@ -42,15 +42,14 @@ class SwitchFieldState extends State<SwitchField> {
             [Color.fromRGBO(138, 93, 165, 0.5)]
           ],
           borderColor: const [
-            Color.fromRGBO(138, 93, 165, 1),
+            ColorClass.purple,
           ],
-          borderWidth: 0.5,
-          activeFgColor: const Color.fromRGBO(138, 93, 165, 1),
-          inactiveFgColor: const Color.fromRGBO(138, 93, 165, 1),
+          borderWidth: 1,
+          activeFgColor: ColorClass.purple,
+          inactiveFgColor: ColorClass.purple,
           inactiveBgColor: Colors.white,
-          initialLabelIndex: 1,
           totalSwitches: 2,
-          labels: [widget.firstLabel, widget.secondLabel],
+          labels: [firstLabel, secondLabel],
           radiusStyle: true,
         ),
       ],

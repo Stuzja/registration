@@ -34,7 +34,7 @@ class TransactionField extends StatelessWidget {
         cursorColor: ColorClass.greyLight,
         decoration: InputDecoration(
           contentPadding:
-              EdgeInsets.symmetric(vertical: 18.h, horizontal: 18.w),
+              EdgeInsets.symmetric(vertical: 22.h, horizontal: 18.w),
           alignLabelWithHint: true,
           label: Align(
             alignment: Alignment.topLeft,
@@ -42,9 +42,12 @@ class TransactionField extends StatelessWidget {
           ),
           labelStyle: CustomTheme.lightTheme.textTheme.labelMedium,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          border: OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(width: 3)),
+              borderSide: const BorderSide(
+                width: 0.7,
+                color: Colors.black87,
+              )),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: ColorClass.purple, width: 3),
             borderRadius: BorderRadius.circular(10),

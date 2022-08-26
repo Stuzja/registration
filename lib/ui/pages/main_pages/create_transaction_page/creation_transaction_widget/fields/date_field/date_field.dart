@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/resources/constants/colors.dart';
 
-
-import 'transaction_field.dart';
+import '../text_fields/transaction_field.dart';
 
 class DateTextField extends StatefulWidget {
   final DateTime? initialDateTime;

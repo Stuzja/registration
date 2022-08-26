@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/repositories/transactions_repository.dart';
-
-import 'editing_transaction_layout/base_editing_widget.dart';
+import 'package:registration/ui/pages/main_pages/create_transaction_page/creation_transaction_widget/fields_transaction_widget.dart';
 
 class AddTransactionPage extends StatelessWidget {
   const AddTransactionPage({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class AddTransactionPage extends StatelessWidget {
         return TransactionsBloc(repository: TransactionRepository());
       },
       child: const Scaffold(
-          body: EditingTransactionWidget(
+          body: FieldsForTransactionWidget(
         title: "Add",
       )),
     );

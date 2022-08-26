@@ -5,20 +5,18 @@ import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
 
-class ButtonAddTransactionWidget extends StatefulWidget {
+class ButtonAddWidget extends StatefulWidget {
   final String title;
   final TransactionModel? transaction;
 
-  const ButtonAddTransactionWidget(
-      {Key? key, required this.title, this.transaction})
+  const ButtonAddWidget({Key? key, required this.title, this.transaction})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => ButtonAddTransactionWidgetState();
+  State<StatefulWidget> createState() => ButtonAddWidgetState();
 }
 
-class ButtonAddTransactionWidgetState
-    extends State<ButtonAddTransactionWidget> {
+class ButtonAddWidgetState extends State<ButtonAddWidget> {
   bool isDisable = true;
 
   @override
@@ -57,20 +55,17 @@ class ButtonAddTransactionWidgetState
           });
         }
       },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 22.h),
-        child: MainButtonDark(
-            name: widget.title,
-            onPressed: isDisable
-                ? null
-                : () {
-                    if (widget.transaction == null) {
-                      context.read<TransactionsBloc>().add(TransactionAdd());
-                    } else {
-                      context.read<TransactionsBloc>().add(TransactionEdit());
-                    }
-                  }),
-      ),
+      child: MainButtonDark(
+          name: widget.title,
+          onPressed: isDisable
+              ? null
+              : () {
+                  if (widget.transaction == null) {
+                    context.read<TransactionsBloc>().add(TransactionAdd());
+                  } else {
+                    context.read<TransactionsBloc>().add(TransactionEdit());
+                  }
+                }),
     );
   }
 }

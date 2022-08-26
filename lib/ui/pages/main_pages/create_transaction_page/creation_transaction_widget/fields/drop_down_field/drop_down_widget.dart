@@ -4,7 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 
-class DropDownField extends StatefulWidget {
+class DropDownField extends StatelessWidget {
   final List dropItem;
   final TransactionCategory? initialCategory;
   final void Function(String?)? onChanged;
@@ -14,30 +14,26 @@ class DropDownField extends StatefulWidget {
     this.onChanged,
     this.initialCategory,
   }) : super(key: key);
-  @override
-  State<DropDownField> createState() => DropDownFieldState();
-}
 
-class DropDownFieldState extends State<DropDownField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 64.h,
       width: 328.w,
+      height: 64.h,
       child: DropdownButtonFormField2(
         decoration: InputDecoration(
           isDense: true,
-          contentPadding: EdgeInsets.zero,
-          border: OutlineInputBorder(
+          contentPadding: EdgeInsets.symmetric(vertical: 22.h),
+          enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              width: 4,
-              color: Color.fromRGBO(117, 117, 117, 1),
+              width: 0.7,
+              color: Colors.black87,
             ),
           ),
         ),
         isExpanded: true,
-        // value: widget.initialCategory.toString(),
+        value: initialCategory != null ? (initialCategory!).getString : null,
         hint: Text('Category',
             style: CustomTheme.lightTheme.textTheme.labelMedium),
         icon: const Icon(
@@ -50,7 +46,7 @@ class DropDownFieldState extends State<DropDownField> {
         dropdownDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
         ),
-        items: widget.dropItem
+        items: dropItem
             .map((item) => DropdownMenuItem<String>(
                   value: item,
                   child: Text(item,
@@ -58,7 +54,7 @@ class DropDownFieldState extends State<DropDownField> {
                           ?.copyWith(color: Colors.black)),
                 ))
             .toList(),
-        onChanged: widget.onChanged,
+        onChanged: onChanged,
       ),
     );
   }
