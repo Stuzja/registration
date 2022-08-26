@@ -58,7 +58,7 @@ class TransactionModel {
   }
 
   bool get fieldsCollected {
-    final listOfTrans = [type, ready, date, value, category];
+    final listOfTrans = [date, value, category];
     for (var elem in listOfTrans) {
       if (elem == null) {
         return false;

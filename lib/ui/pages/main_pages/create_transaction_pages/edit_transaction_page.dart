@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
 import 'package:registration/repositories/transactions_repository.dart';
-import 'package:registration/ui/pages/main_pages/create_transaction_page/creation_transaction_widget/fields_transaction_widget.dart';
+
+import 'widgets/fields_transaction_widget.dart';
 
 class EditTransactionPage extends StatelessWidget {
   final TransactionModel transaction;

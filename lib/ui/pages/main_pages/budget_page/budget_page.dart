@@ -6,8 +6,8 @@ import 'package:registration/resources/constants/colors.dart';
 import '../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../../repositories/transactions_repository.dart';
 import '../../../common_widgets/top_widget/top_widget.dart';
-import 'widgets/transaction_list/transaction_list.dart';
-import 'widgets/transaction_row/transaction_row.dart';
+import 'widgets/transaction_list/transaction_list_widget.dart';
+import 'widgets/transaction_row/transaction_row_widget.dart';
 
 class BaseBudgetPage extends StatelessWidget {
   final String? title;

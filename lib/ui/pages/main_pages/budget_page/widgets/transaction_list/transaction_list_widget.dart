@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../blocs/transactions/bloc/transactions_bloc.dart';
-import 'transaction_row_widget.dart';
+import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
+import 'transaction_elem.dart';
 
-class TransactionRowWidget extends StatelessWidget {
+class TransactionListWidget extends StatelessWidget {
   final bool ready;
-  const TransactionRowWidget({Key? key, required this.ready}) : super(key: key);
+
+  const TransactionListWidget({super.key, required this.ready});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 145.h,
+        height: 440.h,
         child: BlocBuilder<TransactionsBloc, TransactionsState>(
             builder: (context, state) {
           if (state is FetchLoadingState) {
@@ -19,16 +20,14 @@ class TransactionRowWidget extends StatelessWidget {
           }
           if (state is FetchState) {
             return ListView(
-              padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
-              scrollDirection: Axis.horizontal,
               children: [
                 if (ready)
                   for (var elem
                       in state.transactionsByMonth.where((tran) => tran.ready == true))
-                    TransactionRowCard(transaction: elem)
+                    TransactionListElem(transaction: elem)
                 else
                   for (var elem in state.transactionsByMonth)
-                    TransactionRowCard(transaction: elem)
+                    TransactionListElem(transaction: elem)
               ],
             );
           }

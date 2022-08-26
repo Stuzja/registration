@@ -22,19 +22,14 @@ class IconWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
             height: 40.h,
             width: 40.h,
-            child: Stack(children: [
-              Container(
-                height: 40.h,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: colorActive),
-              ),
-              Center(
-                child: image,
-              ),
-            ]),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: colorActive),
+            child: Center(
+              child: image,
+            ),
           ),
         ]);
   }

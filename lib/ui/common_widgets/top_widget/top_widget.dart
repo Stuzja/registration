@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/resources/formatters/formatters.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../../../resources/theme/custom_theme.dart';
 import 'page_view_months.dart';
@@ -53,9 +54,9 @@ class TopWidget extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(Formatters().getTitleFromMoney(title, sum),
+                        Text(sum.toString(),
                             style: CustomTheme.lightTheme.textTheme.headline1),
-                        Text("₽$sum",
+                        Text(intl.NumberFormat.currency(name:'₽').format(sum),
                             style: CustomTheme.lightTheme.textTheme.headline1
                                 ?.copyWith(color: Colors.white, fontSize: 32)),
                       ]),

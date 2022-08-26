@@ -1,54 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/resources/enums/transaction_category.dart';
-import '../../../../../../models/transaction_model.dart';
-import '../../../../../../resources/theme/custom_theme.dart';
+import '../../../../../../blocs/transactions/bloc/transactions_bloc.dart';
+import 'transaction_card.dart';
 
-
-import 'backround_of_card.dart';
-
-class TransactionRowCard extends StatelessWidget {
-  final TransactionModel transaction;
-  const TransactionRowCard({Key? key, required this.transaction})
-      : super(key: key);
+class TransactionRowWidget extends StatelessWidget {
+  final bool ready;
+  const TransactionRowWidget({Key? key, required this.ready}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final colorTitle = transaction.category!.getColorTitle;
-    final colorLight = transaction.category!.getColorLight;
-    final colorMain = transaction.category!.getColorMain;
-    return Container(
-      margin: EdgeInsets.only(right: 9.h),
-      child: Stack(
-        children: [
-          BackgroundOfTransactionCard(
-            colorLight: colorLight,
-            colorMain: colorMain,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 16.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return SizedBox(
+        height: 145.h,
+        child: BlocBuilder<TransactionsBloc, TransactionsState>(
+            builder: (context, state) {
+          if (state is FetchLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is FetchState) {
+            return ListView(
+              padding: EdgeInsets.only(top: 24.h, bottom: 18.h),
+              scrollDirection: Axis.horizontal,
               children: [
-                Text(
-                  transaction.category!.getString,
-                  style: CustomTheme.lightTheme.textTheme.bodyText2
-                      ?.copyWith(color: colorTitle),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15.h),
-                  child: Text(
-                    "₽${transaction.value.toString()}",
-                    style: CustomTheme.lightTheme.textTheme.headline2
-                        ?.copyWith(color: colorTitle),
-                  ),
-                ),
+                if (ready)
+                  for (var elem
+                      in state.transactionsByMonth.where((tran) => tran.ready == true))
+                    TransactionRowCard(transaction: elem)
+                else
+                  for (var elem in state.transactionsByMonth)
+                    TransactionRowCard(transaction: elem)
               ],
-            ),
-          ),
-        ],
-      ),
-    );
+            );
+          }
+          return const Text("Nothing here...");
+        }));
   }
 }

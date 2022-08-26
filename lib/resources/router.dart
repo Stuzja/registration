@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui/pages/login/login_page.dart';
-import '../ui/pages/main_pages/create_transaction_page/add_transaction_page.dart';
+import '../ui/pages/main_pages/create_transaction_pages/add_transaction_page.dart';
 import '../ui/pages/main_pages/home_page.dart';
 import '../ui/pages/main_pages/splash_page.dart';
 import '../ui/pages/registration/registration_page.dart';
