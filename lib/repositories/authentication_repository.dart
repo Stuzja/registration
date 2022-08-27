@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:registration/repositories/abstract_auth_repository.dart';
 import '../models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,7 +42,6 @@ class AuthenticationRepository extends AbstractAuthRepository {
             .signInWithEmailAndPassword(email: email, password: password);
         thisUser.email = email;
         thisUser.password = password;
-        // thisUser.username ??= await checkInUsername(email: email);
         statusLogged = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
@@ -67,6 +67,7 @@ class AuthenticationRepository extends AbstractAuthRepository {
         FirebaseFirestore.instance.collection('users').doc(userName);
     final docEmail = FirebaseFirestore.instance.collection('users').doc(email);
     final userToJson = UserModel(
+      username: userName,
       password: password,
       email: email,
     ).toJson();
@@ -100,5 +101,32 @@ class AuthenticationRepository extends AbstractAuthRepository {
       print(e);
       return false;
     }
+  }
+
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? googleUser;
+
+  @override
+  Future<bool> signInGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    bool isSuccess = false;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+    try {
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {}
+    isSuccess = true;
+
+    return isSuccess;
+  }
+
+  @override
+  Future<void> signOutGoogle() async {
+    googleSignIn.disconnect();
   }
 }

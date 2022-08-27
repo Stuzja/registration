@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:registration/blocs/login/bloc/login_bloc.dart';
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 
 class LogoutButton extends StatelessWidget {
@@ -8,7 +8,7 @@ class LogoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LogoutSuccessState) {
           Navigator.pushNamed(context, '/login');
@@ -31,7 +31,7 @@ class LogoutButton extends StatelessWidget {
               ?.copyWith(color: Colors.red, fontSize: 16),
         ),
         onPressed: () {
-          context.read<LoginBloc>().add(LogoutPressed());
+          context.read<AuthBloc>().add(LogoutPressed());
         },
       ),
     );

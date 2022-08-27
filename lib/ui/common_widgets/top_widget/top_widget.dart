@@ -54,7 +54,7 @@ class TopWidget extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(sum.toString(),
+                        Text(Formatters().getTitleFromMoney(title, sum),
                             style: CustomTheme.lightTheme.textTheme.headline1),
                         Text(intl.NumberFormat.currency(name:'₽').format(sum),
                             style: CustomTheme.lightTheme.textTheme.headline1

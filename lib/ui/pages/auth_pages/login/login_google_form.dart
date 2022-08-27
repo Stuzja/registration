@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../blocs/login/bloc/login_bloc.dart';
-import '../../common_widgets/buttons/google_button.dart';
-
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
+import 'package:registration/ui/common_widgets/buttons/google_button.dart';
 
 class LoginGoogleWidget extends StatelessWidget {
   const LoginGoogleWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is LoginFailedState) {}
           if (state is LoginSuccessState) {
@@ -18,7 +16,8 @@ class LoginGoogleWidget extends StatelessWidget {
           }
         },
         child: GoogleButton(
-          onPressed: () => context.read<LoginBloc>().add(const LoginGoogleClick()),
+          onPressed: () =>
+              context.read<AuthBloc>().add(const LoginGoogleClick()),
         ));
   }
 }

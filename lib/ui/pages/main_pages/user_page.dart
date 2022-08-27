@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 
-import '../../../blocs/login/bloc/login_bloc.dart';
 import '../../../models/user_model.dart';
 import '../../../repositories/authentication_repository.dart';
-import '../../../repositories/login_google_repository.dart';
 import '../../../resources/constants/path_images.dart';
 import '../../../resources/theme/custom_theme.dart';
 import '../../common_widgets/buttons/face_id_button.dart';
 import '../../common_widgets/buttons/logout_text_button.dart';
-
 
 class UserPage extends StatelessWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -37,9 +35,7 @@ class UserPage extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) {
-              return LoginBloc(
-                  repository: AuthenticationRepository(),
-                  loginGoogle: LoginGoogleRepository());
+              return AuthBloc(repository: AuthenticationRepository());
             },
             child: const LogoutButton(),
           ),

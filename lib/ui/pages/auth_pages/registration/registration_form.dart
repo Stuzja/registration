@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../blocs/registration/bloc/registration_bloc.dart';
-import '../../../resources/validators/validators.dart';
-import '../../common_widgets/buttons/main_button.dart';
-import '../../common_widgets/textfields/secured_textfield.dart';
-import '../../common_widgets/textfields/unsecured_textfield.dart';
-
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
+import 'package:registration/resources/validators/validators.dart';
+import 'package:registration/ui/common_widgets/buttons/main_button.dart';
+import 'package:registration/ui/common_widgets/textfields/secured_textfield.dart';
+import 'package:registration/ui/common_widgets/textfields/unsecured_textfield.dart';
 
 class RegistrationFormWidget extends StatefulWidget {
   const RegistrationFormWidget({Key? key}) : super(key: key);
@@ -71,7 +70,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           nameField: 'Confirm password',
         ),
       ),
-      BlocListener<RegistrationBloc, RegistrationState>(
+      BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is RegistrationLoadingState) {
             Navigator.pushNamed(context, '/splash');
@@ -88,7 +87,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                   _formKeyPassword.currentState!.validate() &
                   _formKeyEmail.currentState!.validate() &
                   _formKeyPasswordAgain.currentState!.validate()) {
-                context.read<RegistrationBloc>().add(RegistrationSubmitted(
+                context.read<AuthBloc>().add(RegistrationSubmitted(
                     username: _usernameController.text.trim(),
                     email: _emailController.text.trim(),
                     password: _passwordController.text.trim()));

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../blocs/reset_password/bloc/reset_password_bloc.dart';
-import '../../../resources/validators/validators.dart';
-import '../../common_widgets/buttons/main_button.dart';
-import '../../common_widgets/textfields/unsecured_textfield.dart';
-
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
+import 'package:registration/resources/validators/validators.dart';
+import 'package:registration/ui/common_widgets/buttons/main_button.dart';
+import 'package:registration/ui/common_widgets/textfields/unsecured_textfield.dart';
 
 class EmailForResetPasswordWidget extends StatefulWidget {
   const EmailForResetPasswordWidget({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class EmailForResetPasswordWidgetState
             nameField: "Email or username",
             onChanged: (String str) {}),
       ),
-      BlocListener<ResetPasswordBloc, ResetPasswordState>(
+      BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is EmailFailedState) {}
           if (state is EmailSuccessState) {
@@ -40,7 +39,7 @@ class EmailForResetPasswordWidgetState
             name: "Reset my password",
             onPressed: () {
               if (_formKeyEmail.currentState!.validate()) {
-                context.read<ResetPasswordBloc>().add(EmailForResetSubmitted(
+                context.read<AuthBloc>().add(EmailForResetSubmitted(
                     email: _emailController.text.trim()));
               }
             }),

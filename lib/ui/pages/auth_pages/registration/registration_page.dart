@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/ui/pages/registration/registration_form.dart';
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
+import 'package:registration/repositories/authentication_repository.dart';
+import 'package:registration/resources/constants/path_images.dart';
+import 'package:registration/ui/common_widgets/appbar.dart';
+import 'package:registration/ui/common_widgets/buttons/back_button.dart';
 
-import '../../../blocs/registration/bloc/registration_bloc.dart';
-import '../../../repositories/authentication_repository.dart';
-import '../../../resources/constants/path_images.dart';
-import '../../common_widgets/appbar.dart';
-import '../../common_widgets/buttons/back_button.dart';
+import 'registration_form.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class RegistrationPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 27),
             child: BlocProvider(
               create: (context) {
-                return RegistrationBloc(repository: AuthenticationRepository());
+                return AuthBloc(repository: AuthenticationRepository());
               },
               child: const RegistrationFormWidget(),
             ),

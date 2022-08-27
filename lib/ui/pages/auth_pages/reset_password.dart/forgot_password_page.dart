@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../blocs/reset_password/bloc/reset_password_bloc.dart';
-import '../../../repositories/authentication_repository.dart';
-import '../../../resources/theme/custom_theme.dart';
-import '../../common_widgets/appbar.dart';
-import '../../common_widgets/buttons/back_button.dart';
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
+import 'package:registration/repositories/authentication_repository.dart';
+import 'package:registration/resources/theme/custom_theme.dart';
+import 'package:registration/ui/common_widgets/appbar.dart';
+import 'package:registration/ui/common_widgets/buttons/back_button.dart';
+
 import 'email_form.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -32,8 +33,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 ]),
                 BlocProvider(
                   create: (context) {
-                    return ResetPasswordBloc(
-                        repository: AuthenticationRepository());
+                    return AuthBloc(repository: AuthenticationRepository());
                   },
                   child: const EmailForResetPasswordWidget(),
                 ),

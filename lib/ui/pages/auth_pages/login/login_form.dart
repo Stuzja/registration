@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 import 'package:registration/resources/validators/validators.dart';
+import 'package:registration/ui/common_widgets/buttons/main_button.dart';
+import 'package:registration/ui/common_widgets/buttons/text_button.dart';
+import 'package:registration/ui/common_widgets/textfields/secured_textfield.dart';
 import 'package:registration/ui/common_widgets/textfields/unsecured_textfield.dart';
-
-
-import '../../../blocs/login/bloc/login_bloc.dart';
-import '../../common_widgets/buttons/main_button.dart';
-import '../../common_widgets/buttons/text_button.dart';
-import '../../common_widgets/textfields/secured_textfield.dart';
-
 
 class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({Key? key}) : super(key: key);
@@ -58,7 +55,7 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
             },
           ),
         ),
-        BlocListener<LoginBloc, LoginState>(
+        BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is LoginLoadingState) {
               Navigator.pushNamed(context, '/splash');
@@ -84,7 +81,7 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
               onPressed: () {
                 if (_formKeyUsername.currentState!.validate() &
                     _formKeyPassword.currentState!.validate()) {
-                  context.read<LoginBloc>().add(LoginSubmitted(
+                  context.read<AuthBloc>().add(LoginSubmitted(
                       email: _emailController.text.trim(),
                       password: _passwordController.text.trim()));
                 }

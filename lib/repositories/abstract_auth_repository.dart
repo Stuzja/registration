@@ -8,4 +8,6 @@ abstract class AbstractAuthRepository {
     required String userName,
   });
   Future<bool> signOut();
+  Future<void> signOutGoogle();
+  Future<bool> signInGoogle();
 }
