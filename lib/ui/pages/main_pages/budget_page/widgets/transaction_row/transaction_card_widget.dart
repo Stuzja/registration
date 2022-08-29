@@ -5,7 +5,6 @@ import 'package:registration/resources/formatters/formatters.dart';
 import '../../../../../../models/transaction_model.dart';
 import '../../../../../../resources/theme/custom_theme.dart';
 
-
 import 'backround_of_card.dart';
 
 class TransactionRowCard extends StatelessWidget {

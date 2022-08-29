@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 import 'resources/router.dart';
-import 'ui/pages/auth_pages/login/login_page.dart';
+import 'ui/pages/auth_pages/login_page/login_page.dart';
 
 
 class App extends StatelessWidget {

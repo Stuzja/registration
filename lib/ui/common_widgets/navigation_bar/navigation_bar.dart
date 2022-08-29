@@ -1,7 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:registration/resources/constants/colors.dart';
-import 'package:registration/ui/common_widgets/navigation_bar/icons.dart';
+import 'package:registration/ui/common_widgets/navigation_bar/icons_navigation_bar.dart';
 
 class FloatingNavigationBar extends StatefulWidget {
   final void Function(int) setIndex;

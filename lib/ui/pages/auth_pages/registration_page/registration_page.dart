@@ -7,7 +7,7 @@ import 'package:registration/resources/constants/path_images.dart';
 import 'package:registration/ui/common_widgets/appbar.dart';
 import 'package:registration/ui/common_widgets/buttons/back_button.dart';
 
-import 'registration_form.dart';
+import 'registration_fields_widget.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);

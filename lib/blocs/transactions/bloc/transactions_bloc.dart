@@ -21,12 +21,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   MonthYear selectedMonth = MonthYear.fromDateTime(DateTime.now());
   int selectedYear = DateTime.now().year;
 
-  TransactionsBloc({required this.repository}) : super(TransactionsInitial()) {
-    on<TypeSubmitted>(_onTypeSubmitted);
-    on<ReadinessSubmitted>(_onReadinessSubmitted);
-    on<CategorySubmitted>(_onCategorySubmitted);
-    on<DateSubmitted>(_onDateSubmitted);
-
+  TransactionsBloc({required this.repository})
+      : super(TransactionsInitialState()) {
     on<TransactionAdd>(_onTransactionAdd);
     on<ReadinessChanged>(_onReadinessChanged);
     on<TransactionDelete>(_onTransactionDelete);
@@ -36,21 +32,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<FieldSubmitted>(_onFieldSubmitted);
   }
 
-/*
-  void _onTransactionsChanged(
-    TransactionAdd event,
-    Emitter<TransactionsState> emit,
-  ) async {
-    await emit.forEach(
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(thisUser.username)
-            .collection('transactions')
-            .snapshots(), onData: ((data) {
-      return TransactionAddSuccess();
-    }));
-  }
-*/
   Future<void> _onFetch(
       FetchEvent event, Emitter<TransactionsState> emit) async {
     _transactions = [];
@@ -78,7 +59,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
           transactionsByMonth: _transactionsByMonth,
           transactionsByYear: _transactionsByYear));
     } catch (e) {
-      print("Возникла ошибка при загрузке транзакций");
+      print(e);
     }
   }
 
@@ -104,20 +85,6 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }
   }
 
-  void _onTypeSubmitted(
-    TypeSubmitted event,
-    Emitter<TransactionsState> emit,
-  ) {
-    prototypeTrans.type = event.newValue;
-  }
-
-  void _onReadinessSubmitted(
-    ReadinessSubmitted event,
-    Emitter<TransactionsState> emit,
-  ) {
-    prototypeTrans.ready = event.newValue;
-  }
-
   Future<void> _onReadinessChanged(
     ReadinessChanged event,
     Emitter<TransactionsState> emit,
@@ -125,23 +92,9 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     var changed = await repository.changeReadinessTransaction(
         transaction: event.transaction, newValue: !event.transaction.ready);
     if (changed) {
-      emit(ReadinessChangedSuccess());
+      emit(ReadinessChangedState());
       add(FetchEvent());
     }
-  }
-
-  void _onCategorySubmitted(
-    CategorySubmitted event,
-    Emitter<TransactionsState> emit,
-  ) async {
-    prototypeTrans.category = event.newValue;
-  }
-
-  void _onDateSubmitted(
-    DateSubmitted event,
-    Emitter<TransactionsState> emit,
-  ) {
-    prototypeTrans.date = event.newValue;
   }
 
   void _onFieldSubmitted(
@@ -166,9 +119,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     if (event.description != null) {
       prototypeTrans.description = event.description;
     }
-    print(prototypeTrans.fieldsCollected);
     if (prototypeTrans.fieldsCollected) {
-      emit(FieldsCollected());
+      emit(FieldsCollectedState());
     }
   }
 
@@ -176,7 +128,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     TransactionAdd event,
     Emitter<TransactionsState> emit,
   ) async {
-    emit(TransactionsLoading());
+    emit(TransactionLoadingState());
 
     bool addSuccess = await repository.addTransaction(
         type: prototypeTrans.type,
@@ -192,14 +144,13 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         type: TransactionType.loss,
         ready: false,
         value: null,
-        description: null,
+        description: "",
         date: null);
     if (addSuccess) {
-      emit(TransactionAddSuccess());
+      emit(TransactionAddSuccessState());
       add(FetchEvent());
     } else {
-      print("Просто не получилось добавить");
-      emit(TransactionAddFailed());
+      emit(TransactionAddFailedState());
     }
   }
 
@@ -212,8 +163,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     if (deleteSuccess) {
       add(FetchEvent());
     } else {
-      print("Не получилось удалить");
-      emit(TransactionDeleteFailed());
+      emit(TransactionDeleteFailedState());
     }
   }
 
@@ -221,7 +171,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     TransactionEdit event,
     Emitter<TransactionsState> emit,
   ) async {
-    emit(TransactionsLoading());
+    emit(FetchLoadingState());
 
     bool editSuccess = await repository.editTransaction(
         id: prototypeTrans.id!,
@@ -238,14 +188,13 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         type: TransactionType.loss,
         ready: false,
         value: null,
-        description: null,
+        description: "",
         date: null);
     if (editSuccess) {
-      emit(TransactionAddSuccess());
+      emit(TransactionAddSuccessState());
       add(FetchEvent());
     } else {
-      print("Не получилось изменить");
-      emit(TransactionEditFailed());
+      emit(TransactionEditFailedState());
     }
   }
 }

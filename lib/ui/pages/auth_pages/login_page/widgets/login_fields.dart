@@ -5,8 +5,7 @@ import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 import 'package:registration/resources/validators/validators.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
 import 'package:registration/ui/common_widgets/buttons/text_button.dart';
-import 'package:registration/ui/common_widgets/textfields/secured_textfield.dart';
-import 'package:registration/ui/common_widgets/textfields/unsecured_textfield.dart';
+import 'package:registration/ui/common_widgets/textfields/auth_textfield.dart';
 
 class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({Key? key}) : super(key: key);
@@ -28,7 +27,8 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
       children: [
         Form(
           key: _formKeyUsername,
-          child: UnsecuredTextField(
+          child: SecuredTextField(
+            isSecured: false,
             validator: (text) => Validators().validateUsername(text),
             controller: _emailController,
             onChanged: (String str) {},
@@ -39,6 +39,7 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
         Form(
           key: _formKeyPassword,
           child: SecuredTextField(
+            isSecured: true,
             validator: (text) => Validators().validatePassword(text),
             controller: _passwordController,
             onChanged: (String str) {},
@@ -76,7 +77,8 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
               Navigator.pushNamed(context, '/home');
             }
           },
-          child: MainButtonLight(
+          child: MainButton(
+              isLight: true,
               name: "Login",
               onPressed: () {
                 if (_formKeyUsername.currentState!.validate() &

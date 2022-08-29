@@ -5,7 +5,6 @@ import 'package:registration/repositories/transactions_repository.dart';
 
 import 'widgets/fields_transaction_widget.dart';
 
-
 class AddTransactionPage extends StatelessWidget {
   const AddTransactionPage({Key? key}) : super(key: key);
 

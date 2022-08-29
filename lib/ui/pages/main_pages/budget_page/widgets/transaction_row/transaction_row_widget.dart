@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../blocs/transactions/bloc/transactions_bloc.dart';
-import 'transaction_card.dart';
+
+import 'transaction_card_widget.dart';
 
 class TransactionRowWidget extends StatelessWidget {
   final bool ready;

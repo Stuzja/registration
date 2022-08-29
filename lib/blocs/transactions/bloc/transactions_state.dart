@@ -7,21 +7,19 @@ abstract class TransactionsState extends Equatable {
   List<Object> get props => [];
 }
 
-class TransactionsInitial extends TransactionsState {}
+class TransactionsInitialState extends TransactionsState {}
 
-class TransactionsLoading extends TransactionsState {}
+class TransactionLoadingState extends TransactionsState {}
 
-class TransactionAddSuccess extends TransactionsState {}
+class TransactionAddSuccessState extends TransactionsState {}
 
-class TransactionAddFailed extends TransactionsState {}
+class TransactionAddFailedState extends TransactionsState {}
 
-class TransactionEditFailed extends TransactionsState {}
+class TransactionEditFailedState extends TransactionsState {}
 
-class TransactionDeleteFailed extends TransactionsState {}
+class TransactionDeleteFailedState extends TransactionsState {}
 
-class FieldSuccess extends TransactionsState {}
-
-class ReadinessChangedSuccess extends TransactionsState {}
+class ReadinessChangedState extends TransactionsState {}
 
 class FetchLoadingState extends TransactionsState {}
 
@@ -33,4 +31,4 @@ class FetchState extends TransactionsState {
       {required this.transactionsByMonth, required this.transactionsByYear});
 }
 
-class FieldsCollected extends TransactionsState{}
+class FieldsCollectedState extends TransactionsState {}

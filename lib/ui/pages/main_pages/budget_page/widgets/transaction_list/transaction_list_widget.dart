@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
-import 'transaction_elem.dart';
+import 'transaction_elem_widget.dart';
 
 class TransactionListWidget extends StatelessWidget {
   final bool ready;

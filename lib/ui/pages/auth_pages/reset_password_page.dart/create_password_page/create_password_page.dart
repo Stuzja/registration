@@ -5,7 +5,7 @@ import 'package:registration/resources/validators/validators.dart';
 import 'package:registration/ui/common_widgets/appbar.dart';
 import 'package:registration/ui/common_widgets/buttons/back_button.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
-import 'package:registration/ui/common_widgets/textfields/secured_textfield.dart';
+import 'package:registration/ui/common_widgets/textfields/auth_textfield.dart';
 
 class CreatePasswordPage extends StatelessWidget {
   const CreatePasswordPage({Key? key}) : super(key: key);
@@ -23,14 +23,16 @@ class CreatePasswordPage extends StatelessWidget {
           Text("Create your new password to login",
               style: CustomTheme.lightTheme.textTheme.bodyText1),
           SecuredTextField(
+              isSecured: true,
               nameField: "Password",
               validator: (text) => Validators().validatePassword(text),
               onChanged: (String str) {}),
           SecuredTextField(
+              isSecured: true,
               validator: (text) => Validators().validatePassword(text),
               nameField: "Confirm password",
               onChanged: (String str) {}),
-          MainButtonDark(name: "Create password", onPressed: () {}),
+          MainButton(isLight: true, name: "Create password", onPressed: () {}),
         ]),
       ),
     );

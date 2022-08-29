@@ -8,10 +8,9 @@ import 'package:registration/resources/theme/custom_theme.dart';
 import 'package:registration/ui/common_widgets/appbar.dart';
 import 'package:registration/ui/common_widgets/buttons/text_button.dart';
 
-
-import 'login_form.dart';
-import 'login_google_form.dart';
-import 'login_page_divider.dart';
+import 'widgets/login_fields.dart';
+import 'widgets/login_google_form.dart';
+import 'widgets/login_page_divider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

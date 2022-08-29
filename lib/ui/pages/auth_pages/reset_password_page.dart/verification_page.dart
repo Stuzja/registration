@@ -22,7 +22,8 @@ class VerificationPage extends StatelessWidget {
           Text(
               "Enter code that we have sent to your email yon*******@gmail.com",
               style: CustomTheme.lightTheme.textTheme.bodyText1),
-          MainButtonDark(
+          MainButton(
+              isLight: true,
               name: "Verify",
               onPressed: () {
                 Navigator.pushNamed(context, '/createPassword');

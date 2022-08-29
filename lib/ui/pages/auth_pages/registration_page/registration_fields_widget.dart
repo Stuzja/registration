@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 import 'package:registration/resources/validators/validators.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
-import 'package:registration/ui/common_widgets/textfields/secured_textfield.dart';
-import 'package:registration/ui/common_widgets/textfields/unsecured_textfield.dart';
+import 'package:registration/ui/common_widgets/textfields/auth_textfield.dart';
 
 class RegistrationFormWidget extends StatefulWidget {
   const RegistrationFormWidget({Key? key}) : super(key: key);
@@ -28,7 +27,8 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
     return Wrap(runSpacing: 24.h, children: [
       Form(
           key: _formKeyUsername,
-          child: UnsecuredTextField(
+          child: SecuredTextField(
+            isSecured: false,
             controller: _usernameController,
             validator: (text) => Validators().validateUsername(text),
             onChanged: (String str) {},
@@ -37,7 +37,8 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           )),
       Form(
         key: _formKeyEmail,
-        child: UnsecuredTextField(
+        child: SecuredTextField(
+          isSecured: false,
           validator: (text) => Validators().validateEmail(text),
           controller: _emailController,
           onChanged: (String str) {},
@@ -48,6 +49,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       Form(
         key: _formKeyPassword,
         child: SecuredTextField(
+          isSecured: true,
           validator: (text) => Validators().validatePassword(text),
           controller: _passwordController,
           onChanged: (String str) {},
@@ -58,6 +60,7 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       Form(
         key: _formKeyPasswordAgain,
         child: SecuredTextField(
+          isSecured: true,
           validator: (text) {
             if (_passwordController.text == text) {
               return Validators().validatePassword(text);
@@ -80,7 +83,8 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
             Navigator.pushNamed(context, '/home');
           }
         },
-        child: MainButtonDark(
+        child: MainButton(
+           isLight: false,
             name: "Register",
             onPressed: () {
               if (_formKeyUsername.currentState!.validate() &

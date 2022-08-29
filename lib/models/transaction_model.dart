@@ -39,24 +39,6 @@ class TransactionModel {
         'description': description,
       };
 
-  TransactionModel copyWith(
-    TransactionType? type,
-    bool? ready,
-    DateTime? date,
-    double? value,
-    TransactionCategory? category,
-    String? description,
-  ) {
-    return TransactionModel(
-      type: type ?? this.type,
-      ready: ready ?? this.ready,
-      date: date ?? this.date,
-      value: value ?? this.value,
-      category: category ?? this.category,
-      description: description ?? this.description,
-    );
-  }
-
   bool get fieldsCollected {
     final listOfTrans = [date, value, category];
     for (var elem in listOfTrans) {
@@ -74,5 +56,5 @@ TransactionModel prototypeTrans = TransactionModel(
     type: TransactionType.loss,
     ready: false,
     value: null,
-    description: null,
+    description: "",
     date: null);

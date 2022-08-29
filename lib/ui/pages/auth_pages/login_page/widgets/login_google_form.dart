@@ -10,7 +10,6 @@ class LoginGoogleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is LoginFailedState) {}
           if (state is LoginSuccessState) {
             Navigator.pushNamed(context, '/home');
           }

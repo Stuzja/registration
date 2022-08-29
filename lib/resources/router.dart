@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../ui/pages/auth_pages/login/login_page.dart';
-import '../ui/pages/auth_pages/registration/registration_page.dart';
-import '../ui/pages/auth_pages/reset_password.dart/create_password_page.dart';
-import '../ui/pages/auth_pages/reset_password.dart/forgot_password_page.dart';
-import '../ui/pages/auth_pages/reset_password.dart/verification_page.dart';
+import '../ui/pages/auth_pages/login_page/login_page.dart';
+import '../ui/pages/auth_pages/registration_page/registration_page.dart';
+import '../ui/pages/auth_pages/reset_password_page.dart/create_password_page/create_password_page.dart';
+import '../ui/pages/auth_pages/reset_password_page.dart/forgot_password_page.dart';
+import '../ui/pages/auth_pages/reset_password_page.dart/verification_page.dart';
 import '../ui/pages/main_pages/create_transaction_pages/add_transaction_page.dart';
 import '../ui/pages/main_pages/home_page.dart';
 import '../ui/pages/main_pages/splash_page.dart';

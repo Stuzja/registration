@@ -7,7 +7,6 @@ import 'package:registration/resources/enums/transaction_category.dart';
 import '../../../../../../blocs/transactions/bloc/transactions_bloc.dart';
 import '../../../../../../models/transaction_model.dart';
 
-
 class ButtonElemReadiness extends StatelessWidget {
   final TransactionModel transaction;
   const ButtonElemReadiness({Key? key, required this.transaction})

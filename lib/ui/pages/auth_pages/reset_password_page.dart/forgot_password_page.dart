@@ -7,7 +7,7 @@ import 'package:registration/resources/theme/custom_theme.dart';
 import 'package:registration/ui/common_widgets/appbar.dart';
 import 'package:registration/ui/common_widgets/buttons/back_button.dart';
 
-import 'email_form.dart';
+import 'create_password_page/email_field_widget.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
