@@ -20,9 +20,9 @@ class UserPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 48.h, bottom: 70.h),
             child: Column(children: [
-              Text(thisUser.username!,
+              Text(thisUser.username,
                   style: CustomTheme.lightTheme.textTheme.headline1),
-              Text(thisUser.email!,
+              Text(thisUser.email,
                   style: CustomTheme.lightTheme.textTheme.headline1),
             ]),
           ),

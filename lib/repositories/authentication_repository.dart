@@ -94,7 +94,7 @@ class AuthenticationRepository extends AbstractAuthRepository {
   Future<bool> signOut() async {
     try {
       FirebaseAuth.instance.signOut();
-      thisUser = UserModel(email: null, password: null, username: null);
+      thisUser = UserModel(username: "", email: "", password: "");
       return true;
     } on FirebaseAuthException catch (e) {
       print(e);

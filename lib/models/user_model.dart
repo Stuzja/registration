@@ -1,7 +1,7 @@
 class UserModel {
-  String? username;
-  String? email;
-  String? password;
+  String username;
+  String email;
+  String password;
 
   UserModel({
     required this.username,
@@ -20,4 +20,4 @@ class UserModel {
       password: json['password']);
 }
 
-UserModel thisUser = UserModel(username: null, email: null, password: null);
+UserModel thisUser = UserModel(username: "", email: "", password: "");
