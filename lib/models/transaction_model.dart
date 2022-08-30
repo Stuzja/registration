@@ -48,6 +48,26 @@ class TransactionModel {
     }
     return true;
   }
+
+  TransactionModel copyWith({
+    String? id,
+    TransactionType? type,
+    bool? ready,
+    DateTime? date,
+    double? value,
+    TransactionCategory? category,
+    String? description,
+  }) {
+    return TransactionModel(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      ready: ready ?? this.ready,
+      date: date ?? this.date,
+      value: value ?? this.value,
+      category: category ?? this.category,
+      description: description ?? this.description,
+    );
+  }
 }
 
 TransactionModel prototypeTrans = TransactionModel(

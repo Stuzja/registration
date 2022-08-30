@@ -8,32 +8,18 @@ import '../resources/enums/transaction_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../resources/enums/transaction_type.dart';
 
-class TransactionRepository extends AbstractTransactionRepository{
+class TransactionRepository extends AbstractTransactionRepository {
   var storageTrans = FirebaseFirestore.instance
       .collection('users')
       .doc(thisUser.username)
       .collection('transactions');
 
   @override
-  Future<bool> addTransaction(
-      {required TransactionType type,
-      required bool ready,
-      required DateTime date,
-      required TransactionCategory category,
-      required double value,
-      String? description}) async {
+  Future<bool> addTransaction({required TransactionModel transaction}) async {
     try {
       final docTransaction = storageTrans.doc();
       final docId = docTransaction.id;
-      final transToJson = TransactionModel(
-              id: docId,
-              type: type,
-              ready: ready,
-              date: date,
-              category: category,
-              value: value,
-              description: description)
-          .toJson();
+      final transToJson = transaction.copyWith(id: docId).toJson();
 
       docTransaction.set(transToJson);
       return true;

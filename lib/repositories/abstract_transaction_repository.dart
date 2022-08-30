@@ -6,13 +6,7 @@ import '../resources/enums/transaction_category.dart';
 import '../resources/enums/transaction_type.dart';
 
 abstract class AbstractTransactionRepository {
-  Future<bool> addTransaction(
-      {required TransactionType type,
-      required bool ready,
-      required DateTime date,
-      required TransactionCategory category,
-      required double value,
-      String? description});
+  Future<bool> addTransaction({required TransactionModel transaction});
 
   Future<bool> editTransaction(
       {required String id,

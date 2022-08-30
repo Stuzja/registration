@@ -130,13 +130,8 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   ) async {
     emit(TransactionLoadingState());
 
-    bool addSuccess = await repository.addTransaction(
-        type: prototypeTrans.type,
-        ready: prototypeTrans.ready,
-        date: prototypeTrans.date!,
-        category: prototypeTrans.category!,
-        value: prototypeTrans.value!,
-        description: prototypeTrans.description!);
+    bool addSuccess =
+        await repository.addTransaction(transaction: prototypeTrans);
 
     prototypeTrans = TransactionModel(
         id: null,
