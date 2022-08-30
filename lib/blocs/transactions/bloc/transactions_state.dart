@@ -23,6 +23,8 @@ class ReadinessChangedState extends TransactionsState {}
 
 class FetchLoadingState extends TransactionsState {}
 
+class FetchFailedState extends TransactionsState {}
+
 class FetchState extends TransactionsState {
   final List<TransactionModel> transactionsByMonth;
   final List<TransactionModel> transactionsByYear;

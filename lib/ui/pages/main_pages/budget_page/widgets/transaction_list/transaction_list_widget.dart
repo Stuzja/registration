@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
+import 'package:registration/resources/theme/custom_theme.dart';
 import 'transaction_elem_widget.dart';
 
 class TransactionListWidget extends StatelessWidget {
@@ -18,12 +19,16 @@ class TransactionListWidget extends StatelessWidget {
           if (state is FetchLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
+          if (state is FetchFailedState) {
+            return Text("Problems with the Internet",
+                style: CustomTheme.lightTheme.textTheme.headline1);
+          }
           if (state is FetchState) {
             return ListView(
               children: [
                 if (ready)
-                  for (var elem
-                      in state.transactionsByMonth.where((tran) => tran.ready == true))
+                  for (var elem in state.transactionsByMonth
+                      .where((tran) => tran.ready == true))
                     TransactionListElem(transaction: elem)
                 else
                   for (var elem in state.transactionsByMonth)

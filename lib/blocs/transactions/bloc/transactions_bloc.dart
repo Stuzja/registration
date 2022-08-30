@@ -59,6 +59,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
           transactionsByMonth: _transactionsByMonth,
           transactionsByYear: _transactionsByYear));
     } catch (e) {
+      emit(FetchFailedState());
       print(e);
     }
   }

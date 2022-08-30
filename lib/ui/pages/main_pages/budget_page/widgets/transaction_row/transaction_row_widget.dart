@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registration/resources/theme/custom_theme.dart';
 import '../../../../../../blocs/transactions/bloc/transactions_bloc.dart';
 
 import 'transaction_card_widget.dart';
@@ -17,6 +18,10 @@ class TransactionRowWidget extends StatelessWidget {
             builder: (context, state) {
           if (state is FetchLoadingState) {
             return const Center(child: CircularProgressIndicator());
+          }
+           if (state is FetchFailedState) {
+            return Text("Problems with the Internet",
+                style: CustomTheme.lightTheme.textTheme.headline1);
           }
           if (state is FetchState) {
             return ListView(
