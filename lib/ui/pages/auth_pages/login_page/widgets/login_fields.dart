@@ -27,7 +27,7 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
       children: [
         Form(
           key: _formKeyUsername,
-          child: SecuredTextField(
+          child: AuthTextField(
             isSecured: false,
             validator: (text) => Validators().validateUsername(text),
             controller: _emailController,
@@ -38,7 +38,7 @@ class LoginFormWidgetState extends State<LoginFormWidget> {
         ),
         Form(
           key: _formKeyPassword,
-          child: SecuredTextField(
+          child: AuthTextField(
             isSecured: true,
             validator: (text) => Validators().validatePassword(text),
             controller: _passwordController,

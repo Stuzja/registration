@@ -42,6 +42,7 @@ class AuthenticationRepository extends AbstractAuthRepository {
             .signInWithEmailAndPassword(email: email, password: password);
         thisUser.email = email;
         thisUser.password = password;
+        thisUser.username = await checkInUsername(email: email);
         statusLogged = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
@@ -49,7 +50,6 @@ class AuthenticationRepository extends AbstractAuthRepository {
         }
       }
     } else {
-      thisUser.username = email;
       String newEmail = await checkInEmail(username: email);
       statusLogged = await signIn(email: newEmail, password: password);
     }
@@ -60,14 +60,14 @@ class AuthenticationRepository extends AbstractAuthRepository {
   Future<bool> signUp({
     required String email,
     required String password,
-    required String userName,
+    required String username,
   }) async {
     bool success = false;
     final docUser =
-        FirebaseFirestore.instance.collection('users').doc(userName);
+        FirebaseFirestore.instance.collection('users').doc(username);
     final docEmail = FirebaseFirestore.instance.collection('users').doc(email);
     final userToJson = UserModel(
-      username: userName,
+      username: username,
       password: password,
       email: email,
     ).toJson();
@@ -78,7 +78,8 @@ class AuthenticationRepository extends AbstractAuthRepository {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       thisUser =
-          UserModel(email: email, password: password, username: userName);
+          UserModel(email: email, password: password, username: username);
+      success = true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -86,8 +87,6 @@ class AuthenticationRepository extends AbstractAuthRepository {
         print('The account already exists for that email.');
       }
     }
-    success = true;
-
     return success;
   }
 
@@ -119,7 +118,9 @@ class AuthenticationRepository extends AbstractAuthRepository {
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
-    } on FirebaseAuthException catch (e) {}
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
     isSuccess = true;
 
     return isSuccess;

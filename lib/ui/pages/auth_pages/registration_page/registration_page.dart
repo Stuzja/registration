@@ -15,7 +15,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: CustomAppBar(),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 16.w, 36.h, 62.h),
         child: ListView(children: [
@@ -27,7 +27,7 @@ class RegistrationPage extends StatelessWidget {
               create: (context) {
                 return AuthBloc(repository: AuthenticationRepository());
               },
-              child: const RegistrationFormWidget(),
+              child: const RegistrationFieldsWidget(),
             ),
           ),
         ]),

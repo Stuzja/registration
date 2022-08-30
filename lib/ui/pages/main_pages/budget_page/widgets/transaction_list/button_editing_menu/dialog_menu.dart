@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
+import 'package:registration/models/transaction_model.dart';
 import 'package:registration/resources/theme/custom_theme.dart';
 import 'package:registration/ui/pages/main_pages/create_transaction_pages/edit_transaction_page.dart';
-
-import '../../../../../../../models/transaction_model.dart';
 
 class MenuEditingDialog {
   final BuildContext contextA;

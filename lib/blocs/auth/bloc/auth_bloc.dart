@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(RegistrationLoadingState());
     bool success = await repository.signUp(
-        email: event.email, password: event.password, userName: event.username);
+        email: event.email, password: event.password, username: event.username);
     if (success) {
       emit(RegistrationSuccessState());
     } else {

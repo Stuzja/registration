@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:registration/blocs/transactions/bloc/transactions_bloc.dart';
 import 'package:registration/models/transaction_model.dart';
-import 'package:registration/repositories/transactions_repository.dart';
 import 'package:registration/resources/enums/transaction_category.dart';
 
 import 'dialog_menu.dart';

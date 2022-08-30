@@ -5,7 +5,7 @@ abstract class AbstractAuthRepository {
   Future<bool> signUp({
     required String email,
     required String password,
-    required String userName,
+    required String username,
   });
   Future<bool> signOut();
   Future<void> signOutGoogle();

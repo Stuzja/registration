@@ -16,8 +16,7 @@ enum TransactionCategory {
 }
 
 extension FormExtensionCategory on TransactionCategory {
-
-   String get getString{
+  String get getString {
     switch (this) {
       case TransactionCategory.salariesDev:
         return "Salaries dev.";
@@ -47,81 +46,81 @@ extension FormExtensionCategory on TransactionCategory {
   Color get getColorMain {
     switch (this) {
       case TransactionCategory.salariesDev:
-        return salaryDevMain;
+        return ColorClass.salaryDevMain;
       case TransactionCategory.salariesMg:
-        return salaryMgMain;
+        return ColorClass.salaryMgMain;
       case TransactionCategory.internalHr:
-        return internalHrMain;
+        return ColorClass.internalHrMain;
       case TransactionCategory.externalHr:
-        return externalHrMain;
+        return ColorClass.externalHrMain;
       case TransactionCategory.credit:
-        return creditMain;
+        return ColorClass.creditMain;
       case TransactionCategory.dividends:
-        return dividendsMain;
+        return ColorClass.dividendsMain;
       case TransactionCategory.bankCharges:
-        return bankChargesMain;
+        return ColorClass.bankChargesMain;
       case TransactionCategory.taxes:
-        return taxesMain;
+        return ColorClass.taxesMain;
       case TransactionCategory.awards:
-        return awardsMain;
+        return ColorClass.awardsMain;
       case TransactionCategory.others:
-        return otherMain;
+        return ColorClass.otherMain;
       case TransactionCategory.profit:
-        return profitMain;
+        return ColorClass.profitMain;
     }
   }
 
   Color get getColorTitle {
     switch (this) {
       case TransactionCategory.salariesDev:
-        return salaryDevTitle;
+        return ColorClass.salaryDevTitle;
       case TransactionCategory.salariesMg:
-        return salaryMgTitle;
+        return ColorClass.salaryMgTitle;
       case TransactionCategory.internalHr:
-        return internalHrTitle;
+        return ColorClass.internalHrTitle;
       case TransactionCategory.externalHr:
-        return externalHrTitle;
+        return ColorClass.externalHrTitle;
       case TransactionCategory.credit:
-        return creditTitle;
+        return ColorClass.creditTitle;
       case TransactionCategory.dividends:
-        return dividendsTitle;
+        return ColorClass.dividendsTitle;
       case TransactionCategory.bankCharges:
-        return bankChargesTitle;
+        return ColorClass.bankChargesTitle;
       case TransactionCategory.taxes:
-        return taxesTitle;
+        return ColorClass.taxesTitle;
       case TransactionCategory.awards:
-        return awardsTitle;
+        return ColorClass.awardsTitle;
       case TransactionCategory.others:
-        return otherTitle;
+        return ColorClass.otherTitle;
       case TransactionCategory.profit:
-        return profitTitle;
+        return ColorClass.profitTitle;
     }
   }
 
   Color get getColorLight {
     switch (this) {
       case TransactionCategory.salariesDev:
-        return salaryDevLight;
+        return ColorClass.salaryDevLight;
       case TransactionCategory.salariesMg:
-        return salaryMgLight;
+        return ColorClass.salaryMgLight;
       case TransactionCategory.internalHr:
-        return internalHrLight;
+        return ColorClass.internalHrLight;
       case TransactionCategory.externalHr:
-        return externalHrLight;
+        return ColorClass.externalHrLight;
       case TransactionCategory.credit:
-        return creditLight;
+        return ColorClass.creditLight;
       case TransactionCategory.dividends:
-        return dividendsLight;
+        return ColorClass.dividendsLight;
       case TransactionCategory.bankCharges:
-        return bankChargesLight;
+        return ColorClass.bankChargesLight;
       case TransactionCategory.taxes:
-        return taxesLight;
+        return ColorClass.taxesLight;
       case TransactionCategory.awards:
-        return awardsLight;
+        return ColorClass.awardsLight;
       case TransactionCategory.others:
-        return otherLight;
+        return ColorClass.otherLight;
       case TransactionCategory.profit:
-        return profitLight;
+        return ColorClass.profitLight;
     }
   }
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registration/blocs/auth/bloc/auth_bloc.dart';
 
 import '../../../models/user_model.dart';
-import '../../../repositories/authentication_repository.dart';
 import '../../../resources/constants/path_images.dart';
 import '../../../resources/theme/custom_theme.dart';
 import '../../common_widgets/buttons/face_id_button.dart';
@@ -33,12 +30,7 @@ class UserPage extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 80.h),
             child: const FaceIdSwitcher(),
           ),
-          BlocProvider(
-            create: (context) {
-              return AuthBloc(repository: AuthenticationRepository());
-            },
-            child: const LogoutButton(),
-          ),
+          const LogoutButton(),
         ],
       ),
     );

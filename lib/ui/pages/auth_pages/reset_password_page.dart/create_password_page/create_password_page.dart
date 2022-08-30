@@ -22,12 +22,12 @@ class CreatePasswordPage extends StatelessWidget {
               style: CustomTheme.lightTheme.textTheme.headline1),
           Text("Create your new password to login",
               style: CustomTheme.lightTheme.textTheme.bodyText1),
-          SecuredTextField(
+          AuthTextField(
               isSecured: true,
               nameField: "Password",
               validator: (text) => Validators().validatePassword(text),
               onChanged: (String str) {}),
-          SecuredTextField(
+          AuthTextField(
               isSecured: true,
               validator: (text) => Validators().validatePassword(text),
               nameField: "Confirm password",

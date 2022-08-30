@@ -4,17 +4,17 @@ import 'package:registration/resources/constants/colors.dart';
 
 import '../../../resources/theme/custom_theme.dart';
 
-class SecuredTextField extends StatefulWidget {
+class AuthTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String nameField;
   final String? errorText;
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
   final String? Function(String?) validator;
   final bool isSecured;
-  const SecuredTextField(
+  const AuthTextField(
       {Key? key,
       required this.nameField,
-      required this.onChanged,
+      this.onChanged,
       this.errorText,
       this.controller,
       required this.validator,
@@ -22,10 +22,10 @@ class SecuredTextField extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => SecuredTextFieldState();
+  State<StatefulWidget> createState() => AuthTextFieldState();
 }
 
-class SecuredTextFieldState extends State<SecuredTextField> {
+class AuthTextFieldState extends State<AuthTextField> {
   late bool _obscureText = widget.isSecured;
 
   void _showText() {

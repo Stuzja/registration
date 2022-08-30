@@ -22,7 +22,7 @@ class EmailForResetPasswordWidgetState
     return Wrap(spacing: 36.h, children: [
       Form(
         key: _formKeyEmail,
-        child: SecuredTextField(
+        child: AuthTextField(
             isSecured: false,
             validator: (text) => Validators().validatePassword(text),
             controller: _emailController,

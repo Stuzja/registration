@@ -6,14 +6,14 @@ import 'package:registration/resources/validators/validators.dart';
 import 'package:registration/ui/common_widgets/buttons/main_button.dart';
 import 'package:registration/ui/common_widgets/textfields/auth_textfield.dart';
 
-class RegistrationFormWidget extends StatefulWidget {
-  const RegistrationFormWidget({Key? key}) : super(key: key);
+class RegistrationFieldsWidget extends StatefulWidget {
+  const RegistrationFieldsWidget({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => RegistrationFormWidgetState();
+  State<StatefulWidget> createState() => RegistrationFieldsWidgetState();
 }
 
-class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
+class RegistrationFieldsWidgetState extends State<RegistrationFieldsWidget> {
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -27,39 +27,36 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
     return Wrap(runSpacing: 24.h, children: [
       Form(
           key: _formKeyUsername,
-          child: SecuredTextField(
+          child: AuthTextField(
             isSecured: false,
             controller: _usernameController,
             validator: (text) => Validators().validateUsername(text),
-            onChanged: (String str) {},
             errorText: null,
             nameField: "Username",
           )),
       Form(
         key: _formKeyEmail,
-        child: SecuredTextField(
+        child: AuthTextField(
           isSecured: false,
           validator: (text) => Validators().validateEmail(text),
           controller: _emailController,
-          onChanged: (String str) {},
           errorText: null,
           nameField: "Email",
         ),
       ),
       Form(
         key: _formKeyPassword,
-        child: SecuredTextField(
+        child: AuthTextField(
           isSecured: true,
           validator: (text) => Validators().validatePassword(text),
           controller: _passwordController,
-          onChanged: (String str) {},
           nameField: 'Password',
           errorText: null,
         ),
       ),
       Form(
         key: _formKeyPasswordAgain,
-        child: SecuredTextField(
+        child: AuthTextField(
           isSecured: true,
           validator: (text) {
             if (_passwordController.text == text) {
@@ -68,7 +65,6 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
               return "Passwords don't match";
             }
           },
-          onChanged: (String str) {},
           controller: _passwordAgainController,
           nameField: 'Confirm password',
         ),
@@ -78,13 +74,12 @@ class RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           if (state is RegistrationLoadingState) {
             Navigator.pushNamed(context, '/splash');
           }
-          if (state is RegistrationFailedState) {}
           if (state is RegistrationSuccessState) {
             Navigator.pushNamed(context, '/home');
           }
         },
         child: MainButton(
-           isLight: false,
+            isLight: false,
             name: "Register",
             onPressed: () {
               if (_formKeyUsername.currentState!.validate() &

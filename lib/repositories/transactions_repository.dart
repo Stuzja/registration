@@ -91,7 +91,6 @@ class TransactionRepository extends AbstractTransactionRepository{
     try {
       transaction.ready = newValue;
       var docCurrent = storageTrans.doc(transaction.id);
-      print(transaction.id);
       docCurrent.set(transaction.toJson());
       return true;
     } on FirebaseAuthException catch (e) {
